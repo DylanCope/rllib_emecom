@@ -1,0 +1,1121 @@
+2023-10-05 15:00:26,359 INFO    StreamThr :15663 [internal.py:wandb_internal():86] W&B internal server running at pid: 15663, started at: 2023-10-05 15:00:26.358527
+2023-10-05 15:00:26,360 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status
+2023-10-05 15:00:26,363 INFO    WriterThread:15663 [datastore.py:open_for_write():85] open: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/run-7c97f_00000.wandb
+2023-10-05 15:00:26,363 DEBUG   SenderThread:15663 [sender.py:send():379] send: header
+2023-10-05 15:00:26,364 DEBUG   SenderThread:15663 [sender.py:send():379] send: run
+2023-10-05 15:00:26,843 INFO    SenderThread:15663 [dir_watcher.py:__init__():211] watching files in: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files
+2023-10-05 15:00:26,843 INFO    SenderThread:15663 [sender.py:_start_run_threads():1121] run started: 7c97f_00000 with start time 1696514426.358383
+2023-10-05 15:00:26,848 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: check_version
+2023-10-05 15:00:26,849 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: check_version
+2023-10-05 15:00:26,987 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: run_start
+2023-10-05 15:00:26,998 DEBUG   HandlerThread:15663 [system_info.py:__init__():32] System info init
+2023-10-05 15:00:26,998 DEBUG   HandlerThread:15663 [system_info.py:__init__():47] System info init done
+2023-10-05 15:00:26,998 INFO    HandlerThread:15663 [system_monitor.py:start():181] Starting system monitor
+2023-10-05 15:00:26,998 INFO    SystemMonitor:15663 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-10-05 15:00:26,999 INFO    HandlerThread:15663 [system_monitor.py:probe():201] Collecting system info
+2023-10-05 15:00:26,999 INFO    SystemMonitor:15663 [interfaces.py:start():190] Started cpu monitoring
+2023-10-05 15:00:27,000 INFO    SystemMonitor:15663 [interfaces.py:start():190] Started disk monitoring
+2023-10-05 15:00:27,001 INFO    SystemMonitor:15663 [interfaces.py:start():190] Started gpu monitoring
+2023-10-05 15:00:27,002 INFO    SystemMonitor:15663 [interfaces.py:start():190] Started memory monitoring
+2023-10-05 15:00:27,003 INFO    SystemMonitor:15663 [interfaces.py:start():190] Started network monitoring
+2023-10-05 15:00:27,016 DEBUG   HandlerThread:15663 [system_info.py:probe():196] Probing system
+2023-10-05 15:00:27,098 DEBUG   HandlerThread:15663 [gitlib.py:_init_repo():53] git repository is invalid
+2023-10-05 15:00:27,098 DEBUG   HandlerThread:15663 [system_info.py:probe():244] Probing system done
+2023-10-05 15:00:27,098 DEBUG   HandlerThread:15663 [system_monitor.py:probe():210] {'os': 'Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with-glibc2.35', 'python': '3.10.6', 'heartbeatAt': '2023-10-05T14:00:27.016442', 'startedAt': '2023-10-05T14:00:26.354320', 'docker': None, 'cuda': None, 'args': ('--node-ip-address=172.30.135.148', '--node-manager-port=39289', '--object-store-name=/tmp/ray/session_2023-10-05_14-58-59_443521_13353/sockets/plasma_store', '--raylet-name=/tmp/ray/session_2023-10-05_14-58-59_443521_13353/sockets/raylet', '--redis-address=None', '--temp-dir=/tmp/ray', '--metrics-agent-port=56201', '--runtime-env-agent-port=56424', '--logging-rotate-bytes=536870912', '--logging-rotate-backup-count=5', '--runtime-env-agent-port=56424', '--gcs-address=172.30.135.148:45976', '--session-name=session_2023-10-05_14-58-59_443521_13353', '--temp-dir=/tmp/ray', '--webui=172.30.135.148:8265', '--cluster-id=f22306bccfb41ecc3a40a4570b9f38c87ac45f774506e15646c8bfec', '--startup-token=46', '--worker-launch-time-ms=1696514419626', '--runtime-env-hash=700002433'), 'state': 'running', 'program': '/usr/local/lib/python3.10/dist-packages/ray/_private/workers/default_worker.py', 'codePathLocal': None, 'host': 'DYLAN-PC', 'username': 'root', 'executable': '/bin/python3', 'cpu_count': 14, 'cpu_count_logical': 28, 'cpu_freq': {'current': 3312.0, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}, {'current': 3312.0, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 250.98248672485352, 'used': 218.15203094482422}}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 23.47775650024414}}
+2023-10-05 15:00:27,099 INFO    HandlerThread:15663 [system_monitor.py:probe():211] Finished collecting system info
+2023-10-05 15:00:27,099 INFO    HandlerThread:15663 [system_monitor.py:probe():214] Publishing system info
+2023-10-05 15:00:27,099 DEBUG   HandlerThread:15663 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2023-10-05 15:00:27,099 DEBUG   HandlerThread:15663 [system_info.py:_save_pip():68] Saving pip packages done
+2023-10-05 15:00:27,099 INFO    HandlerThread:15663 [system_monitor.py:probe():216] Finished publishing system info
+2023-10-05 15:00:27,104 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:00:27,104 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2023-10-05 15:00:27,111 DEBUG   SenderThread:15663 [sender.py:send():379] send: telemetry
+2023-10-05 15:00:27,112 DEBUG   SenderThread:15663 [sender.py:send():379] send: telemetry
+2023-10-05 15:00:27,112 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:00:27,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:00:27,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:00:27,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:00:27,670 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/uhat3uau-wandb-metadata.json
+2023-10-05 15:00:27,844 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/requirements.txt
+2023-10-05 15:00:27,845 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-metadata.json
+2023-10-05 15:00:31,453 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:00:36,454 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:00:41,455 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:00:42,108 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:00:42,108 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:00:42,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:00:47,262 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:00:52,263 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:00:57,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:00:57,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:00:57,110 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:00:57,304 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:00:57,851 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:00:58,676 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:00:58,720 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:00:58,726 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:00:58,727 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:00:58,728 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:00:58,852 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:01:02,729 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:07,730 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:12,108 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:01:12,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:01:12,109 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:01:13,345 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:16,634 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:01:16,635 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:01:16,645 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:01:16,646 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:01:16,648 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:01:16,856 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:01:18,648 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:23,649 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:27,003 DEBUG   SystemMonitor:15663 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-10-05 15:01:27,004 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:01:27,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:01:27,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:01:27,111 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:01:29,246 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:29,860 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:01:34,487 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:34,578 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:01:34,579 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:01:34,581 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:01:34,582 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:01:34,583 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:01:34,861 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:01:39,585 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:42,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:01:42,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:01:42,109 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:01:45,363 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:50,364 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:52,670 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:01:52,710 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:01:52,718 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:01:52,719 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:01:52,720 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:01:52,865 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:01:55,721 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:01:57,005 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:01:57,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:01:57,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:01:57,110 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:02:01,303 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:01,868 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:02:06,533 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:10,387 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:02:10,388 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:02:10,391 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:02:10,391 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:02:10,392 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:02:10,870 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:02:12,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:02:12,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:02:12,110 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:02:12,244 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:17,245 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:22,246 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:27,006 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:02:27,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:02:27,110 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:02:27,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:02:27,280 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:28,649 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:02:28,690 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:02:28,702 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:02:28,702 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:02:28,703 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:02:28,875 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:02:32,708 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:33,876 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:02:37,910 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:42,109 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:02:42,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:02:42,110 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:02:43,343 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:46,452 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:02:46,453 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:02:46,455 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:02:46,456 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:02:46,456 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:02:46,880 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:02:48,457 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:53,458 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:02:57,007 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:02:57,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:02:57,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:02:57,112 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:02:59,280 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:04,284 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:04,616 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:03:04,617 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:03:04,619 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:03:04,620 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:03:04,620 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:03:04,884 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:03:04,884 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:03:09,621 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:12,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:03:12,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:03:12,111 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:03:15,314 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:20,315 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:22,374 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:03:22,390 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:03:22,392 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:03:22,393 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:03:22,393 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:03:22,889 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:03:25,394 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:27,007 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:03:27,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:03:27,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:03:27,111 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:03:31,313 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:36,318 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:36,893 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:03:41,584 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:42,110 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:03:42,111 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:03:42,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:03:47,246 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:47,911 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:03:48,262 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,262 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_9_297097d221883375a613.mp4 with policy now
+2023-10-05 15:03:48,263 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,263 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_9_457195f597c7b25f5864.mp4 with policy now
+2023-10-05 15:03:48,264 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,264 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4 with policy now
+2023-10-05 15:03:48,264 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,264 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4 with policy now
+2023-10-05 15:03:48,265 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,265 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4 with policy now
+2023-10-05 15:03:48,265 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,265 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4 with policy now
+2023-10-05 15:03:48,268 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,268 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_9_297097d221883375a613.mp4 with policy now
+2023-10-05 15:03:48,270 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,270 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_9_457195f597c7b25f5864.mp4 with policy now
+2023-10-05 15:03:48,270 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:03:48,276 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,276 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4 with policy now
+2023-10-05 15:03:48,276 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,277 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4 with policy now
+2023-10-05 15:03:48,277 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,277 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4 with policy now
+2023-10-05 15:03:48,277 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:03:48,278 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4 with policy now
+2023-10-05 15:03:48,412 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:03:48,413 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:03:48,416 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:03:48,743 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/x6fq3boo-media/videos/evaluation/episode_media/env_0_video_9_297097d221883375a613.mp4
+2023-10-05 15:03:48,896 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:03:48,897 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_9_457195f597c7b25f5864.mp4
+2023-10-05 15:03:48,897 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_9_297097d221883375a613.mp4
+2023-10-05 15:03:48,897 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_9_457195f597c7b25f5864.mp4
+2023-10-05 15:03:48,897 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4
+2023-10-05 15:03:48,898 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4
+2023-10-05 15:03:48,898 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4
+2023-10-05 15:03:48,898 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4
+2023-10-05 15:03:48,898 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4
+2023-10-05 15:03:48,899 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_9_297097d221883375a613.mp4
+2023-10-05 15:03:48,899 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4
+2023-10-05 15:03:48,899 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4
+2023-10-05 15:03:48,899 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4
+2023-10-05 15:03:48,900 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation
+2023-10-05 15:03:48,900 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media
+2023-10-05 15:03:48,900 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media
+2023-10-05 15:03:48,900 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media
+2023-10-05 15:03:48,900 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results
+2023-10-05 15:03:48,900 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos
+2023-10-05 15:03:49,472 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/o1lxv0oc-media/videos/evaluation/episode_media/env_0_video_9_297097d221883375a613.mp4
+2023-10-05 15:03:51,983 INFO    wandb-upload_10:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/3ie2q6zm-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4
+2023-10-05 15:03:52,002 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/p3f67j4k-media/videos/evaluation/episode_media/env_0_video_9_457195f597c7b25f5864.mp4
+2023-10-05 15:03:52,417 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:03:53,678 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/30056pxp-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_457195f597c7b25f5864.mp4
+2023-10-05 15:03:54,462 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/kc4yrv1g-media/videos/evaluation/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4
+2023-10-05 15:03:54,484 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/pzs0b8bn-media/videos/evaluation/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4
+2023-10-05 15:03:54,594 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/akbithmb-media/videos/evaluation/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4
+2023-10-05 15:03:54,635 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/y54doga1-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4
+2023-10-05 15:03:54,675 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/tocui0ok-media/videos/evaluation/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4
+2023-10-05 15:03:54,682 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/tatk89jy-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_297097d221883375a613.mp4
+2023-10-05 15:03:54,692 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/b6fzpcco-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4
+2023-10-05 15:03:54,706 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/bdkic8hq-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4
+2023-10-05 15:03:55,064 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/4t2cjfaw-media/videos/evaluation/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4
+2023-10-05 15:03:55,239 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/cp2mkaqc-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4
+2023-10-05 15:03:55,294 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/mgu7wefh-media/videos/evaluation/episode_media/env_0_video_9_457195f597c7b25f5864.mp4
+2023-10-05 15:03:55,404 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/4qj88tim-media/videos/evaluation/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4
+2023-10-05 15:03:55,417 INFO    wandb-upload_10:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/k3qloy0e-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_38c57daab5f180d76f29.mp4
+2023-10-05 15:03:55,643 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/p2pv5dss-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_457195f597c7b25f5864.mp4
+2023-10-05 15:03:55,815 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ghawu410-media/videos/evaluation/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4
+2023-10-05 15:03:55,848 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ex91lir5-media/videos/evaluation/episode_media/env_0_video_9_e732ff276431919fcaa3.mp4
+2023-10-05 15:03:55,949 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/olumgmqa-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_e5f8ce8bcd39634cb25b.mp4
+2023-10-05 15:03:55,978 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/1rdqdq63-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_d1e238a2015dc8f87aeb.mp4
+2023-10-05 15:03:56,205 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/nxz825sl-media/videos/evaluation/sampler_results/episode_media/env_0_video_9_297097d221883375a613.mp4
+2023-10-05 15:03:57,008 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:03:57,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:03:57,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:03:57,113 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:03:58,317 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:03,318 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:06,288 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:04:06,340 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:04:06,343 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:04:06,343 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:04:06,345 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:04:06,904 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:04:08,349 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:09,905 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:04:12,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:04:12,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:04:12,112 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:04:15,275 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:20,276 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:24,368 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:04:24,369 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:04:24,379 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:04:24,380 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:04:24,382 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:04:24,911 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:04:25,382 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:27,009 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:04:27,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:04:27,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:04:27,112 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:04:31,350 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:36,356 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:41,361 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:41,918 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:04:42,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:04:42,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:04:42,112 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:04:42,468 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:04:42,520 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:04:42,523 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:04:42,523 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:04:42,524 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:04:42,919 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:04:47,525 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:52,526 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:04:57,010 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:04:57,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:04:57,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:04:57,112 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:04:58,335 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:00,653 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:05:00,654 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:05:00,663 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:05:00,664 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:05:00,665 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:05:00,927 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:05:03,666 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:08,667 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:12,111 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:05:12,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:05:12,112 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:05:14,247 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:14,933 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:05:18,832 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:05:18,833 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:05:18,836 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:05:18,836 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:05:18,837 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:05:18,934 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:05:19,837 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:25,016 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:28,996 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:05:28,996 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-05 15:05:28,997 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:05:28,998 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:05:30,164 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:35,165 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:39,202 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:05:39,203 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:05:39,206 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:05:39,207 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:05:39,308 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:05:39,944 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:05:40,308 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:42,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:05:42,112 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:05:46,265 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:46,947 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:05:51,600 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:56,601 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:05:57,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:05:58,192 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:06:01,602 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:03,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:06:06,603 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:08,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:06:11,037 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:06:11,037 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:06:11,183 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:06:11,183 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:06:11,184 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:06:11,185 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:06:11,958 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:06:12,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:06:12,113 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:06:12,311 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:16,851 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:06:16,851 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:06:16,854 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:06:16,855 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:06:16,856 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:06:16,960 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:06:17,859 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:18,961 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:06:23,053 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:27,012 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:06:27,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:06:27,113 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:06:28,262 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:33,263 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:34,618 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:06:34,630 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:06:34,631 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:06:34,631 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:06:34,632 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:06:34,968 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:06:38,633 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:42,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:06:42,113 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:06:44,262 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:49,266 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:49,974 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:06:54,508 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:06:57,012 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:06:57,112 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:06:57,113 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:07:00,355 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:00,464 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:07:00,468 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,468 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_19_69af85938a723325b64a.mp4 with policy now
+2023-10-05 15:07:00,469 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,470 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4 with policy now
+2023-10-05 15:07:00,470 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,470 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4 with policy now
+2023-10-05 15:07:00,470 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,471 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4 with policy now
+2023-10-05 15:07:00,471 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,471 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_19_b606c781ee48914658f1.mp4 with policy now
+2023-10-05 15:07:00,472 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,472 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4 with policy now
+2023-10-05 15:07:00,473 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,474 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_19_69af85938a723325b64a.mp4 with policy now
+2023-10-05 15:07:00,474 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,474 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4 with policy now
+2023-10-05 15:07:00,475 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,475 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4 with policy now
+2023-10-05 15:07:00,475 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:07:00,479 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,479 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4 with policy now
+2023-10-05 15:07:00,480 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,482 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_19_b606c781ee48914658f1.mp4 with policy now
+2023-10-05 15:07:00,483 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:07:00,483 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4 with policy now
+2023-10-05 15:07:00,504 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:07:00,505 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:07:00,506 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:07:00,957 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/exbe1rfa-media/videos/evaluation/episode_media/env_0_video_19_69af85938a723325b64a.mp4
+2023-10-05 15:07:00,979 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/k5ft3nwh-media/videos/evaluation/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4
+2023-10-05 15:07:00,980 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:07:00,980 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4
+2023-10-05 15:07:00,980 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4
+2023-10-05 15:07:00,981 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_19_69af85938a723325b64a.mp4
+2023-10-05 15:07:00,981 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_19_69af85938a723325b64a.mp4
+2023-10-05 15:07:00,981 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_19_b606c781ee48914658f1.mp4
+2023-10-05 15:07:00,982 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4
+2023-10-05 15:07:00,982 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/meq19brv-media/videos/evaluation/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4
+2023-10-05 15:07:00,983 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4
+2023-10-05 15:07:00,983 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4
+2023-10-05 15:07:00,984 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4
+2023-10-05 15:07:00,984 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_19_b606c781ee48914658f1.mp4
+2023-10-05 15:07:00,984 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4
+2023-10-05 15:07:00,984 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4
+2023-10-05 15:07:00,986 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media
+2023-10-05 15:07:00,986 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media
+2023-10-05 15:07:01,047 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/2xxsl46n-media/videos/evaluation/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4
+2023-10-05 15:07:01,076 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/kw91wzsm-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4
+2023-10-05 15:07:01,088 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/60yyh7i8-media/videos/evaluation/episode_media/env_0_video_19_b606c781ee48914658f1.mp4
+2023-10-05 15:07:01,090 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/riks6u6w-media/videos/evaluation/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4
+2023-10-05 15:07:01,103 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/gb2gk94k-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_69af85938a723325b64a.mp4
+2023-10-05 15:07:01,110 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/fiy717pj-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4
+2023-10-05 15:07:01,121 INFO    wandb-upload_10:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/jy84m11h-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4
+2023-10-05 15:07:01,253 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/i9giun98-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4
+2023-10-05 15:07:01,337 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/k3joctpy-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_b606c781ee48914658f1.mp4
+2023-10-05 15:07:01,552 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/5o99sjzl-media/videos/evaluation/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4
+2023-10-05 15:07:01,559 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/7dvximfc-media/videos/evaluation/episode_media/env_0_video_19_69af85938a723325b64a.mp4
+2023-10-05 15:07:01,572 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/51xdr1xi-media/videos/evaluation/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4
+2023-10-05 15:07:01,603 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/7sxh4j10-media/videos/evaluation/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4
+2023-10-05 15:07:01,650 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/b582qnka-media/videos/evaluation/episode_media/env_0_video_19_b606c781ee48914658f1.mp4
+2023-10-05 15:07:01,853 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/p5g1btca-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e5a9251d3cced06eed18.mp4
+2023-10-05 15:07:01,913 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/pbcruvsp-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_e19d353db0fe8c9ff489.mp4
+2023-10-05 15:07:01,961 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/uf10ey7p-media/videos/evaluation/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4
+2023-10-05 15:07:02,110 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/lr2h8jyx-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_69af85938a723325b64a.mp4
+2023-10-05 15:07:02,111 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/quborymy-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_d93346d3a9f716e71d27.mp4
+2023-10-05 15:07:02,127 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/o95stbak-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_50ca31743ea756d2a796.mp4
+2023-10-05 15:07:02,172 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/tuyfy3v0-media/videos/evaluation/sampler_results/episode_media/env_0_video_19_b606c781ee48914658f1.mp4
+2023-10-05 15:07:05,507 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:10,508 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:12,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:07:12,113 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:07:16,296 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:18,582 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:07:18,583 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:07:18,586 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:07:18,586 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:07:18,587 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:07:18,989 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:07:21,591 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:21,991 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:07:26,862 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:27,013 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:07:27,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:07:27,113 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:07:32,338 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:36,716 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:07:36,717 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:07:36,725 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:07:36,726 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:07:36,727 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:07:36,998 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:07:37,727 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:42,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:07:42,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:07:43,335 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:48,336 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:53,341 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:07:54,712 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:07:54,714 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:07:54,715 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:07:54,716 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:07:54,717 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:07:55,008 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:07:55,008 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:07:57,014 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:07:57,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:07:57,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:08:00,264 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:05,265 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:10,266 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:12,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:08:12,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:08:12,547 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:08:12,548 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:08:12,551 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:08:12,551 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:08:12,552 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:08:13,016 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:08:15,553 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:20,554 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:25,558 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:26,023 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:08:27,028 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:08:27,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:08:27,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:08:30,824 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:08:30,825 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:30,825 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:08:30,828 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:08:30,828 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:08:30,829 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:08:31,025 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:08:35,830 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:40,831 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:42,113 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:08:42,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:08:46,260 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:49,123 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:08:49,124 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:08:49,127 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:08:49,127 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:08:49,128 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:08:50,034 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:08:52,129 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:57,015 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:08:57,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:08:57,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:08:57,341 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:08:58,039 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:09:02,531 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:07,532 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:07,559 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:09:07,575 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:09:07,575 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:09:07,576 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:09:07,578 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:09:08,044 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:09:12,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:09:12,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:09:13,320 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:18,321 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:23,322 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:25,572 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:09:25,573 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:09:25,577 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:09:25,578 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:09:25,579 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:09:26,053 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:09:27,016 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:09:27,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:09:27,115 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:09:29,312 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:30,056 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:09:34,537 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:39,538 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:42,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:09:42,114 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:09:44,242 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:09:44,257 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:09:44,258 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:09:44,259 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:09:44,261 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:09:45,063 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:09:45,261 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:50,262 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:55,263 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:09:57,017 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:09:57,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:09:57,115 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:10:00,379 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:01,071 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:10:05,743 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:09,834 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:10:09,837 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,837 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4 with policy now
+2023-10-05 15:10:09,838 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,839 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4 with policy now
+2023-10-05 15:10:09,839 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,839 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4 with policy now
+2023-10-05 15:10:09,839 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,839 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4 with policy now
+2023-10-05 15:10:09,839 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,839 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4 with policy now
+2023-10-05 15:10:09,840 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,840 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4 with policy now
+2023-10-05 15:10:09,844 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,844 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4 with policy now
+2023-10-05 15:10:09,845 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:10:09,849 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,849 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4 with policy now
+2023-10-05 15:10:09,849 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,849 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4 with policy now
+2023-10-05 15:10:09,850 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,850 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4 with policy now
+2023-10-05 15:10:09,850 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,850 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4 with policy now
+2023-10-05 15:10:09,850 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:10:09,853 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4 with policy now
+2023-10-05 15:10:09,862 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:10:09,863 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:10:09,864 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:10:10,076 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:10:10,076 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4
+2023-10-05 15:10:10,076 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4
+2023-10-05 15:10:10,076 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4
+2023-10-05 15:10:10,077 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4
+2023-10-05 15:10:10,077 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4
+2023-10-05 15:10:10,077 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4
+2023-10-05 15:10:10,078 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4
+2023-10-05 15:10:10,078 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4
+2023-10-05 15:10:10,078 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4
+2023-10-05 15:10:10,079 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4
+2023-10-05 15:10:10,079 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4
+2023-10-05 15:10:10,079 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4
+2023-10-05 15:10:10,080 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media
+2023-10-05 15:10:10,080 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media
+2023-10-05 15:10:10,314 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/pmt15hiq-media/videos/evaluation/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4
+2023-10-05 15:10:10,353 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/0mmkg604-media/videos/evaluation/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4
+2023-10-05 15:10:10,397 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/iwhe7dog-media/videos/evaluation/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4
+2023-10-05 15:10:10,418 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/p8l1rab8-media/videos/evaluation/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4
+2023-10-05 15:10:10,424 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/3iqugq2z-media/videos/evaluation/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4
+2023-10-05 15:10:10,435 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/17hll0g7-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4
+2023-10-05 15:10:10,436 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/oz6z09jo-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4
+2023-10-05 15:10:10,445 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/d861tuet-media/videos/evaluation/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4
+2023-10-05 15:10:10,475 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/judlp1m3-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4
+2023-10-05 15:10:10,486 INFO    wandb-upload_10:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/gmr58gc3-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4
+2023-10-05 15:10:10,701 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/wq4j1aj9-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4
+2023-10-05 15:10:10,709 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/yexpnm7m-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4
+2023-10-05 15:10:10,865 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:10,989 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/8hxrvtea-media/videos/evaluation/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4
+2023-10-05 15:10:10,995 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/m2hgjseo-media/videos/evaluation/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4
+2023-10-05 15:10:11,011 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/nux6i6iz-media/videos/evaluation/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4
+2023-10-05 15:10:11,018 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/345pvq22-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_0056b6ee2e28f62bcb2e.mp4
+2023-10-05 15:10:11,032 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/s0ayw2tg-media/videos/evaluation/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4
+2023-10-05 15:10:11,115 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/0irqt80g-media/videos/evaluation/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4
+2023-10-05 15:10:11,273 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/fowzv6mt-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_28d147b1311ba92d6287.mp4
+2023-10-05 15:10:11,275 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/hgpg3jef-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_8265661b88df7d1065f4.mp4
+2023-10-05 15:10:11,571 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/nxnslhzs-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a3e14b9de2439ad7dd2c.mp4
+2023-10-05 15:10:11,579 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/pxbp70as-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_d25f70d460c01d21a5b3.mp4
+2023-10-05 15:10:11,616 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/pvv1da25-media/videos/evaluation/sampler_results/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4
+2023-10-05 15:10:11,645 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/p6anmkuj-media/videos/evaluation/episode_media/env_0_video_29_a8b897bf7cdef8afb87b.mp4
+2023-10-05 15:10:12,114 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:10:12,115 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:10:16,293 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:21,293 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:26,294 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:28,545 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:10:28,545 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:10:28,546 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:10:28,860 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:10:28,861 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:10:28,864 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:10:28,865 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:10:28,865 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:10:29,087 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:10:31,869 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:32,089 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:10:37,194 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:42,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:10:42,115 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:10:42,295 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:47,296 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:52,297 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:10:57,018 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:10:57,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:10:57,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:10:57,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:10:58,280 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:00,068 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:11:00,069 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:11:04,073 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:05,110 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:11:09,302 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:12,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:11:14,302 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:14,761 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:11:14,762 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:11:14,764 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:11:14,764 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:11:15,115 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:11:18,769 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:11:18,769 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:11:18,772 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:11:18,773 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:11:23,431 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:11:23,431 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:24,121 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:11:27,019 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:11:27,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:11:27,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:11:29,281 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:34,285 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:35,127 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:11:37,166 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:11:37,166 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:11:37,169 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:11:37,170 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:11:37,171 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:11:38,129 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:11:40,171 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:42,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:11:42,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:11:45,268 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:50,269 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:55,269 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:11:55,416 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:11:55,434 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:11:55,435 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:11:55,436 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:11:55,438 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:11:56,138 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:11:57,019 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:11:57,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:11:57,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:12:00,290 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:05,294 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:06,144 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:12:10,513 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:12,115 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:12:12,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:12:13,494 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:12:13,494 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:12:13,497 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:12:13,498 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:12:13,499 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:12:14,149 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:12:16,499 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:21,500 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:26,501 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:27,020 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:12:27,116 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:12:27,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:12:31,596 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:12:31,606 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:12:31,607 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:31,608 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:12:31,609 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:12:31,610 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:12:32,160 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:12:36,614 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:37,163 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:12:41,815 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:42,116 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:12:42,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:12:47,441 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:49,697 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:12:49,698 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:12:49,701 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:12:49,701 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:12:49,702 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:12:50,170 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:12:52,703 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:12:57,021 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:12:57,116 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:12:57,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:12:58,305 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:03,306 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:07,811 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:13:07,817 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:13:07,818 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:13:07,818 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:13:07,819 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:13:08,180 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:13:08,824 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:10,182 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:13:12,116 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:13:12,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:13:14,261 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:19,262 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:24,262 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:27,021 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:13:27,116 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:13:27,116 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:13:29,335 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:33,995 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:13:33,999 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:33,999 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4 with policy now
+2023-10-05 15:13:34,000 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,000 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4 with policy now
+2023-10-05 15:13:34,001 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,001 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4 with policy now
+2023-10-05 15:13:34,002 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,002 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4 with policy now
+2023-10-05 15:13:34,002 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,002 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4 with policy now
+2023-10-05 15:13:34,002 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,002 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4 with policy now
+2023-10-05 15:13:34,003 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,003 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4 with policy now
+2023-10-05 15:13:34,004 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,005 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4 with policy now
+2023-10-05 15:13:34,008 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,008 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4 with policy now
+2023-10-05 15:13:34,008 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:13:34,012 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,012 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4 with policy now
+2023-10-05 15:13:34,013 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,013 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4 with policy now
+2023-10-05 15:13:34,014 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,014 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4 with policy now
+2023-10-05 15:13:34,014 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,014 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4 with policy now
+2023-10-05 15:13:34,015 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:13:34,015 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4 with policy now
+2023-10-05 15:13:34,024 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:13:34,025 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:13:34,026 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:13:34,195 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:13:34,196 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4
+2023-10-05 15:13:34,196 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4
+2023-10-05 15:13:34,196 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4
+2023-10-05 15:13:34,197 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4
+2023-10-05 15:13:34,197 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4
+2023-10-05 15:13:34,197 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4
+2023-10-05 15:13:34,197 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4
+2023-10-05 15:13:34,198 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4
+2023-10-05 15:13:34,198 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4
+2023-10-05 15:13:34,198 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4
+2023-10-05 15:13:34,199 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4
+2023-10-05 15:13:34,199 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4
+2023-10-05 15:13:34,199 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4
+2023-10-05 15:13:34,199 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4
+2023-10-05 15:13:34,200 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media
+2023-10-05 15:13:34,200 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media
+2023-10-05 15:13:34,487 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/wae9v3i0-media/videos/evaluation/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4
+2023-10-05 15:13:34,511 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/g3qune4a-media/videos/evaluation/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4
+2023-10-05 15:13:34,565 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/6i9so240-media/videos/evaluation/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4
+2023-10-05 15:13:34,583 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/nlnairsi-media/videos/evaluation/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4
+2023-10-05 15:13:34,589 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/pd6k5hs4-media/videos/evaluation/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4
+2023-10-05 15:13:34,603 INFO    wandb-upload_10:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/nkr4jy18-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4
+2023-10-05 15:13:34,618 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ye48gnem-media/videos/evaluation/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4
+2023-10-05 15:13:34,630 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/73o4fvk3-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4
+2023-10-05 15:13:34,633 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/o7kryv8m-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4
+2023-10-05 15:13:34,691 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/0rov3jmh-media/videos/evaluation/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4
+2023-10-05 15:13:35,027 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:35,168 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/0qtjrund-media/videos/evaluation/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4
+2023-10-05 15:13:35,189 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ccp6xoa7-media/videos/evaluation/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4
+2023-10-05 15:13:35,205 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/1hyl4qqa-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_cd3fee98e05c7a80bc1a.mp4
+2023-10-05 15:13:35,274 INFO    wandb-upload_10:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/vsywrnef-media/videos/evaluation/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4
+2023-10-05 15:13:35,552 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/bmakf25h-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4
+2023-10-05 15:13:35,583 INFO    wandb-upload_13:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/kn0sdsoo-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4
+2023-10-05 15:13:35,595 INFO    wandb-upload_12:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/c5wswbry-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4
+2023-10-05 15:13:35,616 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/wk2c0ofv-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4
+2023-10-05 15:13:35,733 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/xjhoxjfe-media/videos/evaluation/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4
+2023-10-05 15:13:35,814 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/j1oap8he-media/videos/evaluation/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4
+2023-10-05 15:13:35,841 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/hlygu65f-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_ca4ea20877fefd8c83e3.mp4
+2023-10-05 15:13:36,157 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/bhia067n-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_e5909bb168351ab7ddf0.mp4
+2023-10-05 15:13:36,163 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ufbha3e5-media/videos/evaluation/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4
+2023-10-05 15:13:36,215 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/7cijc0rg-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_aeeb72dcccb3b658a261.mp4
+2023-10-05 15:13:36,316 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/mic9wxyn-media/videos/evaluation/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4
+2023-10-05 15:13:36,383 INFO    wandb-upload_13:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/5i40cwg0-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_394d25cfc88fb775ab9b.mp4
+2023-10-05 15:13:36,404 INFO    wandb-upload_12:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ukzz4tdi-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_8b6a8c8cb7c63c1b1105.mp4
+2023-10-05 15:13:36,734 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/lyhkug5j-media/videos/evaluation/sampler_results/episode_media/env_0_video_39_9d04166c6d00147a1be9.mp4
+2023-10-05 15:13:40,031 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:41,200 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:13:42,116 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:13:42,117 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:13:45,302 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:50,303 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:52,554 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:13:52,555 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:13:52,559 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:13:52,559 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:13:52,560 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:13:53,208 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:13:55,561 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:13:57,022 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:13:57,116 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:13:57,117 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:14:01,294 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:06,295 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:10,542 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:14:10,542 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:14:10,546 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:14:10,546 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:14:10,547 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:14:11,220 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:14:11,551 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:12,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:14:12,117 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:14:12,221 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:14:17,312 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:22,313 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:27,023 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:14:27,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:14:27,117 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:14:27,361 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:28,985 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:14:28,993 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:14:28,994 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:14:28,995 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:14:28,996 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:14:29,232 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:14:32,997 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:37,997 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:42,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:14:42,117 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:14:43,327 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:44,242 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:14:47,455 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:14:47,455 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:14:47,458 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:14:47,459 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:14:47,460 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:14:48,245 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:14:49,460 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:54,461 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:14:57,024 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:14:57,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:14:57,117 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:15:00,273 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:05,274 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:05,469 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:15:05,487 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:15:05,488 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:15:05,488 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:15:05,489 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:15:06,257 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:15:10,490 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:12,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:15:12,118 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:15:16,333 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:17,264 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:15:21,534 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:23,276 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:15:23,277 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:15:23,280 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:15:23,280 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:15:23,281 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:15:24,269 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:15:27,024 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:15:27,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:15:28,051 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:28,052 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:15:33,236 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:38,237 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:42,084 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:15:42,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:15:43,238 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:47,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:15:48,242 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:49,286 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:15:49,903 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:15:49,904 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:15:49,905 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:15:50,014 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:15:50,014 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:15:50,287 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:15:54,156 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:15:57,025 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:15:57,117 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:15:57,118 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:15:59,290 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:04,291 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:08,187 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:16:08,188 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:16:08,191 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:16:08,191 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:16:08,193 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:16:08,299 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:16:10,194 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:12,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:16:12,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:16:12,118 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:16:15,250 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:20,254 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:21,307 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:16:25,466 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:25,911 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:16:25,919 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:16:25,920 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:16:25,920 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:16:25,921 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:16:26,311 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:16:27,026 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:16:27,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:16:27,118 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:16:31,313 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:36,314 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:41,315 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:42,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:16:42,118 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:16:46,325 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:51,030 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:16:51,033 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,034 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4 with policy now
+2023-10-05 15:16:51,035 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,035 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4 with policy now
+2023-10-05 15:16:51,035 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,035 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4 with policy now
+2023-10-05 15:16:51,036 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,036 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4 with policy now
+2023-10-05 15:16:51,037 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,037 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_49_617caefdce1013526c9d.mp4 with policy now
+2023-10-05 15:16:51,037 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,037 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4 with policy now
+2023-10-05 15:16:51,038 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,038 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4 with policy now
+2023-10-05 15:16:51,040 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,040 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:16:51,040 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4 with policy now
+2023-10-05 15:16:51,047 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,047 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4 with policy now
+2023-10-05 15:16:51,047 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,047 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4 with policy now
+2023-10-05 15:16:51,048 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,048 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_49_617caefdce1013526c9d.mp4 with policy now
+2023-10-05 15:16:51,048 DEBUG   SenderThread:15663 [sender.py:send():379] send: files
+2023-10-05 15:16:51,048 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file media/videos/evaluation/sampler_results/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4 with policy now
+2023-10-05 15:16:51,048 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:16:51,049 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:16:51,052 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:16:51,329 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:16:51,329 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4
+2023-10-05 15:16:51,329 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_49_617caefdce1013526c9d.mp4
+2023-10-05 15:16:51,329 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4
+2023-10-05 15:16:51,329 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4
+2023-10-05 15:16:51,337 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4
+2023-10-05 15:16:51,337 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_49_617caefdce1013526c9d.mp4
+2023-10-05 15:16:51,337 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4
+2023-10-05 15:16:51,338 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4
+2023-10-05 15:16:51,338 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4
+2023-10-05 15:16:51,338 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4
+2023-10-05 15:16:51,338 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4
+2023-10-05 15:16:51,339 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4
+2023-10-05 15:16:51,339 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/sampler_results/episode_media
+2023-10-05 15:16:51,340 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/media/videos/evaluation/episode_media
+2023-10-05 15:16:51,524 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/saokczn5-media/videos/evaluation/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4
+2023-10-05 15:16:51,543 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ot6oghcg-media/videos/evaluation/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4
+2023-10-05 15:16:51,568 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/f0m4g99e-media/videos/evaluation/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4
+2023-10-05 15:16:51,619 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/t3ablqrr-media/videos/evaluation/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4
+2023-10-05 15:16:51,629 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/s8uigsee-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4
+2023-10-05 15:16:51,633 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/e3tte8nm-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4
+2023-10-05 15:16:51,655 INFO    wandb-upload_12:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/1o4fn7c9-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4
+2023-10-05 15:16:51,668 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/5tszd4gg-media/videos/evaluation/episode_media/env_0_video_49_617caefdce1013526c9d.mp4
+2023-10-05 15:16:51,674 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/m8qmolrc-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4
+2023-10-05 15:16:51,680 INFO    wandb-upload_4:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/6lj6oesq-media/videos/evaluation/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4
+2023-10-05 15:16:51,930 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/7yfvrh7c-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_617caefdce1013526c9d.mp4
+2023-10-05 15:16:51,930 INFO    wandb-upload_10:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/xsjmj1jn-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4
+2023-10-05 15:16:52,058 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:16:52,186 INFO    wandb-upload_1:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/lq6fsxvl-media/videos/evaluation/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4
+2023-10-05 15:16:52,203 INFO    wandb-upload_5:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/c500rdqn-media/videos/evaluation/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4
+2023-10-05 15:16:52,243 INFO    wandb-upload_13:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/5artvs71-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4
+2023-10-05 15:16:52,243 INFO    wandb-upload_9:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/bg2qn3b2-media/videos/evaluation/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4
+2023-10-05 15:16:52,261 INFO    wandb-upload_7:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/cyusjsuw-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_b8033af3ecbc4d8f996c.mp4
+2023-10-05 15:16:52,329 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:16:52,503 INFO    wandb-upload_12:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/ih85z5an-media/videos/evaluation/episode_media/env_0_video_49_e6559174fd7a4d1def08.mp4
+2023-10-05 15:16:52,771 INFO    wandb-upload_6:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/3nagqflt-media/videos/evaluation/episode_media/env_0_video_49_617caefdce1013526c9d.mp4
+2023-10-05 15:16:52,793 INFO    wandb-upload_2:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/xrsdgn2z-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_e3385ce0a62f4863ce05.mp4
+2023-10-05 15:16:52,823 INFO    wandb-upload_11:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/vf5xxz96-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_617caefdce1013526c9d.mp4
+2023-10-05 15:16:52,827 INFO    wandb-upload_3:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/nmppq7bg-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_426afd685bcd3e62185c.mp4
+2023-10-05 15:16:52,844 INFO    wandb-upload_8:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/0ioi135q-media/videos/evaluation/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4
+2023-10-05 15:16:53,068 INFO    wandb-upload_0:15663 [upload_job.py:push():131] Uploaded file /tmp/tmpiv7ls6xwwandb/uigdk6az-media/videos/evaluation/sampler_results/episode_media/env_0_video_49_1d1c68cc39ee6e7f7e0b.mp4
+2023-10-05 15:16:57,026 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:16:57,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:16:57,119 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:16:57,119 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:16:58,265 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:03,266 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:08,267 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:09,234 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:17:09,245 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:17:09,246 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:17:09,247 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:17:09,248 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:17:09,341 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:17:12,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:17:12,119 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:17:12,119 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:17:13,343 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:18,344 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:23,348 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:24,352 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:17:27,027 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:17:27,059 DEBUG   SenderThread:15663 [sender.py:send():379] send: config
+2023-10-05 15:17:27,060 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-05 15:17:27,063 DEBUG   SenderThread:15663 [sender.py:send():379] send: history
+2023-10-05 15:17:27,064 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: summary_record
+2023-10-05 15:17:27,064 INFO    SenderThread:15663 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-05 15:17:27,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:17:27,119 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:17:27,354 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/wandb-summary.json
+2023-10-05 15:17:29,308 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:34,309 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:39,310 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:42,118 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:17:42,119 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:17:44,332 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:49,333 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:54,337 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:17:55,376 INFO    Thread-12 :15663 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_7c97f_00000_0_2023-10-05_15-00-05/wandb/run-20231005_150026-7c97f_00000/files/config.yaml
+2023-10-05 15:17:57,027 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:17:57,119 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:17:57,119 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:18:00,338 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:18:05,339 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:18:10,340 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:18:12,119 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:18:12,120 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-05 15:18:12,120 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:18:16,289 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:18:21,290 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:18:26,291 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report
+2023-10-05 15:18:27,119 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-05 15:18:28,333 DEBUG   SenderThread:15663 [sender.py:send():379] send: stats
+2023-10-05 15:18:28,334 DEBUG   SenderThread:15663 [sender.py:send_request():406] send_request: stop_status
+2023-10-05 15:18:31,531 DEBUG   HandlerThread:15663 [handler.py:handle_request():144] handle_request: status_report

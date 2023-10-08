@@ -1,0 +1,41 @@
+Failure # 1 (occurred at 2023-10-08_17-02-47)
+The actor died because of an error raised in its creation task, [36mray::PPO.__init__()[39m (pid=29483, ip=172.28.68.98, actor_id=1335899b00f32db6829b7f7901000000, repr=PPO)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/algorithms/algorithm.py", line 517, in __init__
+    super().__init__(
+  File "/usr/local/lib/python3.10/dist-packages/ray/tune/trainable/trainable.py", line 185, in __init__
+    self.setup(copy.deepcopy(self.config))
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/algorithms/algorithm.py", line 639, in setup
+    self.workers = WorkerSet(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/worker_set.py", line 157, in __init__
+    self._setup(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/worker_set.py", line 247, in _setup
+    self._local_worker = self._make_worker(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/worker_set.py", line 925, in _make_worker
+    worker = cls(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/rollout_worker.py", line 525, in __init__
+    self._update_policy_map(policy_dict=self.policy_dict)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/rollout_worker.py", line 1727, in _update_policy_map
+    self._build_policy_map(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/rollout_worker.py", line 1838, in _build_policy_map
+    new_policy = create_policy_for_framework(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/utils/policy.py", line 142, in create_policy_for_framework
+    return policy_class(observation_space, action_space, merged_config)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/algorithms/ppo/ppo_torch_policy.py", line 64, in __init__
+    self._initialize_loss_from_dummy_batch()
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/policy/policy.py", line 1418, in _initialize_loss_from_dummy_batch
+    actions, state_outs, extra_outs = self.compute_actions_from_input_dict(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/policy/torch_policy_v2.py", line 551, in compute_actions_from_input_dict
+    return self._compute_action_helper(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/utils/threading.py", line 24, in wrapper
+    return func(self, *a, **k)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/policy/torch_policy_v2.py", line 1217, in _compute_action_helper
+    action_dist = action_dist_class.from_logits(dist_inputs)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/models/distributions.py", line 228, in from_logits
+    distribution = parent_cls.from_logits(logits, **merged_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/models/torch/torch_distributions.py", line 522, in from_logits
+    split_logits = torch.split(logits, logit_lens, dim=1)
+  File "/usr/local/lib/python3.10/dist-packages/torch/functional.py", line 189, in split
+    return tensor.split(split_size_or_sections, dim)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_tensor.py", line 788, in split
+    return torch._VF.split_with_sizes(self, split_size, dim)
+RuntimeError: split_with_sizes expects split_sizes to sum exactly to 5 (input tensor's size at dimension 1), but got split_sizes=[5, 5, 5]

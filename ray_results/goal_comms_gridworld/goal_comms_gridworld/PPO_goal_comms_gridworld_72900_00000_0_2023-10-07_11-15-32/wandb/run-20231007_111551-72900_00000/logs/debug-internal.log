@@ -1,0 +1,79 @@
+2023-10-07 11:15:51,049 INFO    StreamThr :3726 [internal.py:wandb_internal():86] W&B internal server running at pid: 3726, started at: 2023-10-07 11:15:51.049082
+2023-10-07 11:15:51,051 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status
+2023-10-07 11:15:51,107 INFO    WriterThread:3726 [datastore.py:open_for_write():85] open: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/run-72900_00000.wandb
+2023-10-07 11:15:51,108 DEBUG   SenderThread:3726 [sender.py:send():379] send: header
+2023-10-07 11:15:51,109 DEBUG   SenderThread:3726 [sender.py:send():379] send: run
+2023-10-07 11:15:51,809 INFO    SenderThread:3726 [dir_watcher.py:__init__():211] watching files in: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/files
+2023-10-07 11:15:51,809 INFO    SenderThread:3726 [sender.py:_start_run_threads():1121] run started: 72900_00000 with start time 1696673751.104207
+2023-10-07 11:15:51,814 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: check_version
+2023-10-07 11:15:51,814 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: check_version
+2023-10-07 11:15:51,980 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: run_start
+2023-10-07 11:15:51,991 DEBUG   HandlerThread:3726 [system_info.py:__init__():32] System info init
+2023-10-07 11:15:51,991 DEBUG   HandlerThread:3726 [system_info.py:__init__():47] System info init done
+2023-10-07 11:15:51,991 INFO    HandlerThread:3726 [system_monitor.py:start():181] Starting system monitor
+2023-10-07 11:15:51,991 INFO    SystemMonitor:3726 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-10-07 11:15:51,992 INFO    HandlerThread:3726 [system_monitor.py:probe():201] Collecting system info
+2023-10-07 11:15:51,993 INFO    SystemMonitor:3726 [interfaces.py:start():190] Started cpu monitoring
+2023-10-07 11:15:51,994 INFO    SystemMonitor:3726 [interfaces.py:start():190] Started disk monitoring
+2023-10-07 11:15:51,995 INFO    SystemMonitor:3726 [interfaces.py:start():190] Started gpu monitoring
+2023-10-07 11:15:51,996 INFO    SystemMonitor:3726 [interfaces.py:start():190] Started memory monitoring
+2023-10-07 11:15:51,996 INFO    SystemMonitor:3726 [interfaces.py:start():190] Started network monitoring
+2023-10-07 11:15:52,010 DEBUG   HandlerThread:3726 [system_info.py:probe():196] Probing system
+2023-10-07 11:15:52,071 DEBUG   HandlerThread:3726 [gitlib.py:_init_repo():53] git repository is invalid
+2023-10-07 11:15:52,071 DEBUG   HandlerThread:3726 [system_info.py:probe():244] Probing system done
+2023-10-07 11:15:52,071 DEBUG   HandlerThread:3726 [system_monitor.py:probe():210] {'os': 'Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with-glibc2.35', 'python': '3.10.6', 'heartbeatAt': '2023-10-07T10:15:52.010776', 'startedAt': '2023-10-07T10:15:51.045378', 'docker': None, 'cuda': None, 'args': ('--node-ip-address=172.30.252.103', '--node-manager-port=33853', '--object-store-name=/tmp/ray/session_2023-10-07_11-15-08_853477_908/sockets/plasma_store', '--raylet-name=/tmp/ray/session_2023-10-07_11-15-08_853477_908/sockets/raylet', '--redis-address=None', '--temp-dir=/tmp/ray', '--metrics-agent-port=35465', '--runtime-env-agent-port=60961', '--logging-rotate-bytes=536870912', '--logging-rotate-backup-count=5', '--runtime-env-agent-port=60961', '--gcs-address=172.30.252.103:62615', '--session-name=session_2023-10-07_11-15-08_853477_908', '--temp-dir=/tmp/ray', '--webui=172.30.252.103:8265', '--cluster-id=5bf14374c8bdf4e10b26a8c374be4f717d42eb7693f7805b15b7a025', '--startup-token=46', '--worker-launch-time-ms=1696673742066', '--runtime-env-hash=700002433'), 'state': 'running', 'program': '/usr/local/lib/python3.10/dist-packages/ray/_private/workers/default_worker.py', 'codePathLocal': None, 'host': 'DYLAN-PC', 'username': 'root', 'executable': '/bin/python3', 'cpu_count': 14, 'cpu_count_logical': 28, 'cpu_freq': {'current': 3311.9989999999975, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}, {'current': 3311.999, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 250.98248672485352, 'used': 222.1028594970703}}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 23.47775650024414}}
+2023-10-07 11:15:52,072 INFO    HandlerThread:3726 [system_monitor.py:probe():211] Finished collecting system info
+2023-10-07 11:15:52,072 INFO    HandlerThread:3726 [system_monitor.py:probe():214] Publishing system info
+2023-10-07 11:15:52,072 DEBUG   HandlerThread:3726 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2023-10-07 11:15:52,072 DEBUG   HandlerThread:3726 [system_info.py:_save_pip():68] Saving pip packages done
+2023-10-07 11:15:52,072 INFO    HandlerThread:3726 [system_monitor.py:probe():216] Finished publishing system info
+2023-10-07 11:15:52,314 DEBUG   SenderThread:3726 [sender.py:send():379] send: files
+2023-10-07 11:15:52,315 INFO    SenderThread:3726 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2023-10-07 11:15:52,321 DEBUG   SenderThread:3726 [sender.py:send():379] send: telemetry
+2023-10-07 11:15:52,321 DEBUG   SenderThread:3726 [sender.py:send():379] send: telemetry
+2023-10-07 11:15:52,322 DEBUG   SenderThread:3726 [sender.py:send():379] send: config
+2023-10-07 11:15:52,322 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-07 11:15:52,323 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-07 11:15:52,323 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: stop_status
+2023-10-07 11:15:52,811 INFO    Thread-12 :3726 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/files/requirements.txt
+2023-10-07 11:15:52,811 INFO    Thread-12 :3726 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/files/wandb-metadata.json
+2023-10-07 11:15:53,101 INFO    wandb-upload_0:3726 [upload_job.py:push():131] Uploaded file /tmp/tmppxo3_3khwandb/6ovs9gj2-wandb-metadata.json
+2023-10-07 11:15:56,588 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:15:56,712 DEBUG   SenderThread:3726 [sender.py:send():379] send: config
+2023-10-07 11:15:56,713 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-07 11:15:56,720 DEBUG   SenderThread:3726 [sender.py:send():379] send: history
+2023-10-07 11:15:56,720 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: summary_record
+2023-10-07 11:15:56,722 INFO    SenderThread:3726 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-07 11:15:56,810 INFO    Thread-12 :3726 [dir_watcher.py:_on_file_created():271] file/dir created: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/files/wandb-summary.json
+2023-10-07 11:16:01,723 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:06,724 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:07,319 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-07 11:16:07,319 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-07 11:16:07,320 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: stop_status
+2023-10-07 11:16:07,824 DEBUG   SenderThread:3726 [sender.py:send():379] send: config
+2023-10-07 11:16:07,824 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-07 11:16:10,778 DEBUG   SenderThread:3726 [sender.py:send():379] send: history
+2023-10-07 11:16:10,778 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: summary_record
+2023-10-07 11:16:10,780 INFO    SenderThread:3726 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-07 11:16:10,814 INFO    Thread-12 :3726 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/files/wandb-summary.json
+2023-10-07 11:16:11,781 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:16,781 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:18,956 DEBUG   SenderThread:3726 [sender.py:send():379] send: config
+2023-10-07 11:16:18,956 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-07 11:16:18,959 DEBUG   SenderThread:3726 [sender.py:send():379] send: history
+2023-10-07 11:16:18,959 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: summary_record
+2023-10-07 11:16:18,961 INFO    SenderThread:3726 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-07 11:16:19,816 INFO    Thread-12 :3726 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/files/wandb-summary.json
+2023-10-07 11:16:21,967 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:22,319 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-07 11:16:22,319 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: stop_status
+2023-10-07 11:16:22,321 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-07 11:16:22,817 INFO    Thread-12 :3726 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_72900_00000_0_2023-10-07_11-15-32/wandb/run-20231007_111551-72900_00000/files/config.yaml
+2023-10-07 11:16:27,467 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:32,468 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:37,319 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: stop_status
+2023-10-07 11:16:37,319 DEBUG   SenderThread:3726 [sender.py:send_request():406] send_request: stop_status
+2023-10-07 11:16:37,369 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-07 11:16:38,467 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:43,468 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report
+2023-10-07 11:16:48,468 DEBUG   HandlerThread:3726 [handler.py:handle_request():144] handle_request: status_report

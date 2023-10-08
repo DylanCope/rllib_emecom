@@ -1,0 +1,201 @@
+{
+    "os": "Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.6",
+    "heartbeatAt": "2023-10-03T09:42:55.264581",
+    "startedAt": "2023-10-03T09:42:54.585768",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--node-ip-address=172.23.176.38",
+        "--node-manager-port=33347",
+        "--object-store-name=/tmp/ray/session_2023-10-03_10-42-30_606784_3984/sockets/plasma_store",
+        "--raylet-name=/tmp/ray/session_2023-10-03_10-42-30_606784_3984/sockets/raylet",
+        "--redis-address=None",
+        "--temp-dir=/tmp/ray",
+        "--metrics-agent-port=49599",
+        "--runtime-env-agent-port=63736",
+        "--logging-rotate-bytes=536870912",
+        "--logging-rotate-backup-count=5",
+        "--runtime-env-agent-port=63736",
+        "--gcs-address=172.23.176.38:55106",
+        "--session-name=session_2023-10-03_10-42-30_606784_3984",
+        "--temp-dir=/tmp/ray",
+        "--webui=172.23.176.38:8265",
+        "--cluster-id=db6ec993d924aa9b3dcbd46f125f05ebcdcce0a090220e813b9178fe",
+        "--startup-token=38",
+        "--worker-launch-time-ms=1696326166669",
+        "--runtime-env-hash=700002433"
+    ],
+    "state": "running",
+    "program": "/usr/local/lib/python3.10/dist-packages/ray/_private/workers/default_worker.py",
+    "codePathLocal": null,
+    "host": "DYLAN-PC",
+    "username": "root",
+    "executable": "/bin/python3",
+    "cpu_count": 14,
+    "cpu_count_logical": 28,
+    "cpu_freq": {
+        "current": 3311.9980000000023,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3311.998,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 250.98248672485352,
+            "used": 216.2779083251953
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 23.47775650024414
+    }
+}

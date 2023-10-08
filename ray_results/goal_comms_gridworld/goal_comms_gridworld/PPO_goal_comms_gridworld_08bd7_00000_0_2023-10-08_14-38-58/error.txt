@@ -1,0 +1,37 @@
+Failure # 1 (occurred at 2023-10-08_14-40-12)
+[36mray::PPO.train()[39m (pid=24788, ip=172.28.68.98, actor_id=26dd7a9a15e5e3ad27f7519701000000, repr=PPO)
+  File "/usr/local/lib/python3.10/dist-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/usr/local/lib/python3.10/dist-packages/ray/tune/trainable/trainable.py", line 397, in train
+    result = self.step()
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/algorithms/algorithm.py", line 857, in step
+    results.update(self._run_one_evaluation(train_future=None))
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/algorithms/algorithm.py", line 2877, in _run_one_evaluation
+    eval_results = eval_func_to_use()
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/algorithms/algorithm.py", line 1026, in evaluate
+    batch = self.evaluation_workers.local_worker().sample()
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/rollout_worker.py", line 696, in sample
+    batches = [self.input_reader.next()]
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/sampler.py", line 92, in next
+    batches = [self.get_data()]
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/sampler.py", line 277, in get_data
+    item = next(self._env_runner)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/env_runner_v2.py", line 344, in run
+    outputs = self.step()
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/env_runner_v2.py", line 370, in step
+    active_envs, to_eval, outputs = self._process_observations(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/env_runner_v2.py", line 688, in _process_observations
+    self._handle_done_episode(
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/env_runner_v2.py", line 842, in _handle_done_episode
+    self.end_episode(env_id, episode_or_exception)
+  File "/usr/local/lib/python3.10/dist-packages/ray/rllib/evaluation/env_runner_v2.py", line 937, in end_episode
+    self._callbacks.on_episode_end(
+  File "/home/dylan/projects/lang-acq/jtc/utils/video_callback.py", line 78, in on_episode_end
+    self.on_eval_episode_end(worker, episode, env_index)
+  File "/home/dylan/projects/lang-acq/jtc/utils/video_callback.py", line 87, in on_eval_episode_end
+    frames = create_grid_video(self.frames_dict)
+  File "/home/dylan/projects/lang-acq/jtc/utils/video_utils.py", line 189, in create_grid_video
+    return create_merged_video_frames(frame_dict, *get_best_grid(len(frame_dict)))
+  File "/home/dylan/projects/lang-acq/jtc/utils/video_utils.py", line 150, in create_merged_video_frames
+    base_frame_shape = frame_dict[next(iter(frame_dict))][0].shape
+AttributeError: 'NoneType' object has no attribute 'shape'
