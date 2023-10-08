@@ -1650,3 +1650,89 @@
 2023-10-08 17:43:23,244 INFO    Thread-12 :987 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_c7927_00000_0_2023-10-08_17-07-29/wandb/run-20231008_170739-c7927_00000/files/config.yaml
 2023-10-08 17:43:25,432 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
 2023-10-08 17:43:27,850 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:43:30,575 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:43:32,850 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:43:35,576 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:43:37,851 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:43:39,892 DEBUG   SenderThread:987 [sender.py:send():379] send: config
+2023-10-08 17:43:39,893 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-08 17:43:39,895 DEBUG   SenderThread:987 [sender.py:send():379] send: history
+2023-10-08 17:43:39,896 DEBUG   SenderThread:987 [sender.py:send_request():406] send_request: summary_record
+2023-10-08 17:43:40,158 INFO    SenderThread:987 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-08 17:43:40,257 INFO    Thread-12 :987 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_c7927_00000_0_2023-10-08_17-07-29/wandb/run-20231008_170739-c7927_00000/files/wandb-summary.json
+2023-10-08 17:43:40,385 DEBUG   SenderThread:987 [sender.py:send():379] send: stats
+2023-10-08 17:43:40,432 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:43:43,386 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:43:45,577 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:43:48,386 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:43:50,578 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:43:53,391 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:43:55,267 INFO    Thread-12 :987 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_c7927_00000_0_2023-10-08_17-07-29/wandb/run-20231008_170739-c7927_00000/files/config.yaml
+2023-10-08 17:43:55,432 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:43:59,801 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:00,580 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:04,802 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:05,581 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:09,803 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:10,385 DEBUG   SenderThread:987 [sender.py:send():379] send: stats
+2023-10-08 17:44:10,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:44:15,387 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:15,582 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:20,387 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:20,583 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:25,388 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:25,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:44:26,590 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-08 17:44:27,328 DEBUG   SenderThread:987 [sender.py:send():379] send: config
+2023-10-08 17:44:27,329 DEBUG   SenderThread:987 [sender.py:send():379] send: history
+2023-10-08 17:44:27,329 DEBUG   SenderThread:987 [sender.py:send_request():406] send_request: summary_record
+2023-10-08 17:44:27,330 INFO    SenderThread:987 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-08 17:44:28,293 INFO    Thread-12 :987 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_c7927_00000_0_2023-10-08_17-07-29/wandb/run-20231008_170739-c7927_00000/files/wandb-summary.json
+2023-10-08 17:44:30,585 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:31,331 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:35,586 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:36,331 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:40,386 DEBUG   SenderThread:987 [sender.py:send():379] send: stats
+2023-10-08 17:44:40,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:44:41,387 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:45,587 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:46,388 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:50,588 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:44:51,389 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:55,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:44:56,393 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:44:57,314 INFO    Thread-12 :987 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_c7927_00000_0_2023-10-08_17-07-29/wandb/run-20231008_170739-c7927_00000/files/config.yaml
+2023-10-08 17:45:00,589 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:01,588 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:05,590 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:06,589 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:10,387 DEBUG   SenderThread:987 [sender.py:send():379] send: stats
+2023-10-08 17:45:10,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:45:12,387 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:13,566 DEBUG   SenderThread:987 [sender.py:send():379] send: config
+2023-10-08 17:45:13,567 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: partial_history
+2023-10-08 17:45:13,569 DEBUG   SenderThread:987 [sender.py:send():379] send: history
+2023-10-08 17:45:13,570 DEBUG   SenderThread:987 [sender.py:send_request():406] send_request: summary_record
+2023-10-08 17:45:13,571 INFO    SenderThread:987 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-10-08 17:45:14,326 INFO    Thread-12 :987 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_c7927_00000_0_2023-10-08_17-07-29/wandb/run-20231008_170739-c7927_00000/files/wandb-summary.json
+2023-10-08 17:45:15,592 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:17,572 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:20,593 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:22,572 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:25,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:45:27,576 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:28,336 INFO    Thread-12 :987 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/ray_results/goal_comms_gridworld/PPO_goal_comms_gridworld_c7927_00000_0_2023-10-08_17-07-29/wandb/run-20231008_170739-c7927_00000/files/config.yaml
+2023-10-08 17:45:30,594 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:32,970 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:35,595 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:37,970 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:40,388 DEBUG   SenderThread:987 [sender.py:send():379] send: stats
+2023-10-08 17:45:40,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:45:43,388 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:45,596 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:48,389 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:50,597 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
+2023-10-08 17:45:53,390 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:45:55,433 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: internal_messages
+2023-10-08 17:45:58,391 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: status_report
+2023-10-08 17:46:00,599 DEBUG   HandlerThread:987 [handler.py:handle_request():144] handle_request: keepalive
