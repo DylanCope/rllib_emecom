@@ -4,42 +4,45 @@ from abc import ABC
 from functools import cached_property
 from typing import Any, List, Dict, Optional
 
+from torch.distributions.relaxed_categorical import RelaxedOneHotCategorical
+from torch.distributions.one_hot_categorical import OneHotCategorical
 from ray.rllib.utils.framework import try_import_torch
 
 torch, nn = try_import_torch()
 
 
-class CommunicationMode:
-    TRAINING = 'training'
-    EXPLORATION = 'exploration'
-    INFERENCE = 'inference'
-
-    @staticmethod
-    def from_forward_fn_name(forward_fn: str):
-        if forward_fn == 'train_forward':
-            return CommunicationMode.TRAINING
-        if forward_fn == 'exploration_forward':
-            return CommunicationMode.EXPLORATION
-        if forward_fn == 'inference_forward':
-            return CommunicationMode.INFERENCE
-
-
 class CommunicationChannelFunction(ABC):
 
-    def call(self, message: torch.Tensor, mode: str = CommunicationMode.TRAINING) -> torch.Tensor:
+    def __init__(self, **unused_channel_config) -> None:
+        self.unused_channel_config = unused_channel_config
+
+    def call(self, message: torch.Tensor, training: bool = False) -> torch.Tensor:
         raise NotImplementedError
 
-    def __call__(self, message: torch.Tensor, mode: str = CommunicationMode.TRAINING) -> torch.Tensor:
-        return self.call(message, mode)
+    def __call__(self, message: torch.Tensor, training: bool = False) -> torch.Tensor:
+        return self.call(message, training)
 
 
 class StraightThroughCommunicationChannel(CommunicationChannelFunction):
 
-    def call(self, message: torch.Tensor, mode: str = CommunicationMode.TRAINING) -> torch.Tensor:
+    def call(self, message: torch.Tensor, training: bool = False) -> torch.Tensor:
         return message
 
 
-class CommunicationNetwork(nn.Module, ABC):
+class GumbelSoftmaxCommunicationChannel(CommunicationChannelFunction):
+
+    def __init__(self, temperature: float = 1.0, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.temperature = temperature
+
+    def call(self, message: torch.Tensor, training: bool = False) -> torch.Tensor:
+        if training:
+            return RelaxedOneHotCategorical(self.temperature, logits=message).rsample()
+        else:
+            return OneHotCategorical(logits=message).sample()
+
+
+class CommunicationNetwork(ABC):
 
     def __init__(self,
                  message_dim: int,
@@ -53,10 +56,10 @@ class CommunicationNetwork(nn.Module, ABC):
                      message: torch.Tensor,
                      agent_to: str,
                      agent_from: str,
-                     mode: str = CommunicationMode.TRAINING) -> None:
+                     training: bool = False) -> None:
         if agent_to not in self.to_send:
             self.to_send[agent_to] = {}
-        self.to_send[agent_to][agent_from] = self.channel_fn(message, mode)
+        self.to_send[agent_to][agent_from] = self.channel_fn(message, training)
 
     def tick(self) -> None:
         self.messages = self.to_send
@@ -123,18 +126,20 @@ class CommunicationSpec(dict):
         static: Whether the communication network is static or not.
             Only static networks are supported currently.
         channel_fn: The function that is applied to the messages before they are sent.
-            Only straight-through is supported currently.
+            Only "straight_through" and "gumbel_softmax" supported currently.
     """
 
     def __init__(self,
                  message_dim: int,
                  comm_channels: Dict[Any, List[Any]],
                  static: bool = True,
-                 channel_fn: str = "straight_through"):
+                 channel_fn: str = "straight_through",
+                 channel_fn_config: dict = None):
         self.message_dim = message_dim
         self.comm_channels = comm_channels
         self.static = static
         self.channel_fn = channel_fn
+        self.channel_fn_config = channel_fn_config or {}
 
         self.validate()
 
@@ -143,7 +148,8 @@ class CommunicationSpec(dict):
     @cached_property
     def agents(self) -> List[Any]:
         return sorted(list(set(
-            list(self.comm_channels.keys()) + sum(self.comm_channels.values(), [])
+            list(self.comm_channels.keys())
+            + sum(self.comm_channels.values(), [])
         )))
 
     @cached_property
@@ -152,7 +158,9 @@ class CommunicationSpec(dict):
 
     @cached_property
     def agent_to_index(self) -> Dict[Any, int]:
-        return {agent: i for i, agent in enumerate(self.agents)}
+        return {
+            agent: i for i, agent in enumerate(self.agents)
+        }
 
     def index_to_agent(self, idx: int) -> Any:
         return self.agents[idx]
@@ -164,18 +172,26 @@ class CommunicationSpec(dict):
         if self.n_agents < 1:
             raise ValueError("The number of agents must be at least 1.")
 
+    def get_channel_fn_cls(self):
+        if self.channel_fn == "straight_through":
+            return StraightThroughCommunicationChannel
+        elif self.channel_fn == "gumbel_softmax":
+            return GumbelSoftmaxCommunicationChannel
+        else:
+            raise NotImplementedError(
+                f"Channel function {self.channel_fn} not implemented. "
+                "Only 'straight_through' and 'gumbel_softmax' are currently supported."
+            )
+
+    def get_channel_fn(self) -> CommunicationChannelFunction:
+        return self.get_channel_fn_cls()(**self.channel_fn_config)
+
     def build(self) -> CommunicationNetwork:
         if self.static:
-
-            if self.channel_fn is None or self.channel_fn == "straight_through":
-                channel_fn = StraightThroughCommunicationChannel()
-            else:
-                raise NotImplementedError
-
             return StaticCommunicationNetwork(
                 message_dim=self.message_dim,
                 comm_channels=self.comm_channels,
-                channel_fn=channel_fn
+                channel_fn=self.get_channel_fn()
             )
         else:
             raise NotImplementedError

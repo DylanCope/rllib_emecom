@@ -1,5 +1,4 @@
 from rllib_emecom.utils.experiment_utils import get_wandb_callback, initialise_ray
-from rllib_emecom.utils.register_envs import get_registered_env_creator
 from rllib_emecom.train.configs import (
     create_args_parser, get_algo_config, Policies, EnvConfig
 )
@@ -21,8 +20,6 @@ def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
         "goal_shift": args.goal_shift,
         "scalar_obs": args.scalar_obs,
     }
-    env_name = args.env
-    env = get_registered_env_creator(env_name)(env_config)
     return env_config, [f'agent_{i}' for i in range(args.n_agents)]
 
 
@@ -35,10 +32,6 @@ def parse_args() -> Namespace:
     parser.add_argument('--grid_size', type=int, default=5)
     parser.add_argument('--max_episode_len', type=int, default=10)
     parser.add_argument('--scalar_obs', action='store_true', default=False)
-    parser.add_argument('--message_dim', type=int, default=8)
-    parser.add_argument('--comm_channel_fn', type=str, default='straight_through')
-    parser.add_argument('--no_param_sharing', action='store_true', default=False)
-    parser.add_argument('--no_custom_module', action='store_true', default=False)
     return parser.parse_args()
 
 

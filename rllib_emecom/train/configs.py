@@ -10,7 +10,6 @@ from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 from ray.rllib.algorithms.ppo import PPOConfig
 from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog
 from ray.rllib.core.rl_module.rl_module import SingleAgentRLModuleSpec
-from ray.rllib.core.rl_module.marl_module import MultiAgentRLModuleSpec
 from ray.rllib.policy.policy import PolicySpec
 
 Policies = Dict[AgentID, PolicySpec]
@@ -37,6 +36,13 @@ def add_ppo_args(parser: ArgumentParser):
     parser.add_argument('--num_sgd_iters', type=int, default=5)
 
 
+def add_macrl_args(parser: ArgumentParser):
+    parser.add_argument('--message_dim', type=int, default=8)
+    parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
+    parser.add_argument('--comm_channel_temp', type=float, default=10.0)
+    parser.add_argument('--no_param_sharing', action='store_true', default=False)
+
+
 def create_args_parser() -> ArgumentParser:
     algo_parser = ArgumentParser()
     algo_parser.add_argument('--algo', type=str, default='ppo',
@@ -51,12 +57,13 @@ def create_args_parser() -> ArgumentParser:
     parser.add_argument('--learning_rate', type=float, default=5e-4)
     parser.add_argument('--gamma', type=float, default=0.99)
 
-    add_nn_args(parser)
-
     if algo == 'ppo':
         add_ppo_args(parser)
     else:
         raise ValueError(f'Unknown algorithm: {algo}')
+
+    add_nn_args(parser)
+    add_macrl_args(parser)
 
     return parser
 
@@ -75,7 +82,10 @@ def get_ppo_rl_module_spec(args: Namespace,
         message_dim=args.message_dim,
         comm_channels=comm_channels,
         static=True,
-        channel_fn=args.comm_channel_fn
+        channel_fn=args.comm_channel_fn,
+        channel_fn_config={
+            'temperature': args.comm_channel_temp
+        }
     )
 
     return SingleAgentRLModuleSpec(
@@ -117,7 +127,7 @@ def get_ppo_config(args: Namespace, env_config: dict, agent_ids: List[AgentID]) 
             _enable_learner_api=True,
         )
         .rollouts(
-            num_rollout_workers=0,
+            num_rollout_workers=8,
             rollout_fragment_length='auto',
         )
         .rl_module(
