@@ -1,0 +1,1 @@
+docker build -t drc/rllib_emecom:latest ./docker
