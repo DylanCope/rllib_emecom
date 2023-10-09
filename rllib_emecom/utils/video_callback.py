@@ -1,12 +1,14 @@
+from zmq import has
 from rllib_emecom.utils.general import get_timestamp
 from rllib_emecom.utils.video_utils import create_grid_video, save_video
 
-from typing import Any, Optional, Dict, Union
+from typing import Any, List, Optional, Dict, Union
 from pathlib import Path
 from wandb import Video
+import numpy as np
 
 from ray.rllib import Policy, BaseEnv
-from ray.rllib.algorithms.algorithm import Algorithm
+from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 from ray.rllib.algorithms.callbacks import DefaultCallbacks
 from ray.rllib.env.vector_env import VectorEnvWrapper
 from ray.rllib.evaluation.episode import Episode
@@ -15,44 +17,63 @@ from ray.rllib.utils.typing import PolicyID
 from ray.rllib.evaluation.rollout_worker import RolloutWorker
 
 
+def get_sub_env(base_env, idx):
+    if isinstance(base_env, VectorEnvWrapper):
+        sub_envs = base_env.vector_env.get_sub_environments()
+    else:
+        sub_envs = base_env.envs
+    return sub_envs[idx]
+
+
+class Renderer:
+
+    def render(
+        self,
+        env: BaseEnv,
+        env_index: int,
+        config: AlgorithmConfig,
+        episode: Union[Episode, EpisodeV2],
+        policies: Optional[Dict[PolicyID, Policy]],
+        **kwargs,
+    ) -> np.ndarray:
+        return env.render()
+
+
+class VideoMakingManager:
+
+    def __init__(self, renderer: Renderer):
+        self.frames = []
+        self.finished = False
+        self.renderer = renderer
+
+    def is_finished(self):
+        return self.finished
+
+    def render(self, *args, **kwargs):
+        frame = self.renderer.render(*args, **kwargs)
+        self.frames.append(frame)
+
+
 class VideoEvaluationsCallback(DefaultCallbacks):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.episodes_executed = 0
-        self.max_videos = 16
         self.reset()
 
     def reset(self):
-        self.frames_dict = {}
+        self.episodes_executed = 0
+        self.max_videos = 16
+        self.video_managers: Dict[int, VideoMakingManager] = {}
         self.video_saved = False
-        self.videos_finished = []
-
-    def on_evaluate_start(
-        self, *, algorithm: "Algorithm",
-        **kwargs,
-    ) -> None:
-        """Callback before evaluation starts.
-
-        This method gets called at the beginning of Algorithm.evaluate().
-
-        Args:
-            algorithm: Reference to the algorithm instance.
-            kwargs: Forward compatibility placeholder.
-        """
-        self.reset()
 
     @property
     def videos_created(self):
-        return len(self.videos_finished)
+        return sum(
+            manager.is_finished()
+            for manager in self.video_managers.values()
+        )
 
-    def _get_envs(self, base_env):
-        if isinstance(base_env, VectorEnvWrapper):
-            return base_env.vector_env.get_sub_environments()
-        else:
-            return base_env.envs
-
-    def frames_key(self, episode: Union[Episode, EpisodeV2]) -> Any:
+    def frames_key(self, episode: Union[Episode, EpisodeV2]) -> int:
         return episode.episode_id
 
     def _get_videos_dir(self, worker: RolloutWorker):
@@ -70,11 +91,9 @@ class VideoEvaluationsCallback(DefaultCallbacks):
             env_index: Optional[int] = None,
             **kwargs,
     ) -> None:
-        frames_key = self.frames_key(episode)
-        if frames_key in self.frames_dict and frames_key not in self.videos_finished:
-            self.videos_finished.append(frames_key)
-
         if worker.config["in_evaluation"]:
+            video_manager = self.get_video_manager(worker, episode)
+            video_manager.finished = True
             self.on_eval_episode_end(worker, episode, env_index)
 
     def on_eval_episode_end(
@@ -84,7 +103,7 @@ class VideoEvaluationsCallback(DefaultCallbacks):
             env_index: Optional[int] = None):
 
         if self.videos_created >= self.max_videos and not self.video_saved:
-            frames = create_grid_video(self.frames_dict)
+            frames = create_grid_video(self.get_frames_dict())
 
             videos_dir = self._get_videos_dir(worker)
             video_file = f'{videos_dir}/video_{get_timestamp()}.mp4'
@@ -95,6 +114,23 @@ class VideoEvaluationsCallback(DefaultCallbacks):
             episode.media[f"env_{env_index}_video"] = Video(path)
 
             self.reset()
+
+    def get_frames_dict(self) -> Dict[int, List[np.ndarray]]:
+        return {
+            key: manager.frames
+            for key, manager in self.video_managers.items()
+        }
+
+    def get_video_manager(self,
+                          worker: RolloutWorker,
+                          episode: Union[Episode, EpisodeV2]) -> VideoMakingManager:
+        managers_key = self.frames_key(episode)
+        if managers_key not in self.video_managers:
+            renderer_cls = worker.config['env_config'].get('renderer_cls', Renderer)
+            renderer_conf = worker.config['env_config'].get('renderer_config', {})
+            renderer = renderer_cls(**renderer_conf)
+            self.video_managers[managers_key] = VideoMakingManager(renderer)
+        return self.video_managers[managers_key]
 
     def on_episode_step(
         self,
@@ -108,10 +144,9 @@ class VideoEvaluationsCallback(DefaultCallbacks):
     ) -> None:
 
         if worker.config["in_evaluation"] and self.videos_created < self.max_videos:
-            frames_key = self.frames_key(episode)
-
-            frames = self.frames_dict.get(frames_key, [])
-            frame = self._get_envs(base_env)[env_index].render()
+            video_manager = self.get_video_manager(worker, episode)
+            env = get_sub_env(base_env, env_index)
+            video_manager.render(env, env_index, worker.config, policies, episode)
 
             # info = {
             #     agent: {
@@ -122,7 +157,3 @@ class VideoEvaluationsCallback(DefaultCallbacks):
             # }
 
             # frames.append((frame, info))
-
-            frames.append(frame)
-
-            self.frames_dict[frames_key] = frames

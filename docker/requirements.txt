@@ -4,9 +4,10 @@ pandas
 matplotlib
 seaborn
 scikit-learn
-ray[rllib]==2.7.0rc0
 torch
+ray[rllib]==2.7.0rc0
 pettingzoo[mpe]==1.24.1
+imageio[ffmpeg]==2.31.3
 # supersuit==3.7.0
 wandb
 gputil

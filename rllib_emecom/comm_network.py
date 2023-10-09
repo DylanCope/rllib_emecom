@@ -145,6 +145,9 @@ class CommunicationSpec(dict):
 
         dict.__init__(self, **self.to_dict())
 
+    def can_send(self, agent_to: Any, agent_from: Any) -> bool:
+        return agent_to in self.comm_channels[agent_from]
+
     @cached_property
     def agents(self) -> List[Any]:
         return sorted(list(set(

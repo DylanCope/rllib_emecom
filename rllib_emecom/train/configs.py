@@ -56,6 +56,10 @@ def create_args_parser() -> ArgumentParser:
                         help='RL Algorithm to use (default: %(default)s)')
     parser.add_argument('--learning_rate', type=float, default=5e-4)
     parser.add_argument('--gamma', type=float, default=0.99)
+    parser.add_argument('--num_rollout_workers', type=int, default=0)
+    parser.add_argument('--evaluation_interval', type=int, default=10)
+    parser.add_argument('--evaluation_duration', type=int, default=100)
+    parser.add_argument('--evaluation_num_workers', type=int, default=0)
 
     if algo == 'ppo':
         add_ppo_args(parser)
@@ -99,7 +103,9 @@ def get_ppo_rl_module_spec(args: Namespace,
     )
 
 
-def get_ppo_config(args: Namespace, env_config: dict, agent_ids: List[AgentID]) -> PPOConfig:
+def get_ppo_config(args: Namespace,
+                   env_config: dict,
+                   agent_ids: List[AgentID]) -> PPOConfig:
     rl_module_spec = get_ppo_rl_module_spec(args, agent_ids)
 
     return (
@@ -127,7 +133,7 @@ def get_ppo_config(args: Namespace, env_config: dict, agent_ids: List[AgentID]) 
             _enable_learner_api=True,
         )
         .rollouts(
-            num_rollout_workers=8,
+            num_rollout_workers=args.num_rollout_workers,
             rollout_fragment_length='auto',
         )
         .rl_module(
@@ -137,14 +143,19 @@ def get_ppo_config(args: Namespace, env_config: dict, agent_ids: List[AgentID]) 
         .resources(num_gpus=1)
         .callbacks(VideoEvaluationsCallback)
         .evaluation(
-            evaluation_interval=10,
-            evaluation_duration=100,
-            evaluation_num_workers=0
+            evaluation_interval=args.evaluation_interval,
+            evaluation_duration=args.evaluation_duration,
+            evaluation_num_workers=args.evaluation_num_workers,
+            evaluation_config={
+                'renderer': None
+            }
         )
     )
 
 
-def get_algo_config(args: Namespace, env_config: dict, agent_ids: List[AgentID]) -> AlgorithmConfig:
+def get_algo_config(args: Namespace,
+                    env_config: dict,
+                    agent_ids: List[AgentID]) -> AlgorithmConfig:
     algo = args.algo.lower()
     if algo == 'ppo':
         return get_ppo_config(args, env_config, agent_ids)

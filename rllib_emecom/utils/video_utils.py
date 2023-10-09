@@ -10,9 +10,11 @@ from ray.rllib.algorithms.algorithm import Algorithm
 from ray.tune.registry import register_env
 
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Callable
 import numpy as np
 import imageio
+
+EnvRenderer = Callable[[], np.ndarray]
 
 
 def save_video(frames: List[np.ndarray],
@@ -44,11 +46,13 @@ def save_video(frames: List[np.ndarray],
 
 class VideoMakerStepWrapper:
 
-    def __init__(self, env, output_dir: str, fps: int = 5):
+    def __init__(self,
+                 env,
+                 output_dir: str,
+                 fps: int = 5):
         self.env = env
         self.multiagent = isinstance(env, MultiAgentEnv)
         self.old_step = self.env.step
-        env.step = self.step_wrapper
         self.frames = [[]]
         self.episodes = 0
 
@@ -56,8 +60,10 @@ class VideoMakerStepWrapper:
         Path(self.output_dir).mkdir(parents=True, exist_ok=True)
         self.fps = fps
 
+        env.step = self.step_wrapper
+
     def step_wrapper(self, *args, **kwargs):
-        """Wrapper for the render method of an environment."""
+        """ Wrapper for the render method of an environment. """
         step_results = self.old_step(*args, **kwargs)
 
         next_obs, reward, terminated, truncated, info = step_results
@@ -76,19 +82,22 @@ class VideoMakerStepWrapper:
         return step_results
 
     def create_video(self):
-        """Create a video from the frames."""
+        """ Create a video from the frames. """
         hash_id = str(hash(self))[:5]
         output_path = self.output_dir + f'/video_{hash_id}_{self.episodes + 1}'
         print(f'Writing video with {len(self.frames[self.episodes])} frames to: {output_path}')
         save_video(self.frames[self.episodes], output_path, fps=self.fps)
 
 
-def register_video_wrapped_env(env_id: str, output_dir: str) -> str:
+def register_video_wrapped_env(env_id: str,
+                               output_dir: str,
+                               create_renderer: Optional[Callable[[], EnvRenderer]] = None) -> str:
     """Register a video wrapped environment with Ray Tune and create a VideoMaker."""
     env_creator = get_registered_env_creator(env_id)
 
     def create_video_wrapped_env(config):
         env = env_creator(config)
+        renderer = create_renderer() if create_renderer else None
         VideoMakerStepWrapper(env, output_dir=output_dir)
         return env
 

@@ -171,25 +171,28 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
     def _handle_message_passing(self, msgs_out: NestedDict, training: bool = False):
         """
         """
-        msgs_in = {}
         agent_ids = list(msgs_out.keys())
 
         # mask outgoing messages that are not permitted by the comm spec
-        for agent_id in agent_ids:
-            batch_size, *_ = msgs_out[agent_id].shape
-            mask = self.get_comm_mask(agent_id, batch_size)
-            msgs_out[agent_id] = mask * msgs_out[agent_id]
+        for sender_agent in agent_ids:
+            batch_size, *_ = msgs_out[sender_agent].shape
+            mask = self.get_comm_mask(sender_agent, batch_size)
+            msgs_out[sender_agent] = mask * msgs_out[sender_agent]
 
-        for agent_id in agent_ids:
-            msgs_in[agent_id] = {}
+        # create tensors of incoming messages for each receiver
+        msgs_in = {}
+        for receiver_agent in agent_ids:
+            msgs_in[receiver_agent] = {}
 
+            # msgs at index i of msgs_in[receiver_agent] are the messages
+            # received by receiver_agent from agent i
+            i = self.comms_spec.get_agent_idx(sender_agent)
             # collect messages from other agents
-            i = self.comms_spec.get_agent_idx(agent_id)
             msgs = torch.cat([
-                msgs_out[other_id][:, i:i + 1]
-                for other_id in agent_ids
+                msgs_out[sender_agent][:, i:i + 1]
+                for sender_agent in agent_ids
             ], dim=-2)
-            msgs_in[agent_id] = self.comm_channel_fn(msgs, training=training)
+            msgs_in[receiver_agent] = self.comm_channel_fn(msgs, training=training)
 
         return msgs_in
 

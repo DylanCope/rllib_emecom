@@ -1,10 +1,13 @@
 # Environment adapted from: https://github.com/proroklab/rllib_differentiable_comms
 
+import itertools
 import os
 import functools
-from typing import Tuple
+from typing import Optional, Tuple
+import seaborn as sns
 
 import pygame
+from pygame import gfxdraw
 import numpy as np
 import gymnasium
 from gymnasium.spaces import Discrete, Box
@@ -22,25 +25,28 @@ X = 1
 Y = 0
 
 
-def pastel_color_generator() -> tuple:
-    pastel_colors = [
-        (255, 223, 186),  # Pastel Yellow
-        (173, 216, 230),  # Pastel Blue
-        (223, 191, 255),  # Pastel Purple
-        (255, 204, 204),  # Pastel Pink
-        (204, 255, 204),  # Pastel Green
-        (255, 204, 153),  # Pastel Orange
-        (240, 128, 128),  # Pastel Red
-        (204, 204, 255)   # Pastel Lavender
+def draw_circle(surface, color, x, y, radius):
+    gfxdraw.aacircle(surface, x, y, radius, color)
+    gfxdraw.filled_circle(surface, x, y, radius, color)
+
+
+def get_sns_colour_palette(n_colours: int, pallete: Optional[str] = None) -> list:
+    return [
+        (int(255 * r), int(255 * g), int(255 * b))
+        for (r, g, b) in sns.color_palette(pallete, n_colours)
     ]
 
-    while True:
-        for color in pastel_colors:
-            yield color
+
+def pastel_color_generator(n_colours: int) -> tuple:
+    return itertools.cycle(get_sns_colour_palette(n_colours, 'pastel'))
 
 
-def darken_color(color: tuple, factor: float) -> tuple:
-    return tuple([int(c * factor) for c in color])
+def bright_color_generator(n_colours: int) -> tuple:
+    return itertools.cycle(get_sns_colour_palette(n_colours))
+
+
+# def darken_color(color: tuple, factor: float) -> tuple:
+#     return tuple([int(c * factor) for c in color])
 
 
 def one_hot(x: int, n: int) -> np.ndarray:
@@ -152,7 +158,8 @@ class parallel_env(ParallelEnv):
                  max_episode_len: int = 10,
                  random_state: np.random.RandomState = None,
                  scalar_obs: bool = False,
-                 render_mode: str = 'rgb_array'):
+                 render_mode: str = 'rgb_array',
+                 **kwargs):
         """
         The init method takes in environment arguments and should define the following attributes:
         - possible_agents
@@ -176,6 +183,7 @@ class parallel_env(ParallelEnv):
         }
         self.possible_agents = list(self.agents_map.keys())
         self.agents = list(self.agents_map.keys())
+        self.n_agents = len(self.agents)
 
         self.agent_goal_map = {
             agent_id: self.agents_map[self.agents[(idx + goal_shift) % num_agents]]
@@ -249,11 +257,18 @@ class parallel_env(ParallelEnv):
         def get_cell_rect(x: int, y: int):
             return (y * CELL_SIZE, x * CELL_SIZE, CELL_SIZE, CELL_SIZE)
 
-        for agent, colour in zip(self.agents_map.values(), pastel_color_generator()):
+        def get_cell_circle(x: int, y: int):
+            centre_x = y * CELL_SIZE + CELL_SIZE // 2
+            centre_y = x * CELL_SIZE + CELL_SIZE // 2
+            r = int(0.8 * CELL_SIZE // 2)
+            return (centre_x, centre_y, r)
+
+        for agent, colour in zip(self.agents_map.values(), pastel_color_generator(self.n_agents)):
             pygame.draw.rect(self.pygame_window, colour, get_cell_rect(*agent.goal))
 
-        for agent, colour in zip(self.agents_map.values(), pastel_color_generator()):
-            pygame.draw.ellipse(self.pygame_window, darken_color(colour, 0.75), get_cell_rect(*agent.pose))
+        for agent, colour in zip(self.agents_map.values(), bright_color_generator(self.n_agents)):
+            # pygame.draw.ellipse(self.pygame_window, colour, get_cell_rect(*agent.pose))
+            draw_circle(self.pygame_window, colour, *get_cell_circle(*agent.pose))
 
         return pygame.surfarray.array3d(pygame.display.get_surface())
 
