@@ -33,8 +33,8 @@ def add_ppo_args(parser: ArgumentParser):
     parser.add_argument('--kl_coeff', type=float, default=0.0)
     # parser.add_argument('--train_batch_size', type=int, default=10_000)
     # parser.add_argument('--sgd_minibatch_size', type=int, default=2048)
-    parser.add_argument('--train_batch_size', type=int, default=512)
-    parser.add_argument('--sgd_minibatch_size', type=int, default=64)
+    parser.add_argument('--train_batch_size', type=int, default=10_000)
+    parser.add_argument('--sgd_minibatch_size', type=int, default=2048)
     parser.add_argument('--num_sgd_iters', type=int, default=5)
 
 
@@ -60,10 +60,10 @@ def create_args_parser() -> ArgumentParser:
                         help='RL Algorithm to use (default: %(default)s)')
     parser.add_argument('--learning_rate', type=float, default=5e-4)
     parser.add_argument('--gamma', type=float, default=0.99)
-    parser.add_argument('--num_rollout_workers', type=int, default=0)
+    parser.add_argument('--num_rollout_workers', type=int, default=8)
     parser.add_argument('--evaluation_interval', type=int, default=10)
     parser.add_argument('--evaluation_duration', type=int, default=100)
-    parser.add_argument('--evaluation_num_workers', type=int, default=0)
+    parser.add_argument('--evaluation_num_workers', type=int, default=4)
 
     if algo == 'ppo':
         add_ppo_args(parser)

@@ -53,20 +53,20 @@ def get_goal_comms_config(args: Optional[Namespace] = None) -> AlgorithmConfig:
 def run_experiment():
     try:
         initialise_ray()
-        config = get_goal_comms_config()
-        config.build().train()
+        args = parse_args()
+        config = get_goal_comms_config(args)
 
-        # tune.run(
-        #     args.algo.upper(),
-        #     name=args.env,
-        #     stop={'timesteps_total': args.stop_timesteps},
-        #     checkpoint_freq=10,
-        #     storage_path=f'{os.getcwd()}/ray_results/{args.env}',
-        #     config=config.to_dict(),
-        #     callbacks=[get_wandb_callback()]
-        # )
+        tune.run(
+            args.algo.upper(),
+            name=args.env,
+            stop={'timesteps_total': args.stop_timesteps},
+            checkpoint_freq=10,
+            storage_path=f'{os.getcwd()}/ray_results/{args.env}',
+            config=config.to_dict(),
+            callbacks=[get_wandb_callback()]
+        )
 
-        # print('Finished training.')
+        print('Finished training.')
 
     finally:
         print('Shutting down Ray.')
