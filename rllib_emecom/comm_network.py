@@ -36,10 +36,47 @@ class GumbelSoftmaxCommunicationChannel(CommunicationChannelFunction):
         self.temperature = temperature
 
     def call(self, message: torch.Tensor, training: bool = False) -> torch.Tensor:
+        # return torch.nn.functional.gumbel_softmax(message, tau=self.temperature, hard=True)
         if training:
             return RelaxedOneHotCategorical(self.temperature, logits=message).rsample()
         else:
             return OneHotCategorical(logits=message).sample()
+
+
+class DiscreteRegulariseCommunicationChannel(CommunicationChannelFunction):
+
+    def __init__(self, channel_noise: float = 0.5, channel_activation='softmax', **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.channel_noise = channel_noise
+        self.channel_activation = channel_activation
+
+    def softmax_forward(self, z: torch.Tensor, training: bool) -> torch.Tensor:
+        if training:
+            z = torch.nn.functional.softmax(z, dim=-1)
+            return z
+        msgs_symbs = torch.argmax(z, dim=-1)
+        n_msgs = z.shape[-1]
+        return torch.nn.functional.one_hot(msgs_symbs, n_msgs)
+
+    def sigmoid_forward(self, z: torch.Tensor, training: bool) -> torch.Tensor:
+        z = torch.nn.functional.sigmoid(z)
+        if training:
+            return z
+        return torch.round(z)
+
+    def call(self, message: torch.Tensor, training: bool = False) -> torch.Tensor:
+        if training:
+            z = message + torch.randn_like(message) * self.channel_noise
+        else:
+            z = message
+
+        if self.channel_activation == 'softmax':
+            return self.softmax_forward(z, training)
+
+        elif self.channel_activation == 'sigmoid':
+            return self.sigmoid_forward(z, training)
+
+        raise NotImplementedError("Unknown channel activation function: " + self.channel_activation)
 
 
 class CommunicationNetwork(ABC):
@@ -176,14 +213,16 @@ class CommunicationSpec(dict):
             raise ValueError("The number of agents must be at least 1.")
 
     def get_channel_fn_cls(self):
-        if self.channel_fn == "straight_through":
+        if self.channel_fn.lower() == "straight_through":
             return StraightThroughCommunicationChannel
-        elif self.channel_fn == "gumbel_softmax":
+        elif self.channel_fn.lower() == "gumbel_softmax":
             return GumbelSoftmaxCommunicationChannel
+        elif self.channel_fn.lower() in ["discrete_regularise", "dru"]:
+            return DiscreteRegulariseCommunicationChannel
         else:
             raise NotImplementedError(
                 f"Channel function {self.channel_fn} not implemented. "
-                "Only 'straight_through' and 'gumbel_softmax' are currently supported."
+                "Only 'straight_through', 'dru' and 'gumbel_softmax' are currently supported."
             )
 
     def get_channel_fn(self) -> CommunicationChannelFunction:

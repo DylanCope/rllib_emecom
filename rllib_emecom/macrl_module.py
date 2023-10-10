@@ -137,8 +137,8 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         self.aggregate_msgs_and_obs = nn.Sequential(
             nn.Linear(self.n_agents * self.message_dim + actor_encoding_dim, hidden_dim),
             nn.ReLU(),
-            nn.Linear(hidden_dim, actor_encoding_dim),
-            nn.ReLU(),
+            # nn.Linear(hidden_dim, actor_encoding_dim),
+            # nn.ReLU(),
         )
         self.last_msgs_sent = None
 
@@ -177,6 +177,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         for sender_agent in agent_ids:
             batch_size, *_ = msgs_out[sender_agent].shape
             mask = self.get_comm_mask(sender_agent, batch_size)
+            mask = mask.to(msgs_out[sender_agent].device)
             msgs_out[sender_agent] = mask * msgs_out[sender_agent]
 
         # create tensors of incoming messages for each receiver
@@ -253,7 +254,8 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
                                                         training=mode == TRAIN_FORWARD)
 
         outputs[SampleBatch.ACTION_DIST_INPUTS] = torch.cat([
-            outs[SampleBatch.ACTION_DIST_INPUTS] for outs in actor_outputs.values()
+            outs[SampleBatch.ACTION_DIST_INPUTS]
+            for outs in actor_outputs.values()
         ], axis=-1)
 
         outputs[MSGS_SENT] = msgs_sent

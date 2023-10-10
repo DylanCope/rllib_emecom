@@ -5,12 +5,13 @@ from rllib_emecom.train.configs import (
 )
 
 from argparse import ArgumentParser, Namespace
-from typing import Tuple
+from typing import Optional, Tuple
 import os
 
 import ray
 from ray import tune
 from ray.rllib.evaluate import rollout
+from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 
 
 def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
@@ -44,24 +45,28 @@ def parse_args() -> Namespace:
     return args
 
 
+def get_goal_comms_config(args: Optional[Namespace] = None) -> AlgorithmConfig:
+    args = args or parse_args()
+    return get_algo_config(args, *get_env_config(args))
+
+
 def run_experiment():
     try:
         initialise_ray()
+        config = get_goal_comms_config()
+        config.build().train()
 
-        args = parse_args()
-        config = get_algo_config(args, *get_env_config(args))
+        # tune.run(
+        #     args.algo.upper(),
+        #     name=args.env,
+        #     stop={'timesteps_total': args.stop_timesteps},
+        #     checkpoint_freq=10,
+        #     storage_path=f'{os.getcwd()}/ray_results/{args.env}',
+        #     config=config.to_dict(),
+        #     callbacks=[get_wandb_callback()]
+        # )
 
-        tune.run(
-            args.algo.upper(),
-            name=args.env,
-            stop={'timesteps_total': args.stop_timesteps},
-            checkpoint_freq=10,
-            storage_path=f'{os.getcwd()}/ray_results/{args.env}',
-            config=config.to_dict(),
-            callbacks=[get_wandb_callback()]
-        )
-
-        print('Finished training.')
+        # print('Finished training.')
 
     finally:
         print('Shutting down Ray.')
