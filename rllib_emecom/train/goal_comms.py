@@ -16,14 +16,16 @@ from ray.rllib.evaluate import rollout
 def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
     env_config = {
         'render_mode': 'rgb_array',
-        "world_shape": [args.grid_size, args.grid_size],
-        "num_agents": args.n_agents,
-        "max_episode_len": args.max_episode_len,
-        "goal_shift": args.goal_shift,
-        "scalar_obs": args.scalar_obs,
-        "renderer_cls": CommsRenderer,
-        "renderer_config": {
+        'world_shape': [args.grid_size, args.grid_size],
+        'num_agents': args.n_agents,
+        'max_episode_len': args.max_episode_len,
+        'goal_shift': args.goal_shift,
+        'scalar_obs': args.scalar_obs,
+        'render_config': {
+            'renderer_cls': CommsRenderer,
             'n_msgs': args.message_dim,
+            'fps': 2,
+            'episodes_per_video': 6
         }
     }
     return env_config, [f'agent_{i}' for i in range(args.n_agents)]

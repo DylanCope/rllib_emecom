@@ -205,6 +205,7 @@ class CommunicationSpec(dict):
             "comm_channels": self.comm_channels,
             "static": self.static,
             "channel_fn": self.channel_fn,
+            "channel_fn_config": self.channel_fn_config,
             "n_agents": self.n_agents
         }
 
@@ -215,5 +216,6 @@ class CommunicationSpec(dict):
             comm_channels=d["comm_channels"],
             static=d["static"],
             channel_fn=d["channel_fn"],
+            channel_fn_config=d["channel_fn_config"],
             n_agents=d["n_agents"]
         )

@@ -1,5 +1,5 @@
 from rllib_emecom.macrl_module import AgentID
-from rllib_emecom.utils.video_utils import register_video_wrapped_env
+from rllib_emecom.utils.video_utils import register_video_wrapped_env, plot_to_array
 from rllib_emecom.utils.video_callback import Renderer
 from rllib_emecom.macrl_module import PPOTorchMACRLModule
 
@@ -59,15 +59,19 @@ class CommsRenderer(Renderer):
         env: BaseEnv,
         env_index: int,
         config: AlgorithmConfig,
-        episode: Union[Episode, EpisodeV2],
         policies: Optional[Dict[PolicyID, Policy]],
+        episode: Union[Episode, EpisodeV2],
         **kwargs,
     ) -> np.ndarray:
         frame = env.render()
-        _, axs = plt.subplots(1, 2, figsize=(12, 6))
+        fig, axs = plt.subplots(1, 2, figsize=(6, 3))
         self._render_frame(frame, axs[0])
         msgs_network = self.get_msgs_network(policies, env_index)
-        self._render_msgs_network(msgs_network, axs[0])
+        self._render_msgs_network(msgs_network, axs[1])
+        fig.tight_layout()
+        render = plot_to_array(fig)
+        plt.close(fig)
+        return render
 
     def get_msgs_network(self,
                          policies: Optional[Dict[PolicyID, Policy]],
@@ -114,10 +118,32 @@ class CommsRenderer(Renderer):
     def _render_frame(self, frame, ax):
         ax.imshow(frame)
         ax.axis('off')
-        ax.set_title('Environment')
 
     def _render_msgs_network(self, msgs_network: MessagesNetwork, ax):
-        nx.draw_networkx(self._get_agent_graph(msgs_network), ax=ax)
+        agents = list(msgs_network.keys())
+        agent_colours = dict(zip(agents, sns.color_palette(n_colors=len(agents))))
+
+        G = nx.DiGraph()
+
+        for receiver_id, senders in msgs_network.items():
+            for sender_id, msg in senders.items():
+                G.add_edge(receiver_id, sender_id,
+                           colour=self.msgs_colour_map(msg))
+
+        edge_colors = [data['colour'] for _, _, data in G.edges(data=True)]
+        node_colors = [agent_colours[n] for n in G.nodes()]
+
+        # Draw the graph with edge colors
+        if self.agent_graph_pos is None:
+            self.agent_graph_pos = nx.spring_layout(G, seed=42)
+        nx.draw(G, self.agent_graph_pos,
+                node_size=500,
+                node_color=node_colors,
+                edge_color=edge_colors,
+                width=2,
+                ax=ax,
+                arrowsize=20,
+                connectionstyle='arc3, rad = 0.1')
 
 
 def create_video(algorithm: Algorithm,

@@ -13,8 +13,22 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Callable
 import numpy as np
 import imageio
+import io
 
 EnvRenderer = Callable[[], np.ndarray]
+
+
+def plot_to_array(fig) -> np.ndarray:
+    """
+    Converts a matplotlib figure to a numpy array.
+    """
+    io_buf = io.BytesIO()
+    fig.savefig(io_buf, format='raw', facecolor='white', transparent=False)
+    io_buf.seek(0)
+    img_arr = np.reshape(np.frombuffer(io_buf.getvalue(), dtype=np.uint8),
+                         newshape=(int(fig.bbox.bounds[3]), int(fig.bbox.bounds[2]), -1))
+    io_buf.close()
+    return img_arr
 
 
 def save_video(frames: List[np.ndarray],
@@ -160,8 +174,8 @@ def create_merged_video_frames(frame_dict: Dict[Any, List[np.ndarray]],
     border = 2
 
     # Calculate the canvas dimensions based on the grid and frame dimensions
-    canvas_height = base_frame_shape[0] * h + 2 * border * h
-    canvas_width = base_frame_shape[1] * w + 2 * border * w
+    canvas_width = base_frame_shape[0] * w + 2 * border * w
+    canvas_height = base_frame_shape[1] * h + 2 * border * h
     canvas_depth = base_frame_shape[2]
 
     # Initialize an empty list to store frames for the video
@@ -173,7 +187,7 @@ def create_merged_video_frames(frame_dict: Dict[Any, List[np.ndarray]],
     # Loop through each frame index
     for frame_index in range(max_frames):
         # Initialize an empty canvas for the current frame
-        canvas = np.zeros((canvas_height, canvas_width, canvas_depth))
+        canvas = np.zeros((canvas_width, canvas_height, canvas_depth))
 
         for idx, video_id in enumerate(frame_dict):
             if frame_index < len(frame_dict[video_id]):

@@ -37,7 +37,7 @@ def add_ppo_args(parser: ArgumentParser):
 
 
 def add_macrl_args(parser: ArgumentParser):
-    parser.add_argument('--message_dim', type=int, default=8)
+    parser.add_argument('--message_dim', type=int, default=32)
     parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
     parser.add_argument('--comm_channel_temp', type=float, default=10.0)
     parser.add_argument('--no_param_sharing', action='store_true', default=False)
@@ -56,10 +56,10 @@ def create_args_parser() -> ArgumentParser:
                         help='RL Algorithm to use (default: %(default)s)')
     parser.add_argument('--learning_rate', type=float, default=5e-4)
     parser.add_argument('--gamma', type=float, default=0.99)
-    parser.add_argument('--num_rollout_workers', type=int, default=0)
+    parser.add_argument('--num_rollout_workers', type=int, default=8)
     parser.add_argument('--evaluation_interval', type=int, default=10)
     parser.add_argument('--evaluation_duration', type=int, default=100)
-    parser.add_argument('--evaluation_num_workers', type=int, default=0)
+    parser.add_argument('--evaluation_num_workers', type=int, default=4)
 
     if algo == 'ppo':
         add_ppo_args(parser)
@@ -146,9 +146,6 @@ def get_ppo_config(args: Namespace,
             evaluation_interval=args.evaluation_interval,
             evaluation_duration=args.evaluation_duration,
             evaluation_num_workers=args.evaluation_num_workers,
-            evaluation_config={
-                'renderer': None
-            }
         )
     )
 

@@ -8,6 +8,7 @@ from wandb import Video
 import numpy as np
 
 from ray.rllib import Policy, BaseEnv
+from ray.rllib.algorithms.algorithm import Algorithm
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 from ray.rllib.algorithms.callbacks import DefaultCallbacks
 from ray.rllib.env.vector_env import VectorEnvWrapper
@@ -32,8 +33,8 @@ class Renderer:
         env: BaseEnv,
         env_index: int,
         config: AlgorithmConfig,
-        episode: Union[Episode, EpisodeV2],
         policies: Optional[Dict[PolicyID, Policy]],
+        episode: Union[Episode, EpisodeV2],
         **kwargs,
     ) -> np.ndarray:
         return env.render()
@@ -61,17 +62,26 @@ class VideoEvaluationsCallback(DefaultCallbacks):
         self.reset()
 
     def reset(self):
-        self.episodes_executed = 0
-        self.max_videos = 16
         self.video_managers: Dict[int, VideoMakingManager] = {}
         self.video_saved = False
 
     @property
-    def videos_created(self):
+    def n_episodes_completed(self):
         return sum(
             manager.is_finished()
             for manager in self.video_managers.values()
         )
+
+    def get_render_config(self, config: AlgorithmConfig) -> Dict[str, Any]:
+        return config['env_config'].get('render_config', {})
+
+    def get_fps(self, config: AlgorithmConfig) -> int:
+        render_conf = self.get_render_config(config)
+        return render_conf.get('fps', 5)
+
+    def get_episodes_per_video(self, config: AlgorithmConfig) -> int:
+        render_conf = self.get_render_config(config)
+        return render_conf.get('episodes_per_video', 8)
 
     def frames_key(self, episode: Union[Episode, EpisodeV2]) -> int:
         return episode.episode_id
@@ -80,6 +90,11 @@ class VideoEvaluationsCallback(DefaultCallbacks):
         videos_dir = f'{worker.io_context.log_dir}/videos/'
         Path(videos_dir).mkdir(parents=True, exist_ok=True)
         return videos_dir
+
+    def on_evaluate_start(
+        self, *, algorithm: Algorithm, **kwargs,
+    ) -> None:
+        self.reset()
 
     def on_episode_end(
             self,
@@ -92,9 +107,12 @@ class VideoEvaluationsCallback(DefaultCallbacks):
             **kwargs,
     ) -> None:
         if worker.config["in_evaluation"]:
-            video_manager = self.get_video_manager(worker, episode)
+            video_manager = self.get_video_manager(worker.config, episode)
             video_manager.finished = True
             self.on_eval_episode_end(worker, episode, env_index)
+
+    def ready_to_save_video(self, config: AlgorithmConfig) -> bool:
+        return self.n_episodes_completed >= self.get_episodes_per_video(config)
 
     def on_eval_episode_end(
             self,
@@ -102,18 +120,18 @@ class VideoEvaluationsCallback(DefaultCallbacks):
             episode: Union[Episode, EpisodeV2, Exception],
             env_index: Optional[int] = None):
 
-        if self.videos_created >= self.max_videos and not self.video_saved:
+        if self.ready_to_save_video(worker.config) and not self.video_saved:
             frames = create_grid_video(self.get_frames_dict())
 
             videos_dir = self._get_videos_dir(worker)
             video_file = f'{videos_dir}/video_{get_timestamp()}.mp4'
-            path = save_video(frames, file_path=video_file, fps=5)
+            path = save_video(frames,
+                              file_path=video_file,
+                              fps=self.get_fps(worker.config))
             print(f"Saved evaluation video to {path}")
             self.video_saved = True
 
             episode.media[f"env_{env_index}_video"] = Video(path)
-
-            self.reset()
 
     def get_frames_dict(self) -> Dict[int, List[np.ndarray]]:
         return {
@@ -122,13 +140,13 @@ class VideoEvaluationsCallback(DefaultCallbacks):
         }
 
     def get_video_manager(self,
-                          worker: RolloutWorker,
+                          config: AlgorithmConfig,
                           episode: Union[Episode, EpisodeV2]) -> VideoMakingManager:
         managers_key = self.frames_key(episode)
         if managers_key not in self.video_managers:
-            renderer_cls = worker.config['env_config'].get('renderer_cls', Renderer)
-            renderer_conf = worker.config['env_config'].get('renderer_config', {})
-            renderer = renderer_cls(**renderer_conf)
+            render_conf = self.get_render_config(config)
+            renderer_cls = render_conf.get('renderer_cls', Renderer)
+            renderer = renderer_cls(**render_conf)
             self.video_managers[managers_key] = VideoMakingManager(renderer)
         return self.video_managers[managers_key]
 
@@ -143,17 +161,8 @@ class VideoEvaluationsCallback(DefaultCallbacks):
         **kwargs,
     ) -> None:
 
-        if worker.config["in_evaluation"] and self.videos_created < self.max_videos:
-            video_manager = self.get_video_manager(worker, episode)
+        if worker.config["in_evaluation"] and not self.video_saved:
+            video_manager = self.get_video_manager(worker.config, episode)
             env = get_sub_env(base_env, env_index)
             video_manager.render(env, env_index, worker.config, policies, episode)
 
-            # info = {
-            #     agent: {
-            #         'reward': episode.agent_rewards[agent],
-            #         **episode.last_info_for(agent)
-            #     }
-            #     for (agent, _) in episode.agent_rewards
-            # }
-
-            # frames.append((frame, info))
