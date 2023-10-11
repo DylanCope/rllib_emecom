@@ -137,9 +137,10 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         self.aggregate_msgs_and_obs = nn.Sequential(
             nn.Linear(self.n_agents * self.message_dim + actor_encoding_dim, hidden_dim),
             nn.ReLU(),
-            # nn.Linear(hidden_dim, actor_encoding_dim),
-            # nn.ReLU(),
+            nn.Linear(hidden_dim, actor_encoding_dim),
+            nn.ReLU(),
         )
+
         self.last_msgs_sent = None
 
     @override(RLModule)
