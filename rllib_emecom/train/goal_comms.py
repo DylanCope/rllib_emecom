@@ -22,6 +22,7 @@ def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
         'max_episode_len': args.max_episode_len,
         'goal_shift': args.goal_shift,
         'scalar_obs': args.scalar_obs,
+        'observe_others_pos': not args.only_obs_self_pos,
         'render_config': {
             'renderer_cls': CommsRenderer,
             'n_msgs': args.message_dim,
@@ -41,6 +42,7 @@ def parse_args() -> Namespace:
     parser.add_argument('--grid_size', type=int, default=5)
     parser.add_argument('--max_episode_len', type=int, default=10)
     parser.add_argument('--scalar_obs', action='store_true', default=False)
+    parser.add_argument('--only_obs_self_pos', action='store_true', default=False)
     args, _ = parser.parse_known_args()
     return args
 
@@ -76,6 +78,8 @@ def run_experiment():
 def run_rollout_test(test_args: Namespace):
     initialise_ray()
     args = parse_args()
+    args.num_rollout_workers = 0
+    args.evaluation_num_workers = 0
     config = get_algo_config(args, *get_env_config(args))
     algo = config.build()
     rollout(algo, args.env,
@@ -86,6 +90,8 @@ def run_rollout_test(test_args: Namespace):
 def run_train_test(test_args: Namespace):
     initialise_ray()
     args = parse_args()
+    args.num_rollout_workers = 0
+    args.evaluation_num_workers = 0
     config = get_algo_config(args, *get_env_config(args))
     algo = config.build()
     algo.train()

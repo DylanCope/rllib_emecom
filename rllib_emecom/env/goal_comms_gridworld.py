@@ -75,20 +75,6 @@ class BaseAgent:
         if self.is_valid_pose(desired_pos):
             self.pose = desired_pos
 
-    def get_obs(self, use_one_hot=False):
-        if self.known_goal is None:
-            raise ValueError("known_goal is None, cannot construction observation.")
-
-        if use_one_hot:
-            world_w, world_h = self.world_shape
-            goal_x_1h = one_hot(self.known_goal[X], world_w)
-            goal_y_1h = one_hot(self.known_goal[Y], world_h)
-            pos_x_1h = one_hot(self.pose[X], world_w)
-            pos_y_1h = one_hot(self.pose[Y], world_h)
-            return np.hstack([goal_x_1h, goal_y_1h, pos_x_1h, pos_y_1h]).astype(np.float32)
-
-        return np.hstack([self.known_goal, self.pose]).astype(np.float32)
-
     def reset(self):
         raise NotImplementedError()
 
@@ -116,7 +102,6 @@ class DiscreteAgent(BaseAgent):
             4: [1, 0],
         }[action]
         self.update_pose(delta_pose)
-        return self.get_obs()
 
 
 def env(render_mode=None, **config):
@@ -159,6 +144,7 @@ class parallel_env(ParallelEnv):
                  random_state: np.random.RandomState = None,
                  scalar_obs: bool = False,
                  render_mode: str = 'rgb_array',
+                 observe_others_pos: bool = False,
                  **kwargs):
         """
         The init method takes in environment arguments and should define the following attributes:
@@ -176,6 +162,7 @@ class parallel_env(ParallelEnv):
         self.random_state = random_state or np.random.RandomState()
         self.max_episode_len = max_episode_len
         self.use_scalar_obs = scalar_obs
+        self.observe_others_pos = observe_others_pos
 
         self.agents_map = {
             f"agent_{i}": DiscreteAgent(i, self.world_shape, self.random_state)
@@ -209,15 +196,19 @@ class parallel_env(ParallelEnv):
     def observation_space(self, agent):
         # gymnasium spaces are defined and documented here: https://gymnasium.farama.org/api/spaces/
         if self.use_scalar_obs:
+            assert not self.observe_others_pos, \
+                "Scalar obs not currently supported with observe_others_pos"
             return Box(
                 low=np.array([0, 0, 0, 0]),
                 high=np.array([*self.world_shape, *self.world_shape]),
                 shape=(4,)
             )
 
+        n_pos_obs = self.n_agents if self.observe_others_pos else 1
         return Box(
             low=0, high=1,
-            shape=(self.world_shape[X] * 2 + self.world_shape[Y] * 2,)
+            shape=(self.world_shape[X] * (1 + n_pos_obs) 
+                   + self.world_shape[Y] * (1 + n_pos_obs),)
         )
 
     # Action space should be defined here.
@@ -325,9 +316,33 @@ class parallel_env(ParallelEnv):
 
         return self.get_observations(), self.get_infos()
 
+    def get_agent_obs(self, agent):
+        if agent.known_goal is None:
+            raise ValueError("known_goal is None, cannot construction observation.")
+
+        if not self.use_scalar_obs:
+            world_w, world_h = self.world_shape
+            goal_x_1h = one_hot(agent.known_goal[X], world_w)
+            goal_y_1h = one_hot(agent.known_goal[Y], world_h)
+            pos_vecs = [goal_x_1h, goal_y_1h]
+
+            if self.observe_others_pos:
+                pos_vecs += [one_hot(a.pose[X], world_w)
+                             for a in self.agents_map.values()]
+                pos_vecs += [one_hot(a.pose[Y], world_h)
+                             for a in self.agents_map.values()]
+
+            else:
+                pos_vecs += [one_hot(agent.pose[X], world_w),
+                             one_hot(agent.pose[Y], world_h)]
+
+            return np.hstack(pos_vecs).astype(np.float32)
+
+        return np.hstack([agent.known_goal, agent.pose]).astype(np.float32)
+
     def get_observations(self):
         return {
-            agent_id: agent.get_obs(use_one_hot=not self.use_scalar_obs)
+            agent_id: self.get_agent_obs(agent)
             for agent_id, agent in self.agents_map.items()
         }
 

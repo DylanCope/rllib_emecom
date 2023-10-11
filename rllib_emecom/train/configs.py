@@ -38,7 +38,7 @@ def add_ppo_args(parser: ArgumentParser):
 
 
 def add_macrl_args(parser: ArgumentParser):
-    parser.add_argument('--message_dim', type=int, default=32)
+    parser.add_argument('--message_dim', type=int, default=8)
     parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
     parser.add_argument('--comm_channel_temp', type=float, default=10.0)
     parser.add_argument('--comm_channel_anneal_temp', action='store_false', default=True)
