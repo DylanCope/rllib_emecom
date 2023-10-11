@@ -48,10 +48,13 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
     def _build_pi_head(self, catalog: PPOCatalog):
         # Get action_distribution_cls to find out about the output dimension for pi_head
-        action_distribution_cls = catalog.get_action_dist_cls(framework=self.framework)
+        action_distribution_cls = \
+            catalog.get_action_dist_cls(framework=self.framework)
+
         if catalog._model_config_dict["free_log_std"]:
             _check_if_diag_gaussian(
-                action_distribution_cls=action_distribution_cls, framework=self.framework
+                action_distribution_cls=action_distribution_cls,
+                framework=self.framework
             )
 
         action_space = self._get_individual_act_space()
@@ -71,6 +74,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             catalog._model_config_dict["post_fcnet_hiddens"]
         pi_and_vf_head_activation = \
             catalog._model_config_dict["post_fcnet_activation"]
+
         pi_head_config = pi_head_config_class(
             input_dims=catalog.latent_dims,
             hidden_layer_dims=pi_and_vf_head_hiddens,
@@ -110,11 +114,14 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
     @override(PPORLModule)
     def setup(self):
+        print('Building MACRL module...')
         self.comms_spec = self.get_comms_spec()
+        print(f'Comms spec: {self.comms_spec}')
         self.n_agents = self.comms_spec.n_agents
         self.message_dim = self.comms_spec.message_dim
         self.comm_network = self.comms_spec.comm_channels
         self.comm_channel_fn = self.comms_spec.get_channel_fn()
+        print(f'Communication channel function: {self.comm_channel_fn}')
 
         self.catalog: PPOCatalog = self.config.get_catalog()
         assert isinstance(self.catalog, PPOCatalog), \
@@ -133,7 +140,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         self.create_outgoing_msgs = nn.Sequential(
             nn.Linear(actor_encoding_dim, self.n_agents * self.message_dim)
         )
-        hidden_dim = 256
+        hidden_dim = 256  # TODO: parameterise this mlp
         self.aggregate_msgs_and_obs = nn.Sequential(
             nn.Linear(self.n_agents * self.message_dim + actor_encoding_dim, hidden_dim),
             nn.ReLU(),
@@ -142,6 +149,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         )
 
         self.last_msgs_sent = None
+        print(self)
 
     @override(RLModule)
     def get_initial_state(self) -> dict:
@@ -184,11 +192,9 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         # create tensors of incoming messages for each receiver
         msgs_in = {}
         for receiver_agent in agent_ids:
-            msgs_in[receiver_agent] = {}
-
             # msgs at index i of msgs_in[receiver_agent] are the messages
             # received by receiver_agent from agent i
-            i = self.comms_spec.get_agent_idx(sender_agent)
+            i = self.comms_spec.get_agent_idx(receiver_agent)
             # collect messages from other agents
             msgs = torch.cat([
                 msgs_out[sender_agent][:, i:i + 1]
@@ -259,7 +265,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             for outs in actor_outputs.values()
         ], axis=-1)
 
-        outputs[MSGS_SENT] = msgs_sent
+        # outputs[MSGS_SENT] = msgs_sent
         self.last_msgs_sent = msgs_sent
 
         if mode in [EXPLORATION_FORWARD, TRAIN_FORWARD]:
@@ -267,14 +273,14 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
         return outputs
 
-    @override(RLModule)
-    def output_specs_inference(self) -> SpecDict:
-        return super().output_specs_inference() + [MSGS_SENT]
+    # @override(RLModule)
+    # def output_specs_inference(self) -> SpecDict:
+    #     return super().output_specs_inference() + [MSGS_SENT]
 
-    @override(RLModule)
-    def output_specs_exploration(self) -> SpecDict:
-        return super().output_specs_exploration() + [MSGS_SENT]
+    # @override(RLModule)
+    # def output_specs_exploration(self) -> SpecDict:
+    #     return super().output_specs_exploration() + [MSGS_SENT]
 
-    @override(RLModule)
-    def output_specs_train(self) -> SpecDict:
-        return super().output_specs_train() + [MSGS_SENT]
+    # @override(RLModule)
+    # def output_specs_train(self) -> SpecDict:
+    #     return super().output_specs_train() + [MSGS_SENT]

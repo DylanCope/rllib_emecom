@@ -19,8 +19,8 @@ EnvConfig = Dict[str, Any]
 def add_nn_args(parser: ArgumentParser):
     parser.add_argument('--n_fc_layers', type=int, default=2)
     parser.add_argument('--fc_size', type=int, default=256)
-    parser.add_argument('--not_use_lstm', action='store_true', default=False)
-    parser.add_argument('--lstm_size', type=int, default=64)
+    # parser.add_argument('--not_use_lstm', action='store_true', default=False)
+    # parser.add_argument('--lstm_size', type=int, default=64)
 
 
 def add_ppo_args(parser: ArgumentParser):
@@ -31,8 +31,6 @@ def add_ppo_args(parser: ArgumentParser):
     parser.add_argument('--entropy_coeff', type=float, default=0.01)
     parser.add_argument('--vf_loss_coeff', type=float, default=0.25)
     parser.add_argument('--kl_coeff', type=float, default=0.0)
-    # parser.add_argument('--train_batch_size', type=int, default=10_000)
-    # parser.add_argument('--sgd_minibatch_size', type=int, default=2048)
     parser.add_argument('--train_batch_size', type=int, default=10_000)
     parser.add_argument('--sgd_minibatch_size', type=int, default=2048)
     parser.add_argument('--num_sgd_iters', type=int, default=5)
@@ -62,7 +60,7 @@ def create_args_parser() -> ArgumentParser:
     parser.add_argument('--gamma', type=float, default=0.99)
     parser.add_argument('--num_rollout_workers', type=int, default=8)
     parser.add_argument('--evaluation_interval', type=int, default=10)
-    parser.add_argument('--evaluation_duration', type=int, default=100)
+    parser.add_argument('--evaluation_duration', type=int, default=25)
     parser.add_argument('--evaluation_num_workers', type=int, default=4)
 
     if algo == 'ppo':

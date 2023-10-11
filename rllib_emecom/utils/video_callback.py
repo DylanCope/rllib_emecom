@@ -133,6 +133,8 @@ class VideoEvaluationsCallback(DefaultCallbacks):
 
             episode.media[f"env_{env_index}_video"] = Video(path)
 
+            self.reset()
+
     def get_frames_dict(self) -> Dict[int, List[np.ndarray]]:
         return {
             key: manager.frames

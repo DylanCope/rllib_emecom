@@ -83,8 +83,17 @@ def run_rollout_test(test_args: Namespace):
             num_steps=test_args.n_steps)
 
 
+def run_train_test(test_args: Namespace):
+    initialise_ray()
+    args = parse_args()
+    config = get_algo_config(args, *get_env_config(args))
+    algo = config.build()
+    algo.train()
+
+
 def get_test_args() -> Namespace:
     parser = ArgumentParser()
+    parser.add_argument('--train_test', action='store_true', default=False)
     parser.add_argument('--rollout_test', action='store_true', default=False)
     parser.add_argument('--n_episodes', type=int, default=10)
     parser.add_argument('--n_steps', type=int, default=1000)
@@ -96,5 +105,7 @@ if __name__ == "__main__":
     test_args = get_test_args()
     if test_args.rollout_test:
         run_rollout_test(test_args)
+    elif test_args.train_test:
+        run_train_test(test_args)
     else:
         run_experiment()
