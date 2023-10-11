@@ -1,3 +1,4 @@
+from argparse import Namespace
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
@@ -105,6 +106,45 @@ def get_grads_summaries_dict(gradients_dict: Dict[str, np.ndarray]) -> pd.DataFr
     ])
 
 
+def create_and_save_gradients_plot(args: Namespace, output: str):
+    config = get_goal_comms_config(args)
+    algo = config.build()
+    batch = sample_batch(algo, 512)
+    gradients = get_gradients(algo, batch)
+
+    df = get_grads_summaries_dict(gradients)
+    stat_types = df.stat.unique()
+    n_stats = len(stat_types)
+
+    sns.set()
+    _, axs = plt.subplots(1, n_stats, figsize=(12 * n_stats, 8))
+    for stat, ax in zip(stat_types, axs):
+        gradients_summary_barplot(df, stat, ax=ax)
+    plt.savefig(output, bbox_inches='tight')
+    print(f'Saved figure to {output}')
+    plt.close()
+
+
+def create_straight_through_plots(args: Namespace, output_dir: str):
+    output_fig = f'{output_dir}/gradients.pdf'
+    create_and_save_gradients_plot(args, output_fig)
+
+
+def create_dru_plots(args: Namespace, output_dir: str):
+    for noise in [0.0, 0.1, 0.2, 0.5, 1.0]:
+        args.comm_channel_noise = noise
+        activation = args.comm_channel_activation
+        output_fig = f'{output_dir}/gradients-{activation=}-{noise=}.pdf'
+        create_and_save_gradients_plot(args, output_fig)
+
+
+def create_gumbel_softmax_plots(args: Namespace, output_dir: str):
+    for temp in [0.1, 0.2, 0.5, 1.0]:
+        args.comm_channel_temp = temp
+        output_fig = f'{output_dir}/gradients-{temp=}.pdf'
+        create_and_save_gradients_plot(args, output_fig)
+
+
 if __name__ == '__main__':
     from rllib_emecom.train.goal_comms import get_goal_comms_config, parse_args
     from rllib_emecom.utils.experiment_utils import initialise_ray
@@ -115,25 +155,18 @@ if __name__ == '__main__':
 
     try:
         args = parse_args()
-        output_dir = f'analysis/channel_temp_gradients/{args.comm_channel_fn}'
+        output_dir = f'analysis/comm_channel_gradients/{args.comm_channel_fn}'
         Path(output_dir).mkdir(parents=True, exist_ok=True)
-        for temp in [0.5, 1.0, 10.0]:  # [0.1, 0.2, 0.5, 1.0]:
-            args.comm_channel_temp = temp
-            config = get_goal_comms_config(args)
-            algo = config.build()
-            batch = sample_batch(algo, 512)
-            gradients = get_gradients(algo, batch)
-            df = get_grads_summaries_dict(gradients)
-            stat_types = df.stat.unique()
-            n_stats = len(stat_types)
-            sns.set()
-            fig, axs = plt.subplots(1, n_stats, figsize=(12 * n_stats, 8))
-            for stat, ax in zip(stat_types, axs):
-                gradients_summary_barplot(df, stat, ax=ax)
-            output_fig = f'{output_dir}/gradients-{temp=}.pdf'
-            plt.savefig(output_fig, bbox_inches='tight')
-            print(f'Saved figure to {output_fig}')
-            plt.close()
+
+        if args.comm_channel_fn == 'straight_through':
+            create_straight_through_plots(args, output_dir)
+        elif args.comm_channel_fn == 'dru':
+            create_dru_plots(args, output_dir)
+        elif args.comm_channel_fn == 'gumbel_softmax':
+            create_gumbel_softmax_plots(args, output_dir)
+        else:
+            raise NotImplementedError(
+                f'Unknown comm channel fn: {args.comm_channel_fn}')
 
     finally:
         ray.shutdown()

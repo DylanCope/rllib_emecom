@@ -24,6 +24,7 @@ class CommunicationChannelFunction(ABC):
     def update_hyperparams(self, iteration: int) -> dict:
         return {}
 
+
 class StraightThroughCommunicationChannel(CommunicationChannelFunction):
 
     def call(self, message: torch.Tensor, training: bool = False) -> torch.Tensor:
