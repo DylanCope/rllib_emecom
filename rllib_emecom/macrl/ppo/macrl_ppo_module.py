@@ -1,4 +1,4 @@
-from rllib_emecom.comm_network import CommunicationSpec
+from rllib_emecom.macrl.comm_network import CommunicationSpec
 
 from typing import Any, List, Mapping
 
@@ -273,14 +273,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
         return outputs
 
-    # @override(RLModule)
-    # def output_specs_inference(self) -> SpecDict:
-    #     return super().output_specs_inference() + [MSGS_SENT]
-
-    # @override(RLModule)
-    # def output_specs_exploration(self) -> SpecDict:
-    #     return super().output_specs_exploration() + [MSGS_SENT]
-
-    # @override(RLModule)
-    # def output_specs_train(self) -> SpecDict:
-    #     return super().output_specs_train() + [MSGS_SENT]
+    def update_hyperparameters(self, iteration: int) -> dict:
+        new_hyperparams = {}
+        new_hyperparams.update(self.comm_channel_fn.update_hyperparams(iteration))
+        return new_hyperparams

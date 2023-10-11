@@ -1,6 +1,7 @@
-from rllib_emecom.comm_network import CommunicationSpec
+from rllib_emecom.macrl.comm_network import CommunicationSpec
 from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
-from rllib_emecom.macrl_module import AgentID, PPOTorchMACRLModule
+from rllib_emecom.macrl.ppo.macrl_ppo_module import AgentID, PPOTorchMACRLModule
+from rllib_emecom.macrl.ppo.macrl_ppo_learner import PPOTorchMACRLLearner
 
 from typing import Any, Dict, List
 
@@ -39,7 +40,11 @@ def add_ppo_args(parser: ArgumentParser):
 def add_macrl_args(parser: ArgumentParser):
     parser.add_argument('--message_dim', type=int, default=32)
     parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
-    parser.add_argument('--comm_channel_temp', type=float, default=1.0)
+    parser.add_argument('--comm_channel_temp', type=float, default=10.0)
+    parser.add_argument('--comm_channel_anneal_temp', action='store_false', default=True)
+    parser.add_argument('--comm_channel_end_temp', type=float, default=.1)
+    parser.add_argument('--comm_channel_annealing_iters', type=int, default=200)
+
     parser.add_argument('--comm_channel_noise', type=float, default=0.5)
     parser.add_argument('--comm_channel_activation', type=str, default='sigmoid')
     parser.add_argument('--no_param_sharing', action='store_true', default=False)
@@ -91,6 +96,9 @@ def get_ppo_rl_module_spec(args: Namespace,
         channel_fn=args.comm_channel_fn,
         channel_fn_config={
             'temperature': args.comm_channel_temp,
+            'temperature_annealing': args.comm_channel_anneal_temp,
+            'n_anneal_iterations': args.comm_channel_annealing_iters,
+            'final_temperature': args.comm_channel_end_temp,
             'channel_noise': args.comm_channel_noise,
             'channel_activation': args.comm_channel_activation
         }
@@ -135,6 +143,7 @@ def get_ppo_config(args: Namespace,
             kl_coeff=args.kl_coeff,
             num_sgd_iter=args.num_sgd_iters,
             _enable_learner_api=True,
+            learner_class=PPOTorchMACRLLearner
         )
         .rollouts(
             num_rollout_workers=args.num_rollout_workers,

@@ -1,4 +1,4 @@
-from rllib_emecom import goal_comms_gridworld
+from rllib_emecom.env import goal_comms_gridworld
 
 from pettingzoo.mpe import (
     simple_speaker_listener_v4, simple_reference_v3,

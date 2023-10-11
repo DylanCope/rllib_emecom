@@ -1,7 +1,7 @@
-from rllib_emecom.macrl_module import AgentID
+from rllib_emecom.macrl import AgentID
 from rllib_emecom.utils.video_utils import register_video_wrapped_env, plot_to_array
 from rllib_emecom.utils.video_callback import Renderer
-from rllib_emecom.macrl_module import PPOTorchMACRLModule
+from rllib_emecom.macrl.ppo.macrl_ppo_module import PPOTorchMACRLModule
 
 from typing import Dict, Callable, Optional, Tuple, Union
 import matplotlib.pyplot as plt
