@@ -3,9 +3,9 @@ from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
 from rllib_emecom.macrl.ppo.macrl_ppo_module import AgentID, PPOTorchMACRLModule
 from rllib_emecom.macrl.ppo.macrl_ppo_learner import PPOTorchMACRLLearner
 
-from typing import Any, Dict, List
-
+from typing import Any, Dict, List, Optional
 from argparse import ArgumentParser, Namespace
+from gymnasium import spaces
 
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -42,15 +42,15 @@ def add_macrl_args(parser: ArgumentParser):
     parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
     parser.add_argument('--comm_channel_temp', type=float, default=10.0)
     parser.add_argument('--comm_channel_anneal_temp', action='store_false', default=True)
-    parser.add_argument('--comm_channel_end_temp', type=float, default=.1)
-    parser.add_argument('--comm_channel_annealing_iters', type=int, default=200)
+    parser.add_argument('--comm_channel_end_temp', type=float, default=.5)
+    parser.add_argument('--comm_channel_annealing_iters', type=int, default=500)
 
     parser.add_argument('--comm_channel_noise', type=float, default=0.5)
     parser.add_argument('--comm_channel_activation', type=str, default='sigmoid')
     parser.add_argument('--no_param_sharing', action='store_true', default=False)
 
 
-def create_args_parser() -> ArgumentParser:
+def create_default_args_parser() -> ArgumentParser:
     algo_parser = ArgumentParser()
     algo_parser.add_argument('--algo', type=str, default='ppo',
                              choices=['ppo', 'maddpg', 'dqn'],
@@ -79,8 +79,12 @@ def create_args_parser() -> ArgumentParser:
     return parser
 
 
-def get_ppo_rl_module_spec(args: Namespace,
-                           agent_ids: List[AgentID]) -> SingleAgentRLModuleSpec:
+
+def get_ppo_macrl_module_spec(args: Namespace,
+                              agent_ids: List[AgentID],
+                              observation_space: Optional[spaces.Space] = None,
+                              action_space: Optional[spaces.Space] = None
+                              ) -> SingleAgentRLModuleSpec:
     comm_channels = {
         agent_id: [
             other_id for other_id in agent_ids
@@ -107,6 +111,8 @@ def get_ppo_rl_module_spec(args: Namespace,
     return SingleAgentRLModuleSpec(
         module_class=PPOTorchMACRLModule,
         catalog_class=PPOCatalog,
+        observation_space=observation_space,
+        action_space=action_space,
         model_config_dict={
             'communication_spec': comm_spec,
             'fcnet_hiddens': [args.fc_size] * args.n_fc_layers,
@@ -118,7 +124,7 @@ def get_ppo_rl_module_spec(args: Namespace,
 def get_ppo_config(args: Namespace,
                    env_config: dict,
                    agent_ids: List[AgentID]) -> PPOConfig:
-    rl_module_spec = get_ppo_rl_module_spec(args, agent_ids)
+    rl_module_spec = get_ppo_macrl_module_spec(args, agent_ids)
 
     return (
         PPOConfig()
