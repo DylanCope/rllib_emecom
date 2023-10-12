@@ -32,38 +32,6 @@ def create_mock_macrl_module(
                                      action_space=mock_act_space)
     return spec.build(), agent_ids
 
-    # comm_channels = {
-    #     agent_id: [
-    #         other_id for other_id in agent_ids
-    #         if other_id != agent_id
-    #     ]
-    #     for agent_id in agent_ids
-    # }
-
-    # comm_spec = CommunicationSpec(
-    #     message_dim=message_dim,
-    #     comm_channels=comm_channels,
-    #     static=True,
-    #     channel_fn=channel_fn,
-    #     channel_fn_config=channel_config
-    # )
-
-    # model_config_dict = {"fcnet_hiddens": [32] * 2}
-
-    # env = gym.make("CartPole-v1")
-
-    # spec = SingleAgentRLModuleSpec(
-    #     module_class=PPOTorchRLModule,
-    #     catalog_class=PPOCatalog,
-    #     observation_space=env.observation_space,
-    #     action_space=env.action_space,
-    #     model_config_dict={
-    #         'communication_spec': comm_spec,
-    #         **model_config_dict
-    #     }
-    # )
-    # return spec.build(), agent_ids
-
 
 def test_handle_message_passing():
     batch_size = 2
