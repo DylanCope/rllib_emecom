@@ -1,7 +1,7 @@
 from rllib_emecom.utils.experiment_utils import get_wandb_callback, initialise_ray
 from rllib_emecom.utils.comms_renderer import CommsRenderer
 from rllib_emecom.train.configs import (
-    create_args_parser, get_algo_config, Policies, EnvConfig
+    create_default_args_parser, get_algo_config, Policies, EnvConfig
 )
 
 from argparse import ArgumentParser, Namespace
@@ -33,8 +33,8 @@ def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
     return env_config, [f'agent_{i}' for i in range(args.n_agents)]
 
 
-def parse_args() -> Namespace:
-    parser = create_args_parser()
+def create_goal_comms_args_parser() -> ArgumentParser:
+    parser = create_default_args_parser()
     parser.add_argument('--env', type=str, default='goal_comms_gridworld')
     parser.add_argument('--stop_timesteps', type=int, default=5_000_000)
     parser.add_argument('--n_agents', type=int, default=3)
@@ -43,6 +43,11 @@ def parse_args() -> Namespace:
     parser.add_argument('--max_episode_len', type=int, default=10)
     parser.add_argument('--scalar_obs', action='store_true', default=False)
     parser.add_argument('--only_obs_self_pos', action='store_true', default=False)
+    return parser
+
+
+def parse_args() -> Namespace:
+    parser = create_goal_comms_args_parser()
     args, _ = parser.parse_known_args()
     return args
 
