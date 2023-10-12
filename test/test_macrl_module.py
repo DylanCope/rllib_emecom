@@ -2,7 +2,7 @@ from .utils import parse_default_args
 from rllib_emecom.train.configs import get_ppo_macrl_module_spec, create_default_args_parser
 
 from rllib_emecom.macrl.ppo.macrl_ppo_module import PPOTorchMACRLModule
-from rllib_emecom.macrl.comm_network import CommunicationSpec
+from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 
 from gymnasium.spaces import Tuple, Box, Discrete
 import torch

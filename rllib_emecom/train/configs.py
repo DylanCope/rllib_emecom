@@ -1,7 +1,8 @@
-from rllib_emecom.macrl.comm_network import CommunicationSpec
-from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
+from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 from rllib_emecom.macrl.ppo.macrl_ppo_module import AgentID, PPOTorchMACRLModule
 from rllib_emecom.macrl.ppo.macrl_ppo_learner import PPOTorchMACRLLearner
+from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
+from rllib_emecom.utils.experiment_utils import WANDB_PROJECT
 
 from typing import Any, Dict, List, Optional
 from argparse import ArgumentParser, Namespace
@@ -61,12 +62,17 @@ def create_default_args_parser() -> ArgumentParser:
     parser.add_argument('--algo', type=str, default='ppo',
                         choices=['ppo', 'maddpg', 'dqn'],
                         help='RL Algorithm to use (default: %(default)s)')
+
     parser.add_argument('--learning_rate', type=float, default=5e-4)
     parser.add_argument('--gamma', type=float, default=0.99)
+
     parser.add_argument('--num_rollout_workers', type=int, default=8)
     parser.add_argument('--evaluation_interval', type=int, default=10)
     parser.add_argument('--evaluation_duration', type=int, default=25)
     parser.add_argument('--evaluation_num_workers', type=int, default=4)
+
+    parser.add_argument('--no_wandb', action='store_true', default=False)
+    parser.add_argument('--wandb_project', type=str, default=WANDB_PROJECT)
 
     if algo == 'ppo':
         add_ppo_args(parser)

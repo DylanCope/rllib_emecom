@@ -2,13 +2,16 @@ from rllib_emecom.utils.register_envs import register_envs
 
 import re
 from pathlib import Path
-from typing import List
+from typing import List, Optional
+from argparse import Namespace
 import pandas as pd
 
 import ray
+from ray import tune
 from ray.train import Checkpoint
 from ray.tune.analysis.experiment_analysis import NewExperimentAnalysis
 from ray.air.integrations.wandb import WandbLoggerCallback
+from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 
 WANDB_PROJECT = 'rllib_emecom'
 
@@ -19,10 +22,36 @@ def initialise_ray():
     register_envs()
 
 
-def get_wandb_callback() -> WandbLoggerCallback:
+def get_wandb_callback(project: Optional[str] = None) -> WandbLoggerCallback:
+    project = project or WANDB_PROJECT
     if Path('.wandb_api_key').exists():
-        return WandbLoggerCallback(project=WANDB_PROJECT, api_key_file='.wandb_api_key')
-    return WandbLoggerCallback(project=WANDB_PROJECT)
+        return WandbLoggerCallback(project=project, api_key_file='.wandb_api_key')
+    return WandbLoggerCallback(project=project)
+
+
+def run_training(config: AlgorithmConfig, args: Namespace):
+    try:
+        initialise_ray()
+
+        callbacks = []
+        if not args.no_wandb:
+            callbacks.append(get_wandb_callback(project=args.wandb_project))
+
+        tune.run(
+            config.algo.upper(),
+            name=config.env,
+            stop={'timesteps_total': config.stop_timesteps},
+            checkpoint_freq=10,
+            storage_path=f'{Path.cwd()}/ray_results/{config.env}',
+            config=config.to_dict(),
+            callbacks=callbacks
+        )
+
+        print('Finished training.')
+
+    finally:
+        print('Shutting down Ray.')
+        ray.shutdown()
 
 
 def get_checkpoint_paths(experiment_local_path: str) -> List[str]:

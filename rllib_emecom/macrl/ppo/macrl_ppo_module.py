@@ -1,4 +1,4 @@
-from rllib_emecom.macrl.comm_network import CommunicationSpec
+from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 
 from typing import Any, List, Mapping
 

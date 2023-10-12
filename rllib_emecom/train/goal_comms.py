@@ -1,4 +1,4 @@
-from rllib_emecom.utils.experiment_utils import get_wandb_callback, initialise_ray
+from rllib_emecom.utils.experiment_utils import run_training, initialise_ray
 from rllib_emecom.utils.comms_renderer import CommsRenderer
 from rllib_emecom.train.configs import (
     create_default_args_parser, get_algo_config, Policies, EnvConfig
@@ -6,10 +6,7 @@ from rllib_emecom.train.configs import (
 
 from argparse import ArgumentParser, Namespace
 from typing import Optional, Tuple
-import os
 
-import ray
-from ray import tune
 from ray.rllib.evaluate import rollout
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 
@@ -57,35 +54,18 @@ def get_goal_comms_config(args: Optional[Namespace] = None) -> AlgorithmConfig:
     return get_algo_config(args, *get_env_config(args))
 
 
-def run_experiment():
-    try:
-        initialise_ray()
-        args = parse_args()
-        config = get_goal_comms_config(args)
-
-        tune.run(
-            args.algo.upper(),
-            name=args.env,
-            stop={'timesteps_total': args.stop_timesteps},
-            checkpoint_freq=10,
-            storage_path=f'{os.getcwd()}/ray_results/{args.env}',
-            config=config.to_dict(),
-            callbacks=[get_wandb_callback()]
-        )
-
-        print('Finished training.')
-
-    finally:
-        print('Shutting down Ray.')
-        ray.shutdown()
+def train_goal_comms():
+    args = parse_args()
+    config = get_goal_comms_config(args)
+    run_training(config, args)
 
 
 def run_rollout_test(test_args: Namespace):
-    initialise_ray()
     args = parse_args()
     args.num_rollout_workers = 0
     args.evaluation_num_workers = 0
-    config = get_algo_config(args, *get_env_config(args))
+    config = get_goal_comms_config(args)
+    initialise_ray()
     algo = config.build()
     rollout(algo, args.env,
             num_episodes=test_args.n_episodes,
@@ -93,11 +73,11 @@ def run_rollout_test(test_args: Namespace):
 
 
 def run_train_test(test_args: Namespace):
-    initialise_ray()
     args = parse_args()
     args.num_rollout_workers = 0
     args.evaluation_num_workers = 0
-    config = get_algo_config(args, *get_env_config(args))
+    config = get_goal_comms_config(args)
+    initialise_ray()
     algo = config.build()
     algo.train()
 
@@ -119,4 +99,4 @@ if __name__ == "__main__":
     elif test_args.train_test:
         run_train_test(test_args)
     else:
-        run_experiment()
+        train_goal_comms()
