@@ -52,7 +52,7 @@ def bright_color_generator(n_colours: int) -> tuple:
 def one_hot(x: int, n: int) -> np.ndarray:
     v = np.zeros(n)
     v[x] = 1
-    return v
+    return v.astype(np.float32)
 
 
 class BaseAgent:
@@ -145,6 +145,7 @@ class parallel_env(ParallelEnv):
                  scalar_obs: bool = False,
                  render_mode: str = 'rgb_array',
                  observe_others_pos: bool = False,
+                 observe_self_id: bool = True,
                  **kwargs):
         """
         The init method takes in environment arguments and should define the following attributes:
@@ -163,6 +164,7 @@ class parallel_env(ParallelEnv):
         self.max_episode_len = max_episode_len
         self.use_scalar_obs = scalar_obs
         self.observe_others_pos = observe_others_pos
+        self.observe_self_id = observe_self_id
 
         self.agents_map = {
             f"agent_{i}": DiscreteAgent(i, self.world_shape, self.random_state)
@@ -205,11 +207,13 @@ class parallel_env(ParallelEnv):
             )
 
         n_pos_obs = self.n_agents if self.observe_others_pos else 1
-        return Box(
-            low=0, high=1,
-            shape=(self.world_shape[X] * (1 + n_pos_obs) 
-                   + self.world_shape[Y] * (1 + n_pos_obs),)
-        )
+        obs_dim = self.world_shape[X] * (1 + n_pos_obs) \
+                  + self.world_shape[Y] * (1 + n_pos_obs)
+
+        if self.observe_self_id:
+            obs_dim += self.n_agents
+
+        return Box(low=0, high=1, shape=(obs_dim,))
 
     # Action space should be defined here.
     # If your spaces change over time, remove this line (disable caching).
@@ -316,29 +320,33 @@ class parallel_env(ParallelEnv):
 
         return self.get_observations(), self.get_infos()
 
-    def get_agent_obs(self, agent):
+    def get_agent_obs(self, agent: BaseAgent):
         if agent.known_goal is None:
             raise ValueError("known_goal is None, cannot construction observation.")
 
+        feat_vecs = []
         if not self.use_scalar_obs:
             world_w, world_h = self.world_shape
             goal_x_1h = one_hot(agent.known_goal[X], world_w)
             goal_y_1h = one_hot(agent.known_goal[Y], world_h)
-            pos_vecs = [goal_x_1h, goal_y_1h]
+            feat_vecs += [goal_x_1h, goal_y_1h]
 
             if self.observe_others_pos:
-                pos_vecs += [one_hot(a.pose[X], world_w)
+                feat_vecs += [one_hot(a.pose[X], world_w)
                              for a in self.agents_map.values()]
-                pos_vecs += [one_hot(a.pose[Y], world_h)
+                feat_vecs += [one_hot(a.pose[Y], world_h)
                              for a in self.agents_map.values()]
 
             else:
-                pos_vecs += [one_hot(agent.pose[X], world_w),
+                feat_vecs += [one_hot(agent.pose[X], world_w),
                              one_hot(agent.pose[Y], world_h)]
+        else:
+            feat_vecs += [agent.known_goal, agent.pose]
 
-            return np.hstack(pos_vecs).astype(np.float32)
+        if self.observe_self_id:
+            feat_vecs.append(one_hot(agent.index, self.n_agents))
 
-        return np.hstack([agent.known_goal, agent.pose]).astype(np.float32)
+        return np.hstack(feat_vecs).astype(np.float32)
 
     def get_observations(self):
         return {
