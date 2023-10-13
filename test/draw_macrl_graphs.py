@@ -25,6 +25,21 @@ def draw_macrl_graph(output_name: str, **kwargs):
 if __name__ == '__main__':
     outputs_dir = 'test/macrl_graphs'
     Path(outputs_dir).mkdir(exist_ok=True)
+
+    args = {
+        'straight_through': [
+            {}
+        ],
+        'dru': [
+            {'comm_channel_noise': 0.0},
+            {'comm_channel_noise': 0.5},
+        ],
+        'gumbel_softmax': [
+            {},
+        ],
+    }
+
     for channel_fn in ['straight_through', 'dru', 'gumbel_softmax']:
-        draw_macrl_graph(f'{outputs_dir}/macrl_module_{channel_fn}',
-                         n_agents=2, channel_fn=channel_fn)
+        for i, channel_args in enumerate(args[channel_fn]):
+            draw_macrl_graph(f'{outputs_dir}/macrl_module_{channel_fn}_{i}',
+                             n_agents=2, channel_fn=channel_fn, **channel_args)

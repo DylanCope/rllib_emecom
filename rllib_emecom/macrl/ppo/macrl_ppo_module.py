@@ -200,6 +200,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
                 for sender_agent in agent_ids
             ], dim=-2)
             msgs_in[receiver_agent] = self.comm_channel_fn(msgs, training=training)
+            # msgs_in[receiver_agent] = torch.tanh(msgs)
 
         return msgs_in
 
@@ -254,10 +255,12 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         """
         Common forward pass for all modes.
         """
+        not_inference_mode = mode != INFERENCE_FORWARD
+
         outputs = {}
         actor_inputs = self.nest_by_agent(batch)
         actor_outputs, msgs_sent = self._actors_forward(actor_inputs,
-                                                        training=mode == TRAIN_FORWARD)
+                                                        training=not_inference_mode)
 
         outputs[SampleBatch.ACTION_DIST_INPUTS] = torch.cat([
             outs[SampleBatch.ACTION_DIST_INPUTS]
@@ -267,7 +270,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         # outputs[MSGS_SENT] = msgs_sent
         self.last_msgs_sent = msgs_sent
 
-        if mode in [EXPLORATION_FORWARD, TRAIN_FORWARD]:
+        if not_inference_mode:
             outputs[SampleBatch.VF_PREDS] = self._critics_forward(batch)
 
         return outputs

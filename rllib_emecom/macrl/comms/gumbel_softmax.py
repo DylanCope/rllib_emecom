@@ -27,7 +27,7 @@ class GumbelSoftmaxCommunicationChannel(CommunicationChannelFunction):
                 self.final_temperature is not None, \
                 "If annealing the temperature, the number of annealing iterations " \
                 "and the final temperature must be specified."
-        
+
             self.start_temperature = temperature
             self.annealing_k = -np.log(final_temperature / temperature) / n_anneal_iterations
 
