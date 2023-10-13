@@ -1,6 +1,6 @@
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional, Union
 
 from gymnasium.spaces import Box, Discrete, Tuple
 from ray.rllib.core.rl_module.rl_module import RLModule
@@ -285,7 +285,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
     def get_last_msgs(self,
                       batch_idx: Optional[int] = None,
-                      return_np: bool = True) -> Dict[str, Dict[str, np.ndarray | torch.Tensor]]:
+                      return_np: bool = True) -> Dict[str, Dict[str, Union[np.ndarray, torch.Tensor]]]:
         """
         Constructs a dictionary of messages sent between agents
         in the last forward pass.
@@ -303,7 +303,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         Returns:
             The messages network dictionary.
         """
-        def get_msgs(sent_msgs_batch, sender_id) -> np.ndarray | torch.Tensor:
+        def get_msgs(sent_msgs_batch, sender_id) -> Union[np.ndarray, torch.Tensor]:
             sender_idx = self.comms_spec.get_agent_idx(sender_id)
             if batch_idx is None:
                 msgs = sent_msgs_batch[:, sender_idx]
