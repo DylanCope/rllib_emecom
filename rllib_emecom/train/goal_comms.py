@@ -33,7 +33,6 @@ def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
 def create_goal_comms_args_parser() -> ArgumentParser:
     parser = create_default_args_parser()
     parser.add_argument('--env', type=str, default='goal_comms_gridworld')
-    parser.add_argument('--stop_timesteps', type=int, default=5_000_000)
     parser.add_argument('--n_agents', type=int, default=3)
     parser.add_argument('--goal_shift', type=int, default=1)
     parser.add_argument('--grid_size', type=int, default=5)

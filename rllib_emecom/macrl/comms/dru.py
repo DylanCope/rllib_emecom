@@ -27,6 +27,12 @@ class DiscretiseRegulariseCommunicationChannel(CommunicationChannelFunction):
             return z
         return torch.round(z)
 
+    def tanh_forward(self, z: torch.Tensor, training: bool) -> torch.Tensor:
+        z = torch.nn.functional.tanh(z)
+        if training:
+            return z
+        return torch.heaviside(z, torch.tensor([0.0]).to(z.device))
+
     def call(self, message: torch.Tensor,
              training: bool = False) -> torch.Tensor:
         if training:
@@ -36,9 +42,10 @@ class DiscretiseRegulariseCommunicationChannel(CommunicationChannelFunction):
 
         if self.channel_activation == 'softmax':
             return self.softmax_forward(z, training)
-
         elif self.channel_activation == 'sigmoid':
             return self.sigmoid_forward(z, training)
+        elif self.channel_activation == 'tanh':
+            return self.tanh_forward(z, training)
 
         raise NotImplementedError("Unknown channel activation function: "
                                   + self.channel_activation)

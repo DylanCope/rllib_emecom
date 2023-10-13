@@ -38,9 +38,9 @@ def run_training(config: AlgorithmConfig, args: Namespace):
             callbacks.append(get_wandb_callback(project=args.wandb_project))
 
         tune.run(
-            config.algo.upper(),
+            args.algo.upper(),
             name=config.env,
-            stop={'timesteps_total': config.stop_timesteps},
+            stop={'timesteps_total': args.stop_timesteps},
             checkpoint_freq=10,
             storage_path=f'{Path.cwd()}/ray_results/{config.env}',
             config=config.to_dict(),

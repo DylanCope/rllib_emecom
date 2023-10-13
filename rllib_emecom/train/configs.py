@@ -46,8 +46,8 @@ def add_macrl_args(parser: ArgumentParser):
     parser.add_argument('--comm_channel_end_temp', type=float, default=.5)
     parser.add_argument('--comm_channel_annealing_iters', type=int, default=500)
 
-    parser.add_argument('--comm_channel_noise', type=float, default=0.5)
-    parser.add_argument('--comm_channel_activation', type=str, default='sigmoid')
+    parser.add_argument('--comm_channel_noise', type=float, default=0.25)
+    parser.add_argument('--comm_channel_activation', type=str, default='tanh')
     parser.add_argument('--no_param_sharing', action='store_true', default=False)
 
 
@@ -70,6 +70,7 @@ def create_default_args_parser() -> ArgumentParser:
     parser.add_argument('--evaluation_interval', type=int, default=10)
     parser.add_argument('--evaluation_duration', type=int, default=25)
     parser.add_argument('--evaluation_num_workers', type=int, default=4)
+    parser.add_argument('--stop_timesteps', type=int, default=5_000_000)
 
     parser.add_argument('--no_wandb', action='store_true', default=False)
     parser.add_argument('--wandb_project', type=str, default=WANDB_PROJECT)
@@ -102,7 +103,6 @@ def get_ppo_macrl_module_spec(args: Namespace,
     comm_spec = CommunicationSpec(
         message_dim=args.message_dim,
         comm_channels=comm_channels,
-        static=True,
         channel_fn=args.comm_channel_fn,
         channel_fn_config={
             'temperature': args.comm_channel_temp,
