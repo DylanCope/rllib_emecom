@@ -86,7 +86,6 @@ def create_default_args_parser() -> ArgumentParser:
     return parser
 
 
-
 def get_ppo_macrl_module_spec(args: Namespace,
                               agent_ids: List[AgentID],
                               observation_space: Optional[spaces.Space] = None,

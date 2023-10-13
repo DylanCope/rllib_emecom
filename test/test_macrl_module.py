@@ -2,21 +2,15 @@ from .utils import parse_default_args
 from rllib_emecom.train.configs import get_ppo_macrl_module_spec, create_default_args_parser
 
 from rllib_emecom.macrl.ppo.macrl_ppo_module import PPOTorchMACRLModule
-from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 
 from gymnasium.spaces import Tuple, Box, Discrete
 import torch
-from ray.rllib.core.rl_module.marl_module import MultiAgentRLModuleSpec
-from ray.rllib.core.rl_module.rl_module import SingleAgentRLModuleSpec
-from ray.rllib.algorithms.ppo.torch.ppo_torch_rl_module import PPOTorchRLModule
-from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog
 
 
 def create_mock_macrl_module(
         n_agents=3, message_dim=5,
         channel_fn='straight_through',
-        **channel_config
-        ) -> PPOTorchMACRLModule:
+        **channel_config) -> PPOTorchMACRLModule:
     parser = create_default_args_parser()
     args = parse_default_args(parser, **{
         'n_agents': n_agents,
@@ -25,7 +19,7 @@ def create_mock_macrl_module(
         **channel_config
     })
     agent_ids = [f'agent_{i}' for i in range(n_agents)]
-    mock_obs_space = Box(low=0, high=1, shape=(8*n_agents,))
+    mock_obs_space = Box(low=0, high=1, shape=(8 * n_agents,))
     mock_act_space = Tuple([Discrete(2) for _ in range(n_agents)])
     spec = get_ppo_macrl_module_spec(args, agent_ids,
                                      observation_space=mock_obs_space,

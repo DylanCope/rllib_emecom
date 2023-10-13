@@ -13,7 +13,6 @@ from ray.rllib.execution.rollout_ops import (
     standardize_fields,
     synchronous_parallel_sample,
 )
-from ray.rllib.policy.sample_batch import MultiAgentBatch
 from ray.rllib.utils.minibatch_utils import MiniBatchCyclicIterator
 
 import torch

@@ -12,7 +12,6 @@ from ray.rllib.core.rl_module.torch import TorchRLModule
 from ray.rllib.algorithms.ppo.ppo_rl_module import PPORLModule
 from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog, _check_if_diag_gaussian
 from ray.rllib.core.models.configs import ModelConfig, MLPHeadConfig, FreeLogStdMLPHeadConfig
-from ray.rllib.core.models.specs.specs_dict import SpecDict
 
 
 torch, nn = try_import_torch()

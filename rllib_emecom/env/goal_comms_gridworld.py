@@ -45,10 +45,6 @@ def bright_color_generator(n_colours: int) -> tuple:
     return itertools.cycle(get_sns_colour_palette(n_colours))
 
 
-# def darken_color(color: tuple, factor: float) -> tuple:
-#     return tuple([int(c * factor) for c in color])
-
-
 def one_hot(x: int, n: int) -> np.ndarray:
     v = np.zeros(n)
     v[x] = 1
@@ -208,7 +204,7 @@ class parallel_env(ParallelEnv):
 
         n_pos_obs = self.n_agents if self.observe_others_pos else 1
         obs_dim = self.world_shape[X] * (1 + n_pos_obs) \
-                  + self.world_shape[Y] * (1 + n_pos_obs)
+            + self.world_shape[Y] * (1 + n_pos_obs)
 
         if self.observe_self_id:
             obs_dim += self.n_agents
@@ -333,13 +329,13 @@ class parallel_env(ParallelEnv):
 
             if self.observe_others_pos:
                 feat_vecs += [one_hot(a.pose[X], world_w)
-                             for a in self.agents_map.values()]
+                              for a in self.agents_map.values()]
                 feat_vecs += [one_hot(a.pose[Y], world_h)
-                             for a in self.agents_map.values()]
+                              for a in self.agents_map.values()]
 
             else:
                 feat_vecs += [one_hot(agent.pose[X], world_w),
-                             one_hot(agent.pose[Y], world_h)]
+                              one_hot(agent.pose[Y], world_h)]
         else:
             feat_vecs += [agent.known_goal, agent.pose]
 
