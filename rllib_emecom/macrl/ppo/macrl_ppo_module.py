@@ -1,6 +1,6 @@
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 
-from typing import Any, List, Mapping
+from typing import Any, Dict, List, Mapping, Optional
 
 from gymnasium.spaces import Box, Discrete, Tuple
 from ray.rllib.core.rl_module.rl_module import RLModule
@@ -12,6 +12,8 @@ from ray.rllib.core.rl_module.torch import TorchRLModule
 from ray.rllib.algorithms.ppo.ppo_rl_module import PPORLModule
 from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog, _check_if_diag_gaussian
 from ray.rllib.core.models.configs import ModelConfig, MLPHeadConfig, FreeLogStdMLPHeadConfig
+
+import numpy as np
 
 
 torch, nn = try_import_torch()
@@ -148,7 +150,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         )
 
         self.last_msgs_sent = None
-        print(self)
+        self.last_inputs = None
 
     @override(RLModule)
     def get_initial_state(self) -> dict:
@@ -256,6 +258,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         Common forward pass for all modes.
         """
         not_inference_mode = mode != INFERENCE_FORWARD
+        self.last_inputs = batch
 
         outputs = {}
         actor_inputs = self.nest_by_agent(batch)
@@ -279,3 +282,47 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         new_hyperparams = {}
         new_hyperparams.update(self.comm_channel_fn.update_hyperparams(iteration))
         return new_hyperparams
+
+    def get_last_msgs(self,
+                      batch_idx: Optional[int] = None,
+                      return_np: bool = True) -> Dict[str, Dict[str, np.ndarray | torch.Tensor]]:
+        """
+        Constructs a dictionary of messages sent between agents
+        in the last forward pass.
+
+        The dictionary is of the form:
+        {
+            receiver_id: {
+                sender_id: msg
+            }
+        }
+
+        Args:
+            batch_index: The index of the batch to get the messages from.
+
+        Returns:
+            The messages network dictionary.
+        """
+        def get_msgs(sent_msgs_batch, sender_id) -> np.ndarray | torch.Tensor:
+            sender_idx = self.comms_spec.get_agent_idx(sender_id)
+            if batch_idx is None:
+                msgs = sent_msgs_batch[:, sender_idx]
+            else:
+                msgs = sent_msgs_batch[batch_idx, sender_idx]
+
+            if return_np:
+                return msgs.detach().cpu().numpy()
+
+            return msgs
+
+        if self.last_msgs_sent is not None:
+            return {
+                receiver_id: {
+                    sender_id: get_msgs(msgs_batch, sender_id)
+                    for sender_id in self.comms_spec.comm_channels
+                    if self.comms_spec.can_send(receiver_id, sender_id)
+                }
+                for receiver_id, msgs_batch in self.last_msgs_sent.items()
+            }
+        else:
+            return None

@@ -166,4 +166,3 @@ class VideoEvaluationsCallback(DefaultCallbacks):
             video_manager = self.get_video_manager(worker.config, episode)
             env = get_sub_env(base_env, env_index)
             video_manager.render(env, env_index, worker.config, policies, episode)
-

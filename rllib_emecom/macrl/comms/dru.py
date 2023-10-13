@@ -7,7 +7,7 @@ class DiscretiseRegulariseCommunicationChannel(CommunicationChannelFunction):
 
     def __init__(self,
                  channel_noise: float = 0.5,
-                 channel_activation='softmax',
+                 channel_activation='sigmoid',
                  **kwargs) -> None:
         super().__init__(**kwargs)
         self.channel_noise = channel_noise
@@ -31,7 +31,9 @@ class DiscretiseRegulariseCommunicationChannel(CommunicationChannelFunction):
         z = torch.tanh(z)
         if training:
             return z
-        return torch.heaviside(z, torch.tensor([0.0]).to(z.device))
+        discrete_z = torch.ones_like(z).to(z.device)
+        discrete_z[z < 0] = -1
+        return discrete_z
 
     def call(self, message: torch.Tensor,
              training: bool = False) -> torch.Tensor:

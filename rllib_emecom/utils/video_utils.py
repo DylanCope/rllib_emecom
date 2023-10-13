@@ -12,10 +12,28 @@ from ray.tune.registry import register_env
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Callable
 import numpy as np
+from IPython.display import HTML, clear_output
+import base64
 import imageio
 import io
 
 EnvRenderer = Callable[[], np.ndarray]
+
+
+def embed_mp4(filename: str, clear_before=True, width=640, height=480) -> HTML:
+    """Embeds an mp4 file in the notebook."""
+    video = open(filename, 'rb').read()
+    b64 = base64.b64encode(video)
+    tag = '''
+    <video width="{0}" height="{1}" controls>
+    <source src="data:video/mp4;base64,{2}" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>'''.format(width, height, b64.decode())
+
+    if clear_before:
+        clear_output()
+
+    return HTML(tag)
 
 
 def plot_to_array(fig) -> np.ndarray:
@@ -111,7 +129,7 @@ def register_video_wrapped_env(env_id: str,
 
     def create_video_wrapped_env(config):
         env = env_creator(config)
-        renderer = create_renderer() if create_renderer else None
+        # renderer = create_renderer() if create_renderer else None
         VideoMakerStepWrapper(env, output_dir=output_dir)
         return env
 

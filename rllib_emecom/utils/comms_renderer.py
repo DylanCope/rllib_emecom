@@ -46,7 +46,6 @@ class OneHotMsgCircularColourMap:
         return self.colour_map[msg_idx]
 
 
-
 class CommsRenderer(Renderer):
 
     def __init__(self, n_msgs: int, *args, **kwargs):

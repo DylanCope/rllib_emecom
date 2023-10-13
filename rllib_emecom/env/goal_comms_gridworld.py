@@ -394,3 +394,6 @@ class parallel_env(ParallelEnv):
         self.timestep += 1
 
         return self.get_observations(), rewards, terminations, truncations, self.get_infos()
+
+
+GoalCommsGridworldEnv = parallel_env
