@@ -12,3 +12,4 @@ imageio[ffmpeg]==2.31.3
 wandb
 gputil
 torchviz
+torchview==0.2.6
