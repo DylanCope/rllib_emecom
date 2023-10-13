@@ -15,27 +15,27 @@ class DiscretiseRegulariseCommunicationChannel(CommunicationChannelFunction):
 
     def softmax_forward(self, z: torch.Tensor, training: bool) -> torch.Tensor:
         if training:
-            z = torch.nn.functional.softmax(z, dim=-1)
+            z = torch.softmax(z, dim=-1)
             return z
         msgs_symbs = torch.argmax(z, dim=-1)
         n_msgs = z.shape[-1]
         return torch.nn.functional.one_hot(msgs_symbs, n_msgs)
 
     def sigmoid_forward(self, z: torch.Tensor, training: bool) -> torch.Tensor:
-        z = torch.nn.functional.sigmoid(z)
+        z = torch.sigmoid(z)
         if training:
             return z
         return torch.round(z)
 
     def tanh_forward(self, z: torch.Tensor, training: bool) -> torch.Tensor:
-        z = torch.nn.functional.tanh(z)
+        z = torch.tanh(z)
         if training:
             return z
         return torch.heaviside(z, torch.tensor([0.0]).to(z.device))
 
     def call(self, message: torch.Tensor,
              training: bool = False) -> torch.Tensor:
-        if training:
+        if training and self.channel_noise > 0.0:
             z = message + torch.randn_like(message) * self.channel_noise
         else:
             z = message
