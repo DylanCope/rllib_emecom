@@ -42,8 +42,9 @@ def add_macrl_args(parser: ArgumentParser):
     parser.add_argument('--message_dim', type=int, default=8)
     parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
     parser.add_argument('--comm_channel_temp', type=float, default=10.0)
-    parser.add_argument('--comm_channel_no_annealing', action='store_false', default=True)
+    parser.add_argument('--comm_channel_no_annealing', action='store_true', default=False)
     parser.add_argument('--comm_channel_end_temp', type=float, default=.5)
+    parser.add_argument('--comm_channel_annealing_start_iter', type=int, default=0)
     parser.add_argument('--comm_channel_annealing_iters', type=int, default=500)
 
     parser.add_argument('--comm_channel_noise', type=float, default=0.25)
@@ -106,6 +107,7 @@ def get_ppo_macrl_module_spec(args: Namespace,
         channel_fn_config={
             'temperature': args.comm_channel_temp,
             'temperature_annealing': not args.comm_channel_no_annealing,
+            'annealing_start_iter': args.comm_channel_annealing_start_iter,
             'n_anneal_iterations': args.comm_channel_annealing_iters,
             'final_temperature': args.comm_channel_end_temp,
             'channel_noise': args.comm_channel_noise,

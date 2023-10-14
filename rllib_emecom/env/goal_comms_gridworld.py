@@ -254,11 +254,12 @@ class parallel_env(ParallelEnv):
             r = int(0.8 * CELL_SIZE // 2)
             return (centre_x, centre_y, r)
 
-        for agent, colour in zip(self.agents_map.values(), pastel_color_generator(self.n_agents)):
+        for agent, colour in zip(self.agents_map.values(),
+                                 pastel_color_generator(self.n_agents)):
             pygame.draw.rect(self.pygame_window, colour, get_cell_rect(*agent.goal))
 
-        for agent, colour in zip(self.agents_map.values(), bright_color_generator(self.n_agents)):
-            # pygame.draw.ellipse(self.pygame_window, colour, get_cell_rect(*agent.pose))
+        for agent, colour in zip(self.agents_map.values(),
+                                 bright_color_generator(self.n_agents)):
             draw_circle(self.pygame_window, colour, *get_cell_circle(*agent.pose))
 
         return pygame.surfarray.array3d(pygame.display.get_surface())

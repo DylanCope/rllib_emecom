@@ -150,6 +150,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         )
 
         self.last_msgs_sent = None
+        self.last_actor_outputs = None
         self.last_inputs = None
 
     @override(RLModule)
@@ -270,8 +271,8 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             for outs in actor_outputs.values()
         ], axis=-1)
 
-        # outputs[MSGS_SENT] = msgs_sent
         self.last_msgs_sent = msgs_sent
+        self.last_actor_outputs = actor_outputs
 
         if not_inference_mode:
             outputs[SampleBatch.VF_PREDS] = self._critics_forward(batch)

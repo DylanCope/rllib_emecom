@@ -13,6 +13,7 @@ class GumbelSoftmaxCommunicationChannel(CommunicationChannelFunction):
     def __init__(self,
                  temperature: float = 1.0,
                  temperature_annealing: bool = False,
+                 annealing_start_iter: int = 0,
                  n_anneal_iterations: Optional[int] = None,
                  final_temperature: Optional[float] = None,
                  **kwargs) -> None:
@@ -22,6 +23,7 @@ class GumbelSoftmaxCommunicationChannel(CommunicationChannelFunction):
         self.temperature_annealing = temperature_annealing
         self.n_anneal_iterations = n_anneal_iterations
         self.final_temperature = final_temperature
+        self.annealing_start_iter = annealing_start_iter
         if self.temperature_annealing:
             assert self.n_anneal_iterations is not None and \
                 self.final_temperature is not None, \
@@ -40,10 +42,12 @@ class GumbelSoftmaxCommunicationChannel(CommunicationChannelFunction):
             return OneHotCategorical(logits=message).sample()
 
     def anneal_temperature(self, iteration: int):
-        if iteration < self.n_anneal_iterations:
-            anneal_factor = np.exp(-self.annealing_k * iteration)
+        if self.annealing_start_iter < iteration < self.n_anneal_iterations:
+            x = max(iteration - self.annealing_start_iter, 0)
+            anneal_factor = np.exp(-self.annealing_k * x)
             self.temperature = float(self.start_temperature * anneal_factor)
-        else:
+
+        elif iteration >= self.n_anneal_iterations:
             self.temperature = self.final_temperature
 
     def update_hyperparams(self, iteration: int) -> dict:
