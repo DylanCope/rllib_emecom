@@ -141,6 +141,7 @@ class parallel_env(ParallelEnv):
                  scalar_obs: bool = False,
                  render_mode: str = 'rgb_array',
                  observe_others_pos: bool = False,
+                 observe_goals: bool = True,
                  observe_self_id: bool = True,
                  **kwargs):
         """
@@ -161,6 +162,7 @@ class parallel_env(ParallelEnv):
         self.use_scalar_obs = scalar_obs
         self.observe_others_pos = observe_others_pos
         self.observe_self_id = observe_self_id
+        self.observe_goals = observe_goals
 
         self.agents_map = {
             f"agent_{i}": DiscreteAgent(i, self.world_shape, self.random_state)
@@ -174,6 +176,8 @@ class parallel_env(ParallelEnv):
             agent_id: self.agents_map[self.agents[(idx + goal_shift) % num_agents]]
             for idx, agent_id in enumerate(self.possible_agents)
         }
+
+        self.goals = None
 
         # # optional: a mapping between agent name and ID
         # self.agent_name_mapping = dict(
@@ -208,6 +212,9 @@ class parallel_env(ParallelEnv):
 
         if self.observe_self_id:
             obs_dim += self.n_agents
+
+        if self.observe_goals:
+            obs_dim += self.n_agents * 2
 
         return Box(low=0, high=1, shape=(obs_dim,))
 
@@ -315,6 +322,11 @@ class parallel_env(ParallelEnv):
 
         self.timestep = 0
 
+        self.goals = [
+            agent.goal for agent in self.agents_map.values()
+        ]
+        np.random.shuffle(self.goals)
+
         return self.get_observations(), self.get_infos()
 
     def get_agent_obs(self, agent: BaseAgent):
@@ -342,6 +354,11 @@ class parallel_env(ParallelEnv):
 
         if self.observe_self_id:
             feat_vecs.append(one_hot(agent.index, self.n_agents))
+
+        if self.observe_goals:
+            for goal_x, goal_y in self.goals:
+                feat_vecs.append(one_hot(goal_x, self.world_shape[X]))
+                feat_vecs.append(one_hot(goal_y, self.world_shape[Y]))
 
         return np.hstack(feat_vecs).astype(np.float32)
 

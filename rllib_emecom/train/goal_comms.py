@@ -20,6 +20,7 @@ def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
         'goal_shift': args.goal_shift,
         'scalar_obs': args.scalar_obs,
         'observe_others_pos': not args.only_obs_self_pos,
+        'observe_goals': args.observe_goals,
         'render_config': {
             'renderer_cls': CommsRenderer,
             'n_msgs': args.message_dim,
@@ -39,6 +40,7 @@ def create_goal_comms_args_parser() -> ArgumentParser:
     parser.add_argument('--max_episode_len', type=int, default=10)
     parser.add_argument('--scalar_obs', action='store_true', default=False)
     parser.add_argument('--only_obs_self_pos', action='store_true', default=False)
+    parser.add_argument('--observe_goals', action='store_true', default=False)
     return parser
 
 
