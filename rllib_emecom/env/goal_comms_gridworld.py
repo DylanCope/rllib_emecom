@@ -206,17 +206,18 @@ class parallel_env(ParallelEnv):
                 shape=(4,)
             )
 
-        n_pos_obs = self.n_agents if self.observe_others_pos else 1
-        obs_dim = self.world_shape[X] * (1 + n_pos_obs) \
-            + self.world_shape[Y] * (1 + n_pos_obs)
+        # n_pos_obs = self.n_agents if self.observe_others_pos else 1
+        # obs_dim = self.world_shape[X] * (1 + n_pos_obs) \
+        #     + self.world_shape[Y] * (1 + n_pos_obs)
 
-        if self.observe_self_id:
-            obs_dim += self.n_agents
+        # if self.observe_self_id:
+        #     obs_dim += self.n_agents
 
-        if self.observe_goals:
-            obs_dim += self.n_agents * 2
-
-        return Box(low=0, high=1, shape=(obs_dim,))
+        # if self.observe_goals:
+        #     obs_dim += self.n_agents * 2
+        agent, *_ = self.agents_map.values()
+        obs = self.get_agent_obs(agent)
+        return Box(low=0, high=1, shape=obs.shape)
 
     # Action space should be defined here.
     # If your spaces change over time, remove this line (disable caching).
