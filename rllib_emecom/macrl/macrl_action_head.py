@@ -5,6 +5,7 @@ from ray.rllib.utils.framework import try_import_torch
 from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog, _check_if_diag_gaussian
 from ray.rllib.core.models.configs import MLPHeadConfig, FreeLogStdMLPHeadConfig
 from ray.rllib.core.models.catalog import MODEL_DEFAULTS, Catalog
+from ray.rllib.core.models.base import SampleBatch, ENCODER_OUT
 
 torch, nn = try_import_torch()
 
@@ -12,7 +13,8 @@ torch, nn = try_import_torch()
 DEFAULT_AGGREGATOR_CONFIG = {
     **MODEL_DEFAULTS,
     **{
-        'fcnet_hiddens': [256,]
+        'fcnet_hiddens': [256,],
+        'fcnet_activation': 'relu',
     }
 }
 
@@ -30,6 +32,7 @@ class MACRLActionHead(nn.Module):
                  actor_encoding_dim: int,
                  catalog: PPOCatalog,
                  comms_spec: CommunicationSpec):
+        super().__init__()
         self.action_space = action_space
         self.catalog = catalog
         self.comms_spec = comms_spec
@@ -124,6 +127,8 @@ class MACRLActionHead(nn.Module):
             A tensor with dims `batch_size x n_actions` of action logits
         """
         agent_msgs_in = msgs_in.view(-1, self.n_agents * self.message_dim)
-        aggregator_inp = torch.cat([agent_msgs_in, obs_encoding], dim=-1)
-        final_encoding = self.aggregate_msgs_and_obs(aggregator_inp)
+        aggregator_inp = {
+            SampleBatch.OBS: torch.cat([agent_msgs_in, obs_encoding], dim=-1)
+        }
+        final_encoding = self.aggregate_msgs_and_obs(aggregator_inp)[ENCODER_OUT]
         return self.pi_head(final_encoding)

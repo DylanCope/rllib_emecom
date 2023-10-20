@@ -2,7 +2,7 @@ from rllib_emecom.macrl import AgentID
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 from rllib_emecom.macrl.macrl_action_head import MACRLActionHead
 
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, List, Mapping, Optional, Union, Tuple as TupleType
 from gymnasium.spaces import Box, Discrete, Tuple
 
 from ray.rllib.core.rl_module.rl_module import RLModule
@@ -43,7 +43,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         if not hasattr(self, 'catalog'):
             self.catalog: PPOCatalog = self.config.get_catalog()
 
-        assert hasattr(self.catalog, 'model_config_dict'), \
+        assert hasattr(self.catalog, '_model_config_dict'), \
             "Expected model_config_dict to be set on catalog."
         return {**DEFAULT_CONFIG, **self.catalog._model_config_dict}
 
@@ -105,12 +105,12 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             from model ids to torch models.
         """
         actor_config = self._get_actor_encoder_config()
-        share_actor_params = self.get_model_config_dict()['share_actor_params']
+        self.share_actor_params = self.get_model_config_dict()['share_actor_params']
         ind_action_space = self._get_individual_act_space()
         agent_models = {}
-        if share_actor_params:
+        if self.share_actor_params:
             actor_encoder = actor_config.build(framework=self.framework)
-            actor_encoding_dim = self.actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
+            actor_encoding_dim = actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
             msgs_fn = self.build_outgoing_msgs_fn(actor_encoding_dim)
             action_head = MACRLActionHead(ind_action_space,
                                           actor_encoding_dim,
@@ -126,7 +126,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         else:
             for agent_id in self.comms_spec.agents:
                 actor_encoder = actor_config.build(framework=self.framework)
-                actor_encoding_dim = self.actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
+                actor_encoding_dim = actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
                 agent_models[agent_id] = {
                     ACTOR_ENCODER: actor_encoder,
                     MSGS_FN: self.build_outgoing_msgs_fn(actor_encoding_dim),
@@ -177,7 +177,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
     def encode_obs_and_produce_msgs(self,
                                     agent_id: AgentID,
-                                    inputs: NestedDict) -> Tuple[torch.Tensor, torch.Tensor]:
+                                    inputs: NestedDict) -> TupleType[torch.Tensor, torch.Tensor]:
         """
         Args:
             agent_id: agent to run
@@ -356,6 +356,24 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             outputs[SampleBatch.VF_PREDS] = self._critics_forward(batch)
 
         return outputs
+
+    def named_parameters(self):
+        params = list(super().named_parameters())
+        if self.share_actor_params:
+            models, *_ = self.agent_models.values()
+            for model in models.values():
+                params += list(model.named_parameters())
+        else:
+            for agent_id, models in self.agent_models.items():
+                for model_id, model in models.items():
+                    params += [
+                        (f'{agent_id}/{model_id}/{name}', param)
+                        for name, param in model.named_parameters()
+                    ]
+        return params
+
+    def parameters(self):
+        return [param for _, param in self.named_parameters()]
 
     def update_hyperparameters(self, iteration: int) -> dict:
         new_hyperparams = {}
