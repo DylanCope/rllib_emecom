@@ -126,6 +126,10 @@ class MACRLActionHead(nn.Module):
         Returns:
             A tensor with dims `batch_size x n_actions` of action logits
         """
+        device = obs_encoding.device
+        self.aggregate_msgs_and_obs.to(device)
+        self.pi_head.to(device)
+
         agent_msgs_in = msgs_in.view(-1, self.n_agents * self.message_dim)
         aggregator_inp = {
             SampleBatch.OBS: torch.cat([agent_msgs_in, obs_encoding], dim=-1)

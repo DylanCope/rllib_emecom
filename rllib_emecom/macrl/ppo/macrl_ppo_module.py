@@ -187,6 +187,10 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             obs_encoding: tensor of shape `batch_size x actor_encoding_dim`
             out_msgs: tensor of shape `batch_size x n_agents x message_dim`
         """
+        device = inputs[SampleBatch.OBS].device
+        self.agent_models[agent_id][ACTOR_ENCODER].to(device)
+        self.agent_models[agent_id][MSGS_FN].to(device)
+
         obs_encoding = self.agent_models[agent_id][ACTOR_ENCODER](inputs)[ENCODER_OUT]
         out_msgs = self.agent_models[agent_id][MSGS_FN](obs_encoding)
         out_msgs = out_msgs.reshape(-1, self.n_agents, self.message_dim)
