@@ -16,6 +16,8 @@ RUN git config --global --add safe.directory /home/ray
 
 ENV PYTHONPATH=/home/ray/project:$PYTHONPATH
 
+WORKDIR /home/ray/project
+
 # RUN sudo chmod 0777 /home/ray/project
 
 # LaTeX for matplotlib
