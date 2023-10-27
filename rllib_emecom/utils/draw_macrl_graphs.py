@@ -1,4 +1,4 @@
-from .test_macrl_module import create_mock_macrl_module
+from rllib_emecom.tests.test_macrl_module import create_mock_macrl_module
 
 import argparse
 from pathlib import Path
