@@ -1,6 +1,7 @@
 from rllib_emecom.macrl import AgentID
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
-from rllib_emecom.macrl.macrl_action_head import MACRLActionHead
+# from rllib_emecom.macrl.macrl_action_head import MACRLActionHead
+from rllib_emecom.macrl.macrl_agent import MACRLAgent
 
 from typing import Any, Dict, List, Mapping, Optional, Union, Tuple as TupleType
 from gymnasium.spaces import Box, Discrete, Tuple
@@ -104,48 +105,63 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             A dictionary where keys are agent ids and values are dictionaries
             from model ids to torch models.
         """
-        actor_config = self._get_actor_encoder_config()
         self.share_actor_params = self.get_model_config_dict()['share_actor_params']
-        ind_action_space = self._get_individual_act_space()
-        agent_models = {}
+        # ind_action_space = self._get_individual_act_space()
+        # actor_config = self._get_actor_encoder_config()
+        # agent_models = {}
+        # if self.share_actor_params:
+        #     actor_encoder = actor_config.build(framework=self.framework)
+        #     actor_encoding_dim = actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
+        #     msgs_fn = self.build_outgoing_msgs_fn(actor_encoding_dim)
+        #     action_head = MACRLActionHead(ind_action_space,
+        #                                   actor_encoding_dim,
+        #                                   self.catalog,
+        #                                   self.comms_spec)
+        #     for agent_id in self.comms_spec.agents:
+        #         agent_models[agent_id] = nn.ModuleDict({
+        #             ACTOR_ENCODER: actor_encoder,
+        #             MSGS_FN: msgs_fn,
+        #             ACTION_HEAD: action_head,
+        #         })
+
+        # else:
+        #     for agent_id in self.comms_spec.agents:
+        #         actor_encoder = actor_config.build(framework=self.framework)
+        #         actor_encoding_dim = actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
+        #         agent_models[agent_id] = nn.ModuleDict({
+        #             ACTOR_ENCODER: actor_encoder,
+        #             MSGS_FN: self.build_outgoing_msgs_fn(actor_encoding_dim),
+        #             ACTION_HEAD: MACRLActionHead(ind_action_space,
+        #                                          actor_encoding_dim,
+        #                                          self.catalog,
+        #                                          self.comms_spec),
+        #         })
+
+        # return nn.ModuleDict(agent_models)
+
         if self.share_actor_params:
-            actor_encoder = actor_config.build(framework=self.framework)
-            actor_encoding_dim = actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
-            msgs_fn = self.build_outgoing_msgs_fn(actor_encoding_dim)
-            action_head = MACRLActionHead(ind_action_space,
-                                          actor_encoding_dim,
-                                          self.catalog,
-                                          self.comms_spec)
-            for agent_id in self.comms_spec.agents:
-                agent_models[agent_id] = nn.ModuleDict({
-                    ACTOR_ENCODER: actor_encoder,
-                    MSGS_FN: msgs_fn,
-                    ACTION_HEAD: action_head,
-                })
-
+            agent = MACRLAgent(self._get_individual_obs_space(),
+                               self._get_individual_act_space(),
+                               self.catalog, self.comms_spec)
+            return nn.ModuleDict({
+                agent_id: agent for agent_id in self.comms_spec.agents
+            })
         else:
-            for agent_id in self.comms_spec.agents:
-                actor_encoder = actor_config.build(framework=self.framework)
-                actor_encoding_dim = actor_encoder.get_output_specs()[ENCODER_OUT].shape[-1]
-                agent_models[agent_id] = nn.ModuleDict({
-                    ACTOR_ENCODER: actor_encoder,
-                    MSGS_FN: self.build_outgoing_msgs_fn(actor_encoding_dim),
-                    ACTION_HEAD: MACRLActionHead(ind_action_space,
-                                                 actor_encoding_dim,
-                                                 self.catalog,
-                                                 self.comms_spec),
-                })
+            return nn.ModuleDict({
+                agent_id: MACRLAgent(self._get_individual_obs_space(),
+                                     self._get_individual_act_space(),
+                                     self.catalog, self.comms_spec)
+                for agent_id in self.comms_spec.agents
+            })
 
-        return nn.ModuleDict(agent_models)
+    # def set_action_head(self, agent_id: AgentID, action_head: MACRLActionHead):
+    #     self.agent_models[agent_id][ACTION_HEAD] = action_head
 
-    def set_action_head(self, agent_id: AgentID, action_head: MACRLActionHead):
-        self.agent_models[agent_id][ACTION_HEAD] = action_head
+    # def set_action_encoder(self, agent_id: AgentID, encoder: nn.Module):
+    #     self.agent_models[agent_id][ACTOR_ENCODER] = encoder
 
-    def set_action_encoder(self, agent_id: AgentID, encoder: nn.Module):
-        self.agent_models[agent_id][ACTOR_ENCODER] = encoder
-
-    def set_msgs_fn(self, agent_id: AgentID, msgs_fn: nn.Module):
-        self.agent_models[agent_id][MSGS_FN] = msgs_fn
+    # def set_msgs_fn(self, agent_id: AgentID, msgs_fn: nn.Module):
+    #     self.agent_models[agent_id][MSGS_FN] = msgs_fn
 
     @override(PPORLModule)
     def setup(self):
@@ -294,7 +310,9 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         msgs_out = {}
         encodings = {}
         for agent_id in self.get_agent_ids():
-            obs_enc, msgs = self.encode_obs_and_produce_msgs(agent_id, batch[agent_id])
+            # obs_enc, msgs = self.encode_obs_and_produce_msgs(agent_id, batch[agent_id])
+            agent = self.agent_models[agent_id]
+            obs_enc, msgs = agent.encode_inputs_and_create_msgs(batch[agent_id])
             encodings[agent_id] = obs_enc
             msgs_out[agent_id] = msgs
 
@@ -302,9 +320,11 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
         outputs = {}
         for agent_id, obs_enc in encodings.items():
-            action_head = self.agent_models[agent_id][ACTION_HEAD]
+            # action_head = self.agent_models[agent_id][ACTION_HEAD]
+            agent = self.agent_models[agent_id]
+            # obs_enc, msgs = agent.encode_inputs_and_create_msgs(agent_id, batch[agent_id])
             outputs[agent_id] = {
-                SampleBatch.ACTION_DIST_INPUTS: action_head(obs_enc, msgs_in[agent_id])
+                SampleBatch.ACTION_DIST_INPUTS: agent.act(obs_enc, msgs_in[agent_id])
             }
 
         self.last_msgs_sent = msgs_in
@@ -362,27 +382,6 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             outputs[SampleBatch.VF_PREDS] = self._critics_forward(batch)
 
         return outputs
-
-    # def named_parameters(self):
-    #     params = list(super().named_parameters())
-    #     if self.share_actor_params:
-    #         models, *_ = self.agent_models.values()
-    #         for model_id, model in models.items():
-    #             params += [
-    #                 (f'{model_id}/{name}', param)
-    #                 for name, param in model.named_parameters()
-    #             ]
-    #     else:
-    #         for agent_id, models in self.agent_models.items():
-    #             for model_id, model in models.items():
-    #                 params += [
-    #                     (f'{agent_id}/{model_id}/{name}', param)
-    #                     for name, param in model.named_parameters()
-    #                 ]
-    #     return params
-
-    # def parameters(self):
-    #     return [param for _, param in self.named_parameters()]
 
     def update_hyperparameters(self, iteration: int) -> dict:
         new_hyperparams = {}
