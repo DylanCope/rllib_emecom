@@ -78,6 +78,7 @@ def run_train_test(test_args: Namespace):
     args.num_rollout_workers = 0
     args.evaluation_num_workers = 0
     args.train_batch_size = 1000
+    args.sgd_minibatch_size = 32
     config = get_goal_comms_config(args)
     initialise_ray()
     algo = config.build()

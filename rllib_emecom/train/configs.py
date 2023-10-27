@@ -1,5 +1,6 @@
+from rllib_emecom.macrl import AgentID
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
-from rllib_emecom.macrl.ppo.macrl_ppo_module import AgentID, PPOTorchMACRLModule
+from rllib_emecom.macrl.ppo.macrl_ppo_module import PPOTorchMACRLModule
 from rllib_emecom.macrl.ppo.macrl_ppo_learner import PPOTorchMACRLLearner
 from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
 from rllib_emecom.utils.experiment_utils import WANDB_PROJECT

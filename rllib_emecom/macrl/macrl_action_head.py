@@ -1,11 +1,10 @@
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
 
-from gymnasium.spaces import Discrete, Box
+from gymnasium.spaces import Discrete
 from ray.rllib.utils.framework import try_import_torch
 from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog, _check_if_diag_gaussian
 from ray.rllib.core.models.configs import MLPHeadConfig, FreeLogStdMLPHeadConfig
-from ray.rllib.core.models.catalog import MODEL_DEFAULTS, Catalog
-from ray.rllib.core.models.base import SampleBatch, ENCODER_OUT
+from ray.rllib.core.models.catalog import MODEL_DEFAULTS
 
 torch, nn = try_import_torch()
 
@@ -23,7 +22,7 @@ class MACRLActionHead(nn.Module):
     """
     MACRL action head takes an encoding of the inputs for an agent,
     and the messages for that agent from the other agents, and returns
-    inputs to the agent's action distribution. 
+    inputs to the agent's action distribution.
     """
     framework: str = "torch"
 
@@ -87,36 +86,23 @@ class MACRLActionHead(nn.Module):
 
     def build_msg_and_obs_aggregator(self,
                                      actor_encoding_dim: int) -> nn.Module:
-        model_config = {
+        aggregator_config = {
             **DEFAULT_AGGREGATOR_CONFIG,
             **self.model_config.get('msg_obs_aggregator', dict()),
         }
 
-        agg_obs_space = Box(
-            -2**63, 2**63 - 2,  # unbounded inputs
-            shape=(self.n_agents * self.message_dim + actor_encoding_dim,)
-        )
+        layers = []
+        dim_in = self.n_agents * self.message_dim + actor_encoding_dim
+        for dim_out in aggregator_config['fcnet_hiddens']:
+            layers.append(nn.Linear(dim_in, dim_out))
+            layers.append(nn.ReLU())
+            dim_in = dim_out
 
-        # hidden_dim = 256  # TODO: parameterise this mlp
-        # return nn.Sequential(
-        #     nn.Linear(self.n_agents * self.message_dim + actor_encoding_dim, hidden_dim),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden_dim, actor_encoding_dim),
-        #     nn.ReLU(),
-        # )
-
-        model_config['fcnet_hiddens'].append(actor_encoding_dim)
-
-        aggregator_config = Catalog._get_encoder_config(
-            agg_obs_space, model_config
-        )
-
-        return aggregator_config.build(self.framework)
+        return nn.Sequential(*layers)
 
     def forward(self,
                 obs_encoding: torch.Tensor,
-                msgs_in: torch.Tensor
-    ) -> torch.Tensor:
+                msgs_in: torch.Tensor) -> torch.Tensor:
         """
         Args:
             obs_encoding: agent's observation encoding
@@ -131,8 +117,10 @@ class MACRLActionHead(nn.Module):
         self.pi_head.to(device)
 
         agent_msgs_in = msgs_in.view(-1, self.n_agents * self.message_dim)
-        aggregator_inp = {
-            SampleBatch.OBS: torch.cat([agent_msgs_in, obs_encoding], dim=-1)
-        }
-        final_encoding = self.aggregate_msgs_and_obs(aggregator_inp)[ENCODER_OUT]
+        # aggregator_inp = {
+        #     SampleBatch.OBS: torch.cat([agent_msgs_in, obs_encoding], dim=-1)
+        # }
+        # final_encoding = self.aggregate_msgs_and_obs(aggregator_inp)[ENCODER_OUT]
+        aggregator_inp = torch.cat([agent_msgs_in, obs_encoding], dim=-1)
+        final_encoding = self.aggregate_msgs_and_obs(aggregator_inp)
         return self.pi_head(final_encoding)

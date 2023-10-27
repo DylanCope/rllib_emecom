@@ -47,7 +47,7 @@ class VideoMakingManager:
         self.renderer = renderer
 
     def is_finished(self):
-        return self.finished
+        return self.finished and len(self.frames) > 0
 
     def render(self, *args, **kwargs):
         frame = self.renderer.render(*args, **kwargs)
@@ -165,4 +165,7 @@ class VideoEvaluationsCallback(DefaultCallbacks):
         if worker.config["in_evaluation"] and not self.video_saved:
             video_manager = self.get_video_manager(worker.config, episode)
             env = get_sub_env(base_env, env_index)
-            video_manager.render(env, env_index, worker.config, policies, episode)
+            try:
+                video_manager.render(env, env_index, worker.config, policies, episode)
+            except Exception:
+                pass
