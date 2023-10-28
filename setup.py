@@ -1,12 +1,22 @@
 import setuptools
+import codecs
+import os
 
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
+    long_description = "\\n" + fh.read()
 
 setuptools.setup(
-    name="rllib_emecom",
-    version="0.0.1",
+    name='rllib_emecom',
+    version='{{VERSION_PLACEHOLDER}}',
     author="Dylan R. Cope",
-    description="Framework for Emergent Communication using RLlib",
-    packages=["rllib_emecom"],
+    description='Framework for Emergent Communication using RLlib',
+    url='https://github.com/DylanCope/rllib_emecom',
+    long_description_content_type='text/markdown',
+    long_description=long_description,
+    packages=['rllib_emecom'],
     install_requires=[
         'ray[rllib]>=2.7.0rc0',
         'torch>=2.1.0',
