@@ -99,7 +99,7 @@ class CollectCommsDataCallback(DefaultCallbacks):
         goal_comms_env = env.env.unwrapped.par_env
         assert isinstance(goal_comms_env, GoalCommsGridworldEnv)
 
-        last_action_logits = {   
+        last_action_logits = {
             agent_id: action_batch[SampleBatch.ACTION_DIST_INPUTS][env_index].detach().cpu().numpy()
             for agent_id, action_batch in macrl_module.last_actor_outputs.items()
         }
