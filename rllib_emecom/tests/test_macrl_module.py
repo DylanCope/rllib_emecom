@@ -54,3 +54,34 @@ def test_handle_message_passing():
             outgoing_msg = msgs_out[agent_1][:, j:j + 1]
             incoming_msg = msgs_in[agent_2][:, i:i + 1]
             assert torch.allclose(outgoing_msg, incoming_msg)
+
+
+def test_handle_message_passing_with_time_dim():
+    batch_size = 2
+    n_agents = 3
+    message_dim = 5
+    time_steps = 4
+    module, agent_ids = create_mock_macrl_module(n_agents, message_dim)
+
+    msgs_out = {
+        agent_id: torch.randn(batch_size, time_steps, n_agents, message_dim)
+        for agent_id in agent_ids
+    }
+
+    # Call the _handle_message_passing method
+    msgs_in = module._handle_message_passing(msgs_out)
+
+    # Check that the output is a dictionary with the same keys as msgs_in
+    assert isinstance(msgs_in, dict)
+    assert set(msgs_in.keys()) == set(msgs_out.keys())
+
+    comm_spec = module.get_comms_spec()
+
+    # Check that the comms_state values are correct
+    for agent_1 in msgs_out.keys():
+        i = comm_spec.get_agent_idx(agent_1)
+        for agent_2 in msgs_in.keys():
+            j = comm_spec.get_agent_idx(agent_2)
+            outgoing_msg = msgs_out[agent_1][:, :, j:j + 1]
+            incoming_msg = msgs_in[agent_2][:, :, i:i + 1]
+            assert torch.allclose(outgoing_msg, incoming_msg)
