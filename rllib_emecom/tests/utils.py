@@ -4,7 +4,7 @@ from argparse import ArgumentParser, Namespace
 import ray
 
 
-def ray_wrapper(func):
+def ray_init_wrapper(func):
     """Decorator for functions that use Ray."""
 
     def wrapper(*args, **kwargs):
@@ -18,7 +18,7 @@ def ray_wrapper(func):
 
 
 def parse_default_args(parser: ArgumentParser,
-                     **override_args) -> Namespace:
+                       **override_args) -> Namespace:
     args, _ = parser.parse_known_args([
         item
         for k, v in override_args.items()

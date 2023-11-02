@@ -1,21 +1,15 @@
 from rllib_emecom.macrl import AgentID
-from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
-from rllib_emecom.macrl.ppo.macrl_ppo_module import PPOTorchMACRLModule
+from rllib_emecom.macrl.comms.comms_spec import CommNetwork
 from rllib_emecom.macrl.ppo.macrl_ppo_learner import PPOTorchMACRLLearner
+from rllib_emecom.macrl.ppo.macrl_ppo_config import PPOMACRLConfig
 from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
 from rllib_emecom.utils.experiment_utils import WANDB_PROJECT
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 from argparse import ArgumentParser, Namespace
-from gymnasium import spaces
 
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
-from ray.rllib.algorithms.ppo import PPOConfig
-from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog
-from ray.rllib.core.rl_module.rl_module import SingleAgentRLModuleSpec
-from ray.rllib.policy.policy import PolicySpec
 
-Policies = Dict[AgentID, PolicySpec]
 EnvConfig = Dict[str, Any]
 
 
@@ -88,61 +82,65 @@ def create_default_args_parser() -> ArgumentParser:
     return parser
 
 
-def get_ppo_macrl_module_spec(args: Namespace,
-                              agent_ids: List[AgentID],
-                              observation_space: Optional[spaces.Space] = None,
-                              action_space: Optional[spaces.Space] = None
-                              ) -> SingleAgentRLModuleSpec:
-    comm_channels = {
-        agent_id: [
-            other_id for other_id in agent_ids
-            if other_id != agent_id
-        ]
-        for agent_id in agent_ids
+# def get_ppo_macrl_module_spec(args: Namespace,
+#                               agent_ids: List[AgentID],
+#                               observation_space: Optional[spaces.Space] = None,
+#                               action_space: Optional[spaces.Space] = None
+#                               ) -> SingleAgentRLModuleSpec:
+#     comm_channels = {
+#         agent_id: [
+#             other_id for other_id in agent_ids
+#             if other_id != agent_id
+#         ]
+#         for agent_id in agent_ids
+#     }
+
+#     comm_spec = CommunicationSpec(
+#         message_dim=args.message_dim,
+#         comm_channels=comm_channels,
+#         channel_fn=args.comm_channel_fn,
+#         channel_fn_config={
+#             'temperature': args.comm_channel_temp,
+#             'temperature_annealing': not args.comm_channel_no_annealing,
+#             'annealing_start_iter': args.comm_channel_annealing_start_iter,
+#             'n_anneal_iterations': args.comm_channel_annealing_iters,
+#             'final_temperature': args.comm_channel_end_temp,
+#             'channel_noise': args.comm_channel_noise,
+#             'channel_activation': args.comm_channel_activation
+#         }
+#     )
+
+#     return SingleAgentRLModuleSpec(
+#         module_class=PPOTorchMACRLModule,
+#         catalog_class=PPOCatalog,
+#         observation_space=observation_space,
+#         action_space=action_space,
+#         model_config_dict={
+#             'communication_spec': comm_spec,
+#             'fcnet_hiddens': [args.fc_size] * args.n_fc_layers,
+#             'vf_share_layers': False,
+#         }
+#     )
+
+
+def get_ppo_macrl_config(args: Namespace,
+                         env_config: EnvConfig,
+                         agent_ids: List[AgentID],
+                         comm_channels: CommNetwork = None) -> PPOMACRLConfig:
+
+    model_config = {
+        'fcnet_hiddens': [args.fc_size] * args.n_fc_layers,
+        'vf_share_layers': False,
     }
 
-    comm_spec = CommunicationSpec(
-        message_dim=args.message_dim,
-        comm_channels=comm_channels,
-        channel_fn=args.comm_channel_fn,
-        channel_fn_config={
-            'temperature': args.comm_channel_temp,
-            'temperature_annealing': not args.comm_channel_no_annealing,
-            'annealing_start_iter': args.comm_channel_annealing_start_iter,
-            'n_anneal_iterations': args.comm_channel_annealing_iters,
-            'final_temperature': args.comm_channel_end_temp,
-            'channel_noise': args.comm_channel_noise,
-            'channel_activation': args.comm_channel_activation
-        }
-    )
-
-    return SingleAgentRLModuleSpec(
-        module_class=PPOTorchMACRLModule,
-        catalog_class=PPOCatalog,
-        observation_space=observation_space,
-        action_space=action_space,
-        model_config_dict={
-            'communication_spec': comm_spec,
-            'fcnet_hiddens': [args.fc_size] * args.n_fc_layers,
-            'vf_share_layers': False,
-        }
-    )
-
-
-def get_ppo_config(args: Namespace,
-                   env_config: dict,
-                   agent_ids: List[AgentID]) -> PPOConfig:
-    rl_module_spec = get_ppo_macrl_module_spec(args, agent_ids)
-
     return (
-        PPOConfig()
+        PPOMACRLConfig()
         .environment(
             args.env,
             env_config=env_config,
             disable_env_checking=True,
             clip_actions=True
         )
-        .framework("torch")
         .training(
             train_batch_size=args.train_batch_size,
             lr=args.learning_rate,
@@ -156,6 +154,7 @@ def get_ppo_config(args: Namespace,
             sgd_minibatch_size=args.sgd_minibatch_size,
             kl_coeff=args.kl_coeff,
             num_sgd_iter=args.num_sgd_iters,
+            model=model_config,
             _enable_learner_api=True,
             learner_class=PPOTorchMACRLLearner
         )
@@ -163,9 +162,20 @@ def get_ppo_config(args: Namespace,
             num_rollout_workers=args.num_rollout_workers,
             rollout_fragment_length='auto',
         )
-        .rl_module(
-            rl_module_spec=rl_module_spec,
-            _enable_rl_module_api=True
+        .communications(
+            agent_ids=agent_ids,
+            comm_channels=comm_channels,
+            message_dim=args.message_dim,
+            channel_fn=args.comm_channel_fn,
+            channel_fn_config={
+                'temperature': args.comm_channel_temp,
+                'temperature_annealing': not args.comm_channel_no_annealing,
+                'annealing_start_iter': args.comm_channel_annealing_start_iter,
+                'n_anneal_iterations': args.comm_channel_annealing_iters,
+                'final_temperature': args.comm_channel_end_temp,
+                'channel_noise': args.comm_channel_noise,
+                'channel_activation': args.comm_channel_activation
+            },
         )
         .resources(
             num_gpus=1,
@@ -180,11 +190,62 @@ def get_ppo_config(args: Namespace,
     )
 
 
+# def get_ppo_config(args: Namespace,
+#                    env_config: dict,
+#                    agent_ids: List[AgentID]) -> PPOConfig:
+#     rl_module_spec = get_ppo_macrl_module_spec(args, agent_ids)
+
+#     return (
+#         PPOConfig()
+#         .environment(
+#             args.env,
+#             env_config=env_config,
+#             disable_env_checking=True,
+#             clip_actions=True
+#         )
+#         .framework("torch")
+#         .training(
+#             train_batch_size=args.train_batch_size,
+#             lr=args.learning_rate,
+#             gamma=args.gamma,
+#             lambda_=args.lambda_coeff,
+#             use_gae=not args.not_use_gae,
+#             clip_param=args.clip_param,
+#             grad_clip=args.grad_clip,
+#             entropy_coeff=args.entropy_coeff,
+#             vf_loss_coeff=args.vf_loss_coeff,
+#             sgd_minibatch_size=args.sgd_minibatch_size,
+#             kl_coeff=args.kl_coeff,
+#             num_sgd_iter=args.num_sgd_iters,
+#             _enable_learner_api=True,
+#             learner_class=PPOTorchMACRLLearner
+#         )
+#         .rollouts(
+#             num_rollout_workers=args.num_rollout_workers,
+#             rollout_fragment_length='auto',
+#         )
+#         .rl_module(
+#             rl_module_spec=rl_module_spec,
+#             _enable_rl_module_api=True
+#         )
+#         .resources(
+#             num_gpus=1,
+#             num_gpus_per_learner_worker=1
+#         )
+#         .callbacks(VideoEvaluationsCallback)
+#         .evaluation(
+#             evaluation_interval=args.evaluation_interval,
+#             evaluation_duration=args.evaluation_duration,
+#             evaluation_num_workers=args.evaluation_num_workers,
+#         )
+#     )
+
+
 def get_algo_config(args: Namespace,
                     env_config: dict,
                     agent_ids: List[AgentID]) -> AlgorithmConfig:
     algo = args.algo.lower()
     if algo == 'ppo':
-        return get_ppo_config(args, env_config, agent_ids)
+        return get_ppo_macrl_config(args, env_config, agent_ids)
     else:
         raise ValueError(f'Unknown algorithm: {algo}')

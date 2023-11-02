@@ -40,15 +40,14 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         return {**DEFAULT_CONFIG, **self.catalog._model_config_dict}
 
     def get_comms_spec(self) -> CommunicationSpec:
-        model_config_dict = self.get_model_config_dict()
 
-        assert 'communication_spec' in model_config_dict, \
-            "Expected communication_spec to be set on model_config_dict."
+        assert hasattr(self.config, 'comm_spec'), \
+            "Expected config to have a communication spec."
 
-        comm_spec = model_config_dict['communication_spec']
+        comm_spec = self.config.comm_spec
 
         assert isinstance(comm_spec, CommunicationSpec), \
-            "Expected communication_spec to be a CommunicationSpec."
+            "Expected comm_spec to be a CommunicationSpec."
 
         return comm_spec
 
@@ -129,25 +128,29 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
     def get_comm_mask(self,
                       agent_id: AgentID,
-                      batch_size: int = 1) -> torch.Tensor:
+                      msgs_out: torch.Tensor) -> torch.Tensor:
         """
         Creates a mask for removing messages that are not permitted by
         the communication spec.
 
         Args:
             agent_id: the agent that is sending a message
-            batch_size: batch dimension of the output
+            msgs_out: msgs used get batch dims and device from
 
         Returns:
             A tensor of `batch_size x n_agents x message_dim` in which
             each entry is 1.0 if the sender is permitted to send a
             message to the corresponding receiver, and 0.0 otherwise.
         """
-
-        mask = torch.zeros(batch_size, self.n_agents, self.message_dim)
-        for i in range(self.n_agents):
+        *batch_dims, n_agents, msg_dim = msgs_out.shape
+        mask = np.zeros((n_agents, msg_dim))
+        for i in range(n_agents):
             if self.comms_spec.index_to_agent(i) in self.comm_network[agent_id]:
-                mask[:, i] = torch.ones(self.message_dim)
+                mask[i] = torch.ones(msg_dim)
+
+        mask = np.array([mask] * np.prod(batch_dims)).reshape(msgs_out.shape)
+        mask = torch.from_numpy(mask).float()
+        mask = mask.to(msgs_out.device)
         return mask
 
     def _handle_message_passing(self,
@@ -175,9 +178,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
         # mask outgoing messages that are not permitted by the comm spec
         for sender_agent in agent_ids:
-            batch_size, *_ = msgs_out[sender_agent].shape
-            mask = self.get_comm_mask(sender_agent, batch_size)
-            mask = mask.to(msgs_out[sender_agent].device)
+            mask = self.get_comm_mask(sender_agent, msgs_out[sender_agent])
             msgs_out[sender_agent] = mask * msgs_out[sender_agent]
 
         # create tensors of incoming messages for each receiver
@@ -187,8 +188,10 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             # received by receiver_agent from agent i
             i = self.comms_spec.get_agent_idx(receiver_agent)
             # collect messages from other agents
+            *batch_dims, n_agents, msg_dim = msgs_out[sender_agent].shape
+            slice_shape = tuple(batch_dims) + (1, msg_dim)
             msgs = torch.cat([
-                msgs_out[sender_agent][:, i:i + 1]
+                torch.select(msgs_out[sender_agent], -2, i).reshape(slice_shape)
                 for sender_agent in agent_ids
             ], dim=-2)
             msgs_in[receiver_agent] = self.comm_channel_fn(msgs, training=training)

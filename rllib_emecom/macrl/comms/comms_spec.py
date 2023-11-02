@@ -1,13 +1,12 @@
-from .comm_channel_fn import CommunicationChannelFunction
-from .straight_through import StraightThroughCommunicationChannel
-from .gumbel_softmax import GumbelSoftmaxCommunicationChannel
-from .dru import DiscretiseRegulariseCommunicationChannel
+from rllib_emecom.macrl.comms import CommunicationChannelFunction
 
 from functools import cached_property
 from typing import Any, List, Dict
 from ray.rllib.utils.framework import try_import_torch
 
 torch, nn = try_import_torch()
+
+CommNetwork = Dict[Any, List[Any]]
 
 
 class CommunicationSpec(dict):
@@ -25,7 +24,7 @@ class CommunicationSpec(dict):
 
     def __init__(self,
                  message_dim: int,
-                 comm_channels: Dict[Any, List[Any]],
+                 comm_channels: CommNetwork,
                  channel_fn: str = "straight_through",
                  channel_fn_config: dict = None):
         self.message_dim = message_dim
@@ -64,24 +63,15 @@ class CommunicationSpec(dict):
         return self.agent_to_index[agent]
 
     def validate(self) -> None:
-        if self.n_agents < 1:
-            raise ValueError("The number of agents must be at least 1.")
-
-    def get_channel_fn_cls(self):
-        if self.channel_fn.lower() == "straight_through":
-            return StraightThroughCommunicationChannel
-        elif self.channel_fn.lower() == "gumbel_softmax":
-            return GumbelSoftmaxCommunicationChannel
-        elif self.channel_fn.lower() in ["discrete_regularise", "dru"]:
-            return DiscretiseRegulariseCommunicationChannel
-        else:
-            raise NotImplementedError(
-                f"Channel function {self.channel_fn} not implemented. "
-                "Only 'straight_through', 'dru' and 'gumbel_softmax' are currently supported."
-            )
+        assert self.n_agents > 0, \
+            "The number of agents must be at least 1."
+        assert self.message_dim > 0, \
+            "Message dimension must be positive"
 
     def get_channel_fn(self) -> CommunicationChannelFunction:
-        return self.get_channel_fn_cls()(**self.channel_fn_config)
+        from rllib_emecom.macrl.comms import get_channel_fn_cls
+        channel_fn_cls = get_channel_fn_cls(self.channel_fn)
+        return channel_fn_cls(**self.channel_fn_config)
 
     def to_dict(self) -> Dict[str, Any]:
         return {

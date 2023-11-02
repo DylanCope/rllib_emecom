@@ -1,17 +1,18 @@
+from rllib_emecom.macrl import AgentID
 from rllib_emecom.utils.experiment_utils import run_training, initialise_ray
 from rllib_emecom.utils.comms_renderer import CommsRenderer
 from rllib_emecom.train.configs import (
-    create_default_args_parser, get_algo_config, Policies, EnvConfig
+    create_default_args_parser, get_algo_config, EnvConfig
 )
 
 from argparse import ArgumentParser, Namespace
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 from ray.rllib.evaluate import rollout
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 
 
-def get_env_config(args: Namespace) -> Tuple[Policies, EnvConfig]:
+def get_env_config(args: Namespace) -> Tuple[EnvConfig, List[AgentID]]:
     env_config = {
         'render_mode': 'rgb_array',
         'world_shape': [args.grid_size, args.grid_size],
