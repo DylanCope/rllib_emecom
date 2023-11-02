@@ -4,7 +4,7 @@ from argparse import ArgumentParser, Namespace
 import ray
 
 
-def ray_wrapper(func):
+def ray_init_wrapper(func):
     """Decorator for functions that use Ray."""
 
     def wrapper(*args, **kwargs):

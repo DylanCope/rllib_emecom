@@ -1,4 +1,4 @@
-from rllib_emecom.tests.test_macrl_module import create_mock_macrl_module
+from rllib_emecom.tests.test_macrl_module import create_test_macrl_module
 
 import argparse
 from pathlib import Path
@@ -9,7 +9,7 @@ from ray.rllib.core.models.base import SampleBatch
 
 
 def draw_macrl_graph(output_name: str, graph_depth: int = 3, **kwargs):
-    macrl_module, _ = create_mock_macrl_module(**kwargs)
+    macrl_module, _ = create_test_macrl_module(**kwargs)
     obs_space = macrl_module.config.observation_space
     batch_size = 4
     batch = {

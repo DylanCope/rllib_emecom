@@ -40,15 +40,14 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         return {**DEFAULT_CONFIG, **self.catalog._model_config_dict}
 
     def get_comms_spec(self) -> CommunicationSpec:
-        model_config_dict = self.get_model_config_dict()
 
-        assert 'communication_spec' in model_config_dict, \
-            "Expected communication_spec to be set on model_config_dict."
+        assert hasattr(self.config, 'comm_spec'), \
+            "Expected config to have a communication spec."
 
-        comm_spec = model_config_dict['communication_spec']
+        comm_spec = self.config.comm_spec
 
         assert isinstance(comm_spec, CommunicationSpec), \
-            "Expected communication_spec to be a CommunicationSpec."
+            "Expected comm_spec to be a CommunicationSpec."
 
         return comm_spec
 
@@ -151,7 +150,7 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
 
         mask = np.array([mask] * np.prod(batch_dims)).reshape(msgs_out.shape)
         mask = torch.from_numpy(mask).float()
-        mask.to(msgs_out.device)
+        mask = mask.to(msgs_out.device)
         return mask
 
     def _handle_message_passing(self,
