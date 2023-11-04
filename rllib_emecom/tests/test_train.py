@@ -2,7 +2,7 @@ from .utils import ray_init_wrapper, parse_default_args
 from rllib_emecom.macrl.comms.comms_spec import CommNetwork
 from rllib_emecom.macrl.macrl_agent import MACRLAgent
 from rllib_emecom.macrl.ppo.macrl_ppo_module import PPOTorchMACRLModule
-from rllib_emecom.macrl.ppo.macrl_ppo_config import PPOMACRLConfig
+from rllib_emecom.macrl.ppo.macrl_ppo import PPOMACRLConfig
 from rllib_emecom.train.goal_comms import (
     create_goal_comms_args_parser, get_goal_comms_config, get_env_config
 )

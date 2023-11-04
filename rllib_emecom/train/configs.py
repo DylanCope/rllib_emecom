@@ -1,7 +1,7 @@
 from rllib_emecom.macrl import AgentID
 from rllib_emecom.macrl.comms.comms_spec import CommNetwork
 from rllib_emecom.macrl.ppo.macrl_ppo_learner import PPOTorchMACRLLearner
-from rllib_emecom.macrl.ppo.macrl_ppo_config import PPOMACRLConfig
+from rllib_emecom.macrl.ppo.macrl_ppo import PPOMACRLConfig
 from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
 from rllib_emecom.utils.experiment_utils import WANDB_PROJECT
 
@@ -36,8 +36,8 @@ def add_ppo_args(parser: ArgumentParser):
 def add_macrl_args(parser: ArgumentParser):
     parser.add_argument('--message_dim', type=int, default=8)
     parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
-    parser.add_argument('--comm_channel_temp', type=float, default=10.0)
-    parser.add_argument('--comm_channel_no_annealing', action='store_true', default=False)
+    parser.add_argument('--comm_channel_temp', type=float, default=2.0)
+    parser.add_argument('--comm_channel_annealing', action='store_true', default=False)
     parser.add_argument('--comm_channel_end_temp', type=float, default=.5)
     parser.add_argument('--comm_channel_annealing_start_iter', type=int, default=0)
     parser.add_argument('--comm_channel_annealing_iters', type=int, default=500)
@@ -55,8 +55,8 @@ def create_default_args_parser() -> ArgumentParser:
     algo = algo_parser.parse_known_args()[0].algo
 
     parser = ArgumentParser()
-    parser.add_argument('--algo', type=str, default='ppo',
-                        choices=['ppo', 'maddpg', 'dqn'],
+    parser.add_argument('--algo', type=str, default='ppomacrl',
+                        choices=['ppomacrl', 'maddpg', 'dqn'],
                         help='RL Algorithm to use (default: %(default)s)')
 
     parser.add_argument('--learning_rate', type=float, default=5e-4)
@@ -158,6 +158,9 @@ def get_ppo_macrl_config(args: Namespace,
             _enable_learner_api=True,
             learner_class=PPOTorchMACRLLearner
         )
+        # .rl_module(
+
+        # )
         .rollouts(
             num_rollout_workers=args.num_rollout_workers,
             rollout_fragment_length='auto',
@@ -169,7 +172,7 @@ def get_ppo_macrl_config(args: Namespace,
             channel_fn=args.comm_channel_fn,
             channel_fn_config={
                 'temperature': args.comm_channel_temp,
-                'temperature_annealing': not args.comm_channel_no_annealing,
+                'temperature_annealing': args.comm_channel_annealing,
                 'annealing_start_iter': args.comm_channel_annealing_start_iter,
                 'n_anneal_iterations': args.comm_channel_annealing_iters,
                 'final_temperature': args.comm_channel_end_temp,
@@ -245,7 +248,7 @@ def get_algo_config(args: Namespace,
                     env_config: dict,
                     agent_ids: List[AgentID]) -> AlgorithmConfig:
     algo = args.algo.lower()
-    if algo == 'ppo':
+    if algo == 'ppomacrl':
         return get_ppo_macrl_config(args, env_config, agent_ids)
     else:
         raise ValueError(f'Unknown algorithm: {algo}')
