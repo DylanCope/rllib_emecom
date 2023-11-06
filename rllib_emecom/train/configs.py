@@ -36,6 +36,7 @@ def add_ppo_args(parser: ArgumentParser):
 def add_macrl_args(parser: ArgumentParser):
     parser.add_argument('--message_dim', type=int, default=8)
     parser.add_argument('--comm_channel_fn', type=str, default='gumbel_softmax')
+
     parser.add_argument('--comm_channel_temp', type=float, default=2.0)
     parser.add_argument('--comm_channel_annealing', action='store_true', default=False)
     parser.add_argument('--comm_channel_end_temp', type=float, default=.5)
@@ -82,47 +83,6 @@ def create_default_args_parser() -> ArgumentParser:
     return parser
 
 
-# def get_ppo_macrl_module_spec(args: Namespace,
-#                               agent_ids: List[AgentID],
-#                               observation_space: Optional[spaces.Space] = None,
-#                               action_space: Optional[spaces.Space] = None
-#                               ) -> SingleAgentRLModuleSpec:
-#     comm_channels = {
-#         agent_id: [
-#             other_id for other_id in agent_ids
-#             if other_id != agent_id
-#         ]
-#         for agent_id in agent_ids
-#     }
-
-#     comm_spec = CommunicationSpec(
-#         message_dim=args.message_dim,
-#         comm_channels=comm_channels,
-#         channel_fn=args.comm_channel_fn,
-#         channel_fn_config={
-#             'temperature': args.comm_channel_temp,
-#             'temperature_annealing': not args.comm_channel_no_annealing,
-#             'annealing_start_iter': args.comm_channel_annealing_start_iter,
-#             'n_anneal_iterations': args.comm_channel_annealing_iters,
-#             'final_temperature': args.comm_channel_end_temp,
-#             'channel_noise': args.comm_channel_noise,
-#             'channel_activation': args.comm_channel_activation
-#         }
-#     )
-
-#     return SingleAgentRLModuleSpec(
-#         module_class=PPOTorchMACRLModule,
-#         catalog_class=PPOCatalog,
-#         observation_space=observation_space,
-#         action_space=action_space,
-#         model_config_dict={
-#             'communication_spec': comm_spec,
-#             'fcnet_hiddens': [args.fc_size] * args.n_fc_layers,
-#             'vf_share_layers': False,
-#         }
-#     )
-
-
 def get_ppo_macrl_config(args: Namespace,
                          env_config: EnvConfig,
                          agent_ids: List[AgentID],
@@ -158,9 +118,6 @@ def get_ppo_macrl_config(args: Namespace,
             _enable_learner_api=True,
             learner_class=PPOTorchMACRLLearner
         )
-        # .rl_module(
-
-        # )
         .rollouts(
             num_rollout_workers=args.num_rollout_workers,
             rollout_fragment_length='auto',
@@ -191,57 +148,6 @@ def get_ppo_macrl_config(args: Namespace,
             evaluation_num_workers=args.evaluation_num_workers,
         )
     )
-
-
-# def get_ppo_config(args: Namespace,
-#                    env_config: dict,
-#                    agent_ids: List[AgentID]) -> PPOConfig:
-#     rl_module_spec = get_ppo_macrl_module_spec(args, agent_ids)
-
-#     return (
-#         PPOConfig()
-#         .environment(
-#             args.env,
-#             env_config=env_config,
-#             disable_env_checking=True,
-#             clip_actions=True
-#         )
-#         .framework("torch")
-#         .training(
-#             train_batch_size=args.train_batch_size,
-#             lr=args.learning_rate,
-#             gamma=args.gamma,
-#             lambda_=args.lambda_coeff,
-#             use_gae=not args.not_use_gae,
-#             clip_param=args.clip_param,
-#             grad_clip=args.grad_clip,
-#             entropy_coeff=args.entropy_coeff,
-#             vf_loss_coeff=args.vf_loss_coeff,
-#             sgd_minibatch_size=args.sgd_minibatch_size,
-#             kl_coeff=args.kl_coeff,
-#             num_sgd_iter=args.num_sgd_iters,
-#             _enable_learner_api=True,
-#             learner_class=PPOTorchMACRLLearner
-#         )
-#         .rollouts(
-#             num_rollout_workers=args.num_rollout_workers,
-#             rollout_fragment_length='auto',
-#         )
-#         .rl_module(
-#             rl_module_spec=rl_module_spec,
-#             _enable_rl_module_api=True
-#         )
-#         .resources(
-#             num_gpus=1,
-#             num_gpus_per_learner_worker=1
-#         )
-#         .callbacks(VideoEvaluationsCallback)
-#         .evaluation(
-#             evaluation_interval=args.evaluation_interval,
-#             evaluation_duration=args.evaluation_duration,
-#             evaluation_num_workers=args.evaluation_num_workers,
-#         )
-#     )
 
 
 def get_algo_config(args: Namespace,
