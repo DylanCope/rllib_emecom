@@ -42,6 +42,8 @@ class CollectCommsDataCallback(DefaultCallbacks):
                 'goal_y': item['env_state']['goal_positions'][recv_agent][1],
                 'pos_x': item['env_state']['agent_positions'][recv_agent][0],
                 'pos_y': item['env_state']['agent_positions'][recv_agent][1],
+                'sender_pos_x': item['env_state']['agent_positions'][send_agent][0],
+                'sender_pos_y': item['env_state']['agent_positions'][send_agent][1],
                 'world_w': item['world_w'],
                 'world_h': item['world_h'],
                 'receiver_action': np.argmax(item['last_action_logits'][recv_agent]),

@@ -1,6 +1,5 @@
 from rllib_emecom.macrl import AgentID
 from rllib_emecom.macrl.comms.comms_spec import CommNetwork
-from rllib_emecom.macrl.ppo.macrl_ppo_learner import PPOTorchMACRLLearner
 from rllib_emecom.macrl.ppo.macrl_ppo import PPOMACRLConfig
 from rllib_emecom.utils.video_callback import VideoEvaluationsCallback
 from rllib_emecom.utils.experiment_utils import WANDB_PROJECT
@@ -116,7 +115,6 @@ def get_ppo_macrl_config(args: Namespace,
             num_sgd_iter=args.num_sgd_iters,
             model=model_config,
             _enable_learner_api=True,
-            learner_class=PPOTorchMACRLLearner
         )
         .rollouts(
             num_rollout_workers=args.num_rollout_workers,

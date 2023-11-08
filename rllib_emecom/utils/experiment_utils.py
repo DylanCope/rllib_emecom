@@ -17,10 +17,14 @@ from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 WANDB_PROJECT = 'rllib_emecom'
 
 
-def initialise_ray():
-    ray.init(dashboard_host='0.0.0.0',
-             dashboard_port=8265,
-             ignore_reinit_error=True)
+def initialise_ray(dashboard_host='0.0.0.0',
+                   dashboard_port=8265,
+                   ignore_reinit_error=True,
+                   **init_kwargs):
+    ray.init(dashboard_host=dashboard_host,
+             dashboard_port=dashboard_port,
+             ignore_reinit_error=ignore_reinit_error,
+             **init_kwargs)
     register_envs()
 
 
