@@ -80,6 +80,8 @@ class BaseAgent:
 
 class DiscreteAgent(BaseAgent):
 
+    ACTION_STRINGS = ["stay", "down", "up", "left", "right"]
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

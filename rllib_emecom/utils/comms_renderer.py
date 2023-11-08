@@ -64,12 +64,17 @@ class CommsRenderer(Renderer):
     ) -> np.ndarray:
         frame = env.render()
         fig, axs = plt.subplots(1, 2, figsize=(6, 3))
-        self._render_frame(frame, axs[0])
-        msgs_network = self.get_msgs_network(policies, env_index)
-        self._render_msgs_network(msgs_network, axs[1])
-        fig.tight_layout()
-        render = plot_to_array(fig)
-        plt.close(fig)
+
+        try:
+            self._render_frame(frame, axs[0])
+            msgs_network = self.get_msgs_network(policies, env_index)
+            self._render_msgs_network(msgs_network, axs[1])
+            fig.tight_layout()
+            render = plot_to_array(fig)
+
+        finally:
+            plt.close(fig)
+
         return render
 
     def get_msgs_network(self,

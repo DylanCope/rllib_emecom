@@ -51,7 +51,7 @@ class MACRLConfig:
                 self.comm_channels = comm_channels
 
             if message_dim is not NotProvided and message_dim is not None:
-                self.message_dim = 16
+                self.message_dim = message_dim
 
             if channel_fn is not NotProvided and channel_fn is not None:
                 self.channel_fn = channel_fn

@@ -9,6 +9,7 @@ import pandas as pd
 import ray
 from ray import tune
 from ray.train import Checkpoint
+from ray.air import CheckpointConfig
 from ray.tune.analysis.experiment_analysis import NewExperimentAnalysis
 from ray.air.integrations.wandb import WandbLoggerCallback
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
@@ -16,9 +17,14 @@ from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
 WANDB_PROJECT = 'rllib_emecom'
 
 
-def initialise_ray():
-    ray.init(dashboard_host='0.0.0.0', dashboard_port=8265,
-             ignore_reinit_error=True)
+def initialise_ray(dashboard_host='0.0.0.0',
+                   dashboard_port=8265,
+                   ignore_reinit_error=True,
+                   **init_kwargs):
+    ray.init(dashboard_host=dashboard_host,
+             dashboard_port=dashboard_port,
+             ignore_reinit_error=ignore_reinit_error,
+             **init_kwargs)
     register_envs()
 
 
@@ -37,11 +43,17 @@ def run_training(config: AlgorithmConfig, args: Namespace):
         if not args.no_wandb:
             callbacks.append(get_wandb_callback(project=args.wandb_project))
 
+        checkpoint_config = CheckpointConfig(
+            # num_to_keep=3,
+            # checkpoint_score_attribute='sampler_results/episode_reward_mean',
+            checkpoint_frequency=10,
+        )
+
         tune.run(
             args.algo.upper(),
             name=config.env,
             stop={'timesteps_total': args.stop_timesteps},
-            checkpoint_freq=10,
+            checkpoint_config=checkpoint_config,
             storage_path=f'{Path.cwd()}/ray_results/{config.env}',
             config=config.to_dict(),
             callbacks=callbacks
