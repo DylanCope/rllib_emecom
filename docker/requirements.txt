@@ -14,3 +14,4 @@ wandb
 gputil
 torchviz
 torchview==0.2.6
+torcheval
