@@ -28,5 +28,7 @@ setuptools.setup(
         'matplotlib>=3.6.2',
         'imageio[ffmpeg]>=2.31.3',
         'seaborn>=0.11.2',
+        'torchviz>=0.0.2',
+        'torchview>=0.2.6',
     ]
 )
