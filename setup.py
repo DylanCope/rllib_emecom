@@ -16,7 +16,7 @@ setuptools.setup(
     url='https://github.com/DylanCope/rllib_emecom',
     long_description_content_type='text/markdown',
     long_description=long_description,
-    packages=['rllib_emecom'],
+    packages=setuptools.find_packages(where='.'),
     install_requires=[
         'ray[rllib]>=2.7.0rc0',
         'torch>=2.1.0',
