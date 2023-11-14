@@ -1,3 +1,4 @@
+from rllib_emecom.macrl.macrl_agent import MACRLAgent
 from .comms.comms_spec import CommunicationSpec, CommNetwork
 
 from typing import Any, List, Optional
@@ -27,6 +28,11 @@ class MACRLConfig:
         self.comm_channels = None
         self.channel_fn = 'straight_through'
         self.channel_fn_config = {}
+        self.agent_cls = MACRLAgent
+
+    def agent_class(self, agent_cls: MACRLAgent) -> 'MACRLConfig':
+        self.agent_cls = agent_cls
+        return self
 
     def communications(self,
                        comm_spec: Optional[CommunicationSpec] = NotProvided,

@@ -1,4 +1,5 @@
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
+from rllib_emecom.macrl.macrl_agent import MACRLAgent
 
 from typing import Dict, Type, Any
 from dataclasses import dataclass
@@ -16,6 +17,7 @@ from ray.rllib.utils.serialization import (
     gym_space_from_dict,
     gym_space_to_dict
 )
+
 
 
 @dataclass
@@ -37,6 +39,7 @@ class MACRLModuleConfig:
     action_space: gym.Space = None
     model_config_dict: Dict[str, Any] = None
     catalog_class: Type[Catalog] = None
+    macrl_agent_cls: Type[MACRLAgent] = MACRLAgent
 
     def get_catalog(self) -> Catalog:
         """Returns the catalog for this config."""
@@ -56,12 +59,18 @@ class MACRLModuleConfig:
         catalog_class_path = (
             serialize_type(self.catalog_class) if self.catalog_class else ""
         )
+
+        macrl_agent_cls_path = (
+            serialize_type(self.macrl_agent_cls) if self.macrl_agent_cls else ""
+        )
+
         return {
             "observation_space": gym_space_to_dict(self.observation_space),
             "action_space": gym_space_to_dict(self.action_space),
             "model_config_dict": self.model_config_dict,
             "catalog_class_path": catalog_class_path,
             "comm_spec": self.comm_spec.to_dict(),
+            "macrl_agent_cls_path": macrl_agent_cls_path,
         }
 
     @classmethod
@@ -78,14 +87,19 @@ class MACRLModuleConfig:
             action_space=gym_space_from_dict(d["action_space"]),
             model_config_dict=d["model_config_dict"],
             catalog_class=catalog_class,
+            macrl_agent_cls=deserialize_type(d["macrl_agent_cls_path"]),
         )
 
 
 class MACRLModuleSpec(SingleAgentRLModuleSpec):
 
-    def __init__(self, comm_spec: CommunicationSpec, *args, **kwargs):
+    def __init__(self,
+                 comm_spec: CommunicationSpec,
+                 macrl_agent_cls: Type[MACRLAgent],
+                 *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.comm_spec = comm_spec
+        self.macrl_agent_cls = macrl_agent_cls
 
     @override(SingleAgentRLModuleSpec)
     def get_rl_module_config(self) -> MACRLModuleConfig:
@@ -96,6 +110,7 @@ class MACRLModuleSpec(SingleAgentRLModuleSpec):
             action_space=self.action_space,
             model_config_dict=self.model_config_dict,
             catalog_class=self.catalog_class,
+            macrl_agent_cls=self.macrl_agent_cls,
         )
 
     @classmethod

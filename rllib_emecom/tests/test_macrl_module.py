@@ -1,4 +1,5 @@
 from rllib_emecom.macrl.comms.comms_spec import CommunicationSpec
+from rllib_emecom.macrl.macrl_agent import MACRLAgent
 from rllib_emecom.macrl.ppo.macrl_ppo_module import PPOTorchMACRLModule
 from rllib_emecom.macrl.macrl_module_spec import MACRLModuleSpec
 from rllib_emecom.macrl.macrl_config import get_fully_connected_comm_channels
@@ -31,7 +32,8 @@ def create_test_macrl_module(
                            action_space=mock_act_space,
                            model_config_dict=model_config_dict,
                            module_class=PPOTorchMACRLModule,
-                           catalog_class=PPOCatalog)
+                           catalog_class=PPOCatalog,
+                           macrl_agent_cls=MACRLAgent)
 
     return spec.build(), agent_ids
 

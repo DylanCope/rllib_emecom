@@ -11,8 +11,8 @@ from ray.rllib.utils.annotations import override
 from ray.rllib.utils.framework import try_import_torch
 from ray.rllib.core.models.base import SampleBatch, ENCODER_OUT
 from ray.rllib.core.rl_module.torch import TorchRLModule
-from ray.rllib.algorithms.ppo.ppo_rl_module import PPORLModule
-from ray.rllib.algorithms.ppo.ppo_catalog import PPOCatalog
+from ray.rllib.algorithms.dqn.dqn_rl_module import DQNRLModule
+from ray.rllib.algorithms.dqn.dqn_catalog import DQNCatalog
 
 import numpy as np
 
@@ -28,12 +28,12 @@ DEFAULT_CONFIG = {
 }
 
 
-class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
+class DQNTorchMACRLModule(TorchRLModule, DQNRLModule):
     framework: str = "torch"
 
     def get_model_config_dict(self) -> dict:
         if not hasattr(self, 'catalog'):
-            self.catalog: PPOCatalog = self.config.get_catalog()
+            self.catalog: DQNCatalog = self.config.get_catalog()
 
         assert hasattr(self.catalog, '_model_config_dict'), \
             "Expected model_config_dict to be set on catalog."
@@ -79,31 +79,28 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
             A dictionary where keys are agent ids and values are dictionaries
             from model ids to torch models.
         """
-        agent_cls = self.config.macrl_agent_cls
         self.share_actor_params = self.get_model_config_dict()['share_actor_params']
         if self.share_actor_params:
-            agent = agent_cls(self.get_agent_obs_space(),
-                              self.get_agent_act_space(),
-                              self.catalog,
-                              self.comms_spec)
+            agent = MACRLAgent(self.get_agent_obs_space(),
+                               self.get_agent_act_space(),
+                               self.catalog, self.comms_spec)
             return nn.ModuleDict({
                 agent_id: agent for agent_id in self.comms_spec.agents
             })
         else:
             return nn.ModuleDict({
-                agent_id: agent_cls(self.get_agent_obs_space(),
-                                    self.get_agent_act_space(),
-                                    self.catalog,
-                                    self.comms_spec)
+                agent_id: MACRLAgent(self.get_agent_obs_space(),
+                                     self.get_agent_act_space(),
+                                     self.catalog, self.comms_spec)
                 for agent_id in self.comms_spec.agents
             })
 
     def set_agent(self, agent_id: AgentID, agent: MACRLAgent):
         self.agents[agent_id] = agent
 
-    @override(PPORLModule)
+    @override(DQNRLModule)
     def setup(self):
-        self.catalog: PPOCatalog = self.config.get_catalog()
+        self.catalog: DQNCatalog = self.config.get_catalog()
         print('Building MACRL module...')
         self.comms_spec = self.get_comms_spec()
         print(f'Comms spec: {self.comms_spec}')
@@ -113,8 +110,8 @@ class PPOTorchMACRLModule(TorchRLModule, PPORLModule):
         self.comm_channel_fn = self.comms_spec.get_channel_fn()
         print(f'Communication channel function: {self.comm_channel_fn}')
 
-        assert isinstance(self.catalog, PPOCatalog), \
-            "Expected catalog to be a PPOCatalog."
+        assert isinstance(self.catalog, DQNCatalog), \
+            "Expected catalog to be a DQNCatalog."
 
         self.critic_encoder = self.catalog._encoder_config.build(framework=self.framework)
         self.vf_head = self.catalog.build_vf_head(framework=self.framework)

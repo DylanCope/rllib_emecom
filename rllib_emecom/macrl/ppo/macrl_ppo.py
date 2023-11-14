@@ -41,7 +41,8 @@ class PPOMACRLConfig(PPOConfig, MACRLConfig):
             comm_spec=self.create_comm_spec(),
             module_class=PPOTorchMACRLModule,
             catalog_class=PPOCatalog,
-            model_config_dict=self.model
+            model_config_dict=self.model,
+            macrl_agent_cls=self.agent_cls,
         )
 
     # @override(AlgorithmConfig)
